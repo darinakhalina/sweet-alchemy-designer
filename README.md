@@ -2,6 +2,10 @@
 
 Sweet Alchemy instantly adapts the recipe to any shape or weight. This is the magic of precision—no formulas, no mistakes.
 
+## Demo
+
+[sweet-alchemy-designer.vercel.app](https://sweet-alchemy-designer.vercel.app)
+
 ## Requirements
 
 - **Node.js** >= 18
