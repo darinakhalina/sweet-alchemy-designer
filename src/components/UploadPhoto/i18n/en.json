@@ -1,0 +1,8 @@
+{
+  "components": {
+    "uploadPhoto": {
+      "upload": "Upload a photo",
+      "uploadAnother": "Upload another photo"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.input-container label:first-of-type {
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 481px) {
+  .input-container {
+    gap: var(--space-4);
+  }
+
+  .input-container label:first-of-type {
+    font-size: 20px;
+    line-height: 120%;
+  }
+}

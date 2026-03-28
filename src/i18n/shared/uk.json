@@ -1,0 +1,76 @@
+{
+  "header": {
+    "constructor": "Конструктор",
+    "searchRecipes": "Пошук рецептів",
+    "myRecipes": "Мої рецепти",
+    "logo": "SweetAlchemy"
+  },
+  "footer": {
+    "copyright": "© 2025 SweetAlchemy",
+    "company": "Компанія",
+    "aboutUs": "Про нас",
+    "app": "Додаток",
+    "iosAndroid": "iOS та Android",
+    "macWindows": "Mac та Windows",
+    "privacyPolicy": "Політика приватності",
+    "termsOfService": "Умови надання сервісу"
+  },
+  "constructor": {
+    "title": "КОНСТРУКТОР ДЕСЕРТУ",
+    "steps": {
+      "aboutDessert": "ПРО ДЕСЕРТ",
+      "base": "ОСНОВА",
+      "fillings": "НАЧИНКИ",
+      "extras": "ДОДАТИ",
+      "packaging": "ПАКУВАННЯ",
+      "calculations": "РОЗРАХУНКИ",
+      "recipe": "РЕЦЕПТ"
+    },
+    "fields": {
+      "dessertName": "Назва десерту",
+      "dessertCategory": "Категорія десерту",
+      "dessertType": "Тип десерту",
+      "diameter": "Діаметр",
+      "quantity": "Кількість"
+    },
+    "calculations": {
+      "totalWeight": "Орієнтовна загальна вага десерту",
+      "cost": "Собівартість десерту",
+      "goToRecipe": "Перейти до рецепту"
+    }
+  },
+  "recipe": {
+    "technology": "Технологія",
+    "ingredients": "Інгредієнти",
+    "equipment": "Інвентар",
+    "dessertComposition": "Склад десерту"
+  },
+  "myRecipes": {
+    "title": "Мої рецепти"
+  },
+  "search": {
+    "title": "Пошук рецептів",
+    "placeholder": "Пошук..."
+  },
+  "profile": {
+    "title": "Профіль",
+    "edit": "Редагувати",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "validation": {
+    "required": "Обов'язкове поле",
+    "minLength": "Мінімум {{min}} символів",
+    "maxLength": "Максимум {{max}} символів",
+    "invalidEmail": "Невірний email"
+  },
+  "common": {
+    "loading": "Завантаження...",
+    "error": "Сталася помилка",
+    "save": "Зберегти",
+    "cancel": "Скасувати",
+    "delete": "Видалити",
+    "add": "Додати",
+    "back": "Назад"
+  }
+}

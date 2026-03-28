@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "home": {
+      "title": "Sweet Alchemy",
+      "subtitle": "Precision in every recipe",
+      "navigation": "Pages",
+      "demo": "Design system demo"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "notFound": {
+      "message": "Sorry, this page doesn't exist.",
+      "backLink": "Go back to the homepage."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  /* === Palette === */
+  --brand-600: #FE7BCF;
+  --brand-800: #F42EAD;
+  --neutral-400: #2B2117;
+  --neutral-200: #626049;
+  --neutral-100: #C3C2AD;
+  --neutral-50: #E9E8E3;
+  --white: #ffffff;
+
+  /* === Semantic === */
+  --color-error: #E53E3E;
+  --color-success: #38A169;
+
+  --color-text: var(--neutral-400);
+  --color-text-secondary: var(--neutral-200);
+  --color-text-muted: var(--neutral-100);
+  --color-border: var(--neutral-100);
+  --color-border-strong: var(--neutral-200);
+  --color-bg: var(--white);
+  --color-bg-hover: var(--neutral-50);
+  --color-bg-active: var(--neutral-100);
+
+  /* === Overlays === */
+  --color-overlay: rgba(0, 0, 0, 0.35);
+  --color-hover-light: rgba(0, 0, 0, 0.05);
+  --color-hover-medium: rgba(0, 0, 0, 0.1);
+
+  /* === Font stacks === */
+  --font-primary: 'Rubik', sans-serif;
+  --font-accent: 'Playpen Sans', cursive;
+}

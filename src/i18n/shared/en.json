@@ -1,0 +1,76 @@
+{
+  "header": {
+    "constructor": "Constructor",
+    "searchRecipes": "Search recipes",
+    "myRecipes": "My recipes",
+    "logo": "SweetAlchemy"
+  },
+  "footer": {
+    "copyright": "© 2025 SweetAlchemy",
+    "company": "Company",
+    "aboutUs": "About us",
+    "app": "App",
+    "iosAndroid": "iOS & Android",
+    "macWindows": "Mac & Windows",
+    "privacyPolicy": "Privacy policy",
+    "termsOfService": "Terms of service"
+  },
+  "constructor": {
+    "title": "DESSERT CONSTRUCTOR",
+    "steps": {
+      "aboutDessert": "ABOUT DESSERT",
+      "base": "BASE",
+      "fillings": "FILLINGS",
+      "extras": "EXTRAS",
+      "packaging": "PACKAGING",
+      "calculations": "CALCULATIONS",
+      "recipe": "RECIPE"
+    },
+    "fields": {
+      "dessertName": "Dessert name",
+      "dessertCategory": "Dessert category",
+      "dessertType": "Dessert type",
+      "diameter": "Diameter",
+      "quantity": "Quantity"
+    },
+    "calculations": {
+      "totalWeight": "Estimated total dessert weight",
+      "cost": "Dessert cost",
+      "goToRecipe": "Go to recipe"
+    }
+  },
+  "recipe": {
+    "technology": "Technology",
+    "ingredients": "Ingredients",
+    "equipment": "Equipment",
+    "dessertComposition": "Dessert composition"
+  },
+  "myRecipes": {
+    "title": "My recipes"
+  },
+  "search": {
+    "title": "Search recipes",
+    "placeholder": "Search..."
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "validation": {
+    "required": "Required field",
+    "minLength": "Minimum {{min}} characters",
+    "maxLength": "Maximum {{max}} characters",
+    "invalidEmail": "Invalid email"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "add": "Add",
+    "back": "Back"
+  }
+}

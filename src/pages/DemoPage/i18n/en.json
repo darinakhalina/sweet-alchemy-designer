@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "demo": {
+      "title": "Design System Demo",
+      "colors": "Color Palette",
+      "semanticColors": "Semantic Colors",
+      "spacing": "Spacing",
+      "radius": "Border Radius",
+      "transitions": "Transitions",
+      "shadows": "Shadows",
+      "typography": "Typography Classes",
+      "fonts": "Font Families"
+    }
+  }
+}

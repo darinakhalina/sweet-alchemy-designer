@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "demo": {
+      "title": "Демо дизайн-системи",
+      "colors": "Палітра кольорів",
+      "semanticColors": "Семантичні кольори",
+      "spacing": "Відступи (Spacing)",
+      "radius": "Заокруглення (Radius)",
+      "transitions": "Анімації (Transitions)",
+      "shadows": "Тіні (Shadows)",
+      "typography": "Типографіка",
+      "fonts": "Шрифти"
+    }
+  }
+}

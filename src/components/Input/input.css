@@ -1,0 +1,115 @@
+.input {
+  width: 100%;
+}
+
+.input__field {
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 14px;
+  align-items: center;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-strong);
+  width: 100%;
+  transition: border-color var(--transition-normal);
+}
+
+.input__field:focus {
+  outline: none;
+  border: 1px solid var(--color-text);
+}
+
+.input__field:not(:placeholder-shown) {
+  border: 1px solid var(--color-text);
+}
+
+.input__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input__eye-btn {
+  cursor: pointer;
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-5);
+  height: var(--space-5);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+}
+
+.input__eye-icon {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  color: var(--color-text);
+  transition: stroke var(--transition-normal);
+}
+
+.input__eye-btn:hover .input__eye-icon {
+  color: var(--color-text-secondary);
+}
+
+.input__error {
+  font-size: 14px;
+  color: var(--brand-800);
+  margin-top: var(--space-1);
+  min-height: var(--space-4);
+  animation: input-slide-down var(--duration-normal) ease-out;
+  transform-origin: top;
+}
+
+@keyframes input-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-2)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input__field--error {
+  border: 1px solid var(--brand-800) !important;
+  animation: input-shake var(--duration-slow) var(--ease-in-out);
+}
+
+@keyframes input-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(calc(-1 * var(--space-1)));
+  }
+  75% {
+    transform: translateX(var(--space-1));
+  }
+}
+
+.input__field--error::placeholder {
+  color: var(--brand-800);
+  opacity: 0.7;
+}
+
+.input__field[type='password'],
+.input__field[data-password='true'] {
+  padding-right: 50px;
+}
+
+@media (min-width: 768px) {
+  .input__field {
+    padding: var(--space-4) 18px;
+  }
+}

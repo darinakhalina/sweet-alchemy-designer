@@ -1,0 +1,40 @@
+/* === Tokens === */
+@import './colors.css';
+@import './spacing.css';
+@import './radius.css';
+@import './transitions.css';
+@import './shadows.css';
+@import './z-index.css';
+
+/* === Base === */
+@import './fonts.css';
+@import './typography.css';
+@import './layout.css';
+@import './base.css';
+
+/* === Components === */
+@import '../components/Button/button.css';
+@import '../components/ButtonIcon/button-icon.css';
+@import '../components/Dropdown/dropdown.css';
+@import '../components/Input/input.css';
+@import '../components/InputContainer/input-container.css';
+@import '../components/Loader/loader.css';
+@import '../components/Modal/modal.css';
+@import '../components/Pagination/pagination.css';
+@import '../components/Select/select.css';
+@import '../components/Textarea/textarea.css';
+@import '../components/UploadPhoto/upload-photo.css';
+@import '../components/LanguageSwitcher/lang-switcher.css';
+@import '../components/HomePageLayout/home-layout.css';
+@import '../components/PathInfo/path-info.css';
+@import '../components/ErrorBoundary/error-boundary.css';
+
+/* === Pages === */
+@import '../pages/HomePage/home-page.css';
+@import '../pages/ConstructorPage/constructor-page.css';
+@import '../pages/SearchPage/search-page.css';
+@import '../pages/MyRecipesPage/my-recipes-page.css';
+@import '../pages/RecipeDetailPage/recipe-detail-page.css';
+@import '../pages/ProfilePage/profile-page.css';
+@import '../pages/ProfileEditPage/profile-edit-page.css';
+@import '../pages/DemoPage/demo-page.css';
