@@ -27,7 +27,7 @@ npm run dev
 
 Dev server runs at `http://localhost:5173`
 
-Since the project uses **HashRouter**, all routes are prefixed with `#` (e.g. `http://localhost:5173/#/constructor`).
+The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/constructor`). Vercel rewrites are configured in `vercel.json` to support client-side routing.
 
 ## Scripts
 
@@ -44,7 +44,7 @@ Since the project uses **HashRouter**, all routes are prefixed with `#` (e.g. `h
 
 - **React 19** + **TypeScript 5**
 - **Vite 7** — build tool
-- **React Router DOM 7** — routing (HashRouter)
+- **React Router DOM 7** — routing (BrowserRouter)
 - **i18next** — localization (UK / EN), auto-collected from component folders
 - **Formik** — forms
 - **clsx** — conditional classNames
