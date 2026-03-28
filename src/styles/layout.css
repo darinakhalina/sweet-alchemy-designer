@@ -10,14 +10,14 @@
   margin: 0;
 }
 
-@media (max-width: 1439px) {
+@media (--not-desktop) {
   .f-container {
     padding-left: var(--space-8);
     padding-right: var(--space-8);
   }
 }
 
-@media (max-width: 767px) {
+@media (--mobile) {
   .f-container {
     padding-left: var(--space-4);
     padding-right: var(--space-4);

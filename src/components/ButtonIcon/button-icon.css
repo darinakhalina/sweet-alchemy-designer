@@ -125,7 +125,7 @@
   width: var(--space-4);
 }
 
-@media (max-width: 767px) {
+@media (--mobile) {
   .btn-icon--lg {
     width: var(--space-12);
     height: var(--space-12);

@@ -108,7 +108,7 @@
   padding-right: 50px;
 }
 
-@media (min-width: 768px) {
+@media (--not-mobile) {
   .input__field {
     padding: var(--space-4) 18px;
   }

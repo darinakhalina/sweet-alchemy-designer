@@ -1,0 +1,151 @@
+/* ===================================================
+   12-Column Grid System
+   Approach: Bootstrap-style flex grid with gutters
+   Gutter: var(--grid-gutter, 24px) — 12px each side
+   Breakpoints: sm (default), md (768px+), lg (1200px+)
+   =================================================== */
+
+:root {
+  --grid-gutter: var(--space-6);
+}
+
+/* --- Row --- */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--grid-gutter) / -2);
+  margin-right: calc(var(--grid-gutter) / -2);
+}
+
+.row--no-gutters {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row--no-gutters > [class*='col'] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* --- Row alignment --- */
+
+.row--center {
+  justify-content: center;
+}
+
+.row--between {
+  justify-content: space-between;
+}
+
+.row--align-center {
+  align-items: center;
+}
+
+.row--align-end {
+  align-items: flex-end;
+}
+
+/* --- Row gap (vertical spacing between wrapped rows) --- */
+
+.row--gap-sm {
+  row-gap: var(--space-4);
+}
+
+.row--gap-md {
+  row-gap: var(--space-6);
+}
+
+.row--gap-lg {
+  row-gap: var(--space-8);
+}
+
+/* --- Base column --- */
+
+[class*='col'] {
+  padding-left: calc(var(--grid-gutter) / 2);
+  padding-right: calc(var(--grid-gutter) / 2);
+  box-sizing: border-box;
+}
+
+/* --- Columns: mobile-first (default) --- */
+
+.col-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+.col-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+.col-3 { flex: 0 0 25%; max-width: 25%; }
+.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+.col-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+.col-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+.col-9 { flex: 0 0 75%; max-width: 75%; }
+.col-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+.col-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+.col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* --- Auto column --- */
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+/* --- Offset --- */
+
+.offset-1 { margin-left: 8.333333%; }
+.offset-2 { margin-left: 16.666667%; }
+.offset-3 { margin-left: 25%; }
+.offset-4 { margin-left: 33.333333%; }
+.offset-5 { margin-left: 41.666667%; }
+.offset-6 { margin-left: 50%; }
+
+/* --- Columns: tablet (768px+) --- */
+
+@media (--not-mobile) {
+  .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-md-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-md-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+
+  .offset-md-0 { margin-left: 0; }
+  .offset-md-1 { margin-left: 8.333333%; }
+  .offset-md-2 { margin-left: 16.666667%; }
+  .offset-md-3 { margin-left: 25%; }
+  .offset-md-4 { margin-left: 33.333333%; }
+  .offset-md-5 { margin-left: 41.666667%; }
+  .offset-md-6 { margin-left: 50%; }
+}
+
+/* --- Columns: desktop (1440px+) --- */
+
+@media (--desktop) {
+  .col-lg-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-lg-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-lg-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-lg-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-lg-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+
+  .offset-lg-0 { margin-left: 0; }
+  .offset-lg-1 { margin-left: 8.333333%; }
+  .offset-lg-2 { margin-left: 16.666667%; }
+  .offset-lg-3 { margin-left: 25%; }
+  .offset-lg-4 { margin-left: 33.333333%; }
+  .offset-lg-5 { margin-left: 41.666667%; }
+  .offset-lg-6 { margin-left: 50%; }
+}

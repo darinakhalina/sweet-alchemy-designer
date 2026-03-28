@@ -1,0 +1,19 @@
+/* ===================================================
+   Breakpoint Tokens (@custom-media)
+   Single source of truth for all media queries.
+
+   Usage in any CSS file:
+     @media (--mobile)   { ... }   → max-width: 767px
+     @media (--tablet)   { ... }   → 768px — 1199px
+     @media (--desktop)  { ... }   → min-width: 1200px
+     @media (--not-mobile) { ... } → min-width: 768px  (tablet + desktop)
+     @media (--not-desktop) { ... } → max-width: 1199px (mobile + tablet)
+
+   Processed by postcss-custom-media at build time.
+   =================================================== */
+
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (min-width: 768px) and (max-width: 1199px);
+@custom-media --desktop (min-width: 1200px);
+@custom-media --not-mobile (min-width: 768px);
+@custom-media --not-desktop (max-width: 1199px);

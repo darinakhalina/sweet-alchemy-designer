@@ -65,7 +65,7 @@
   color: var(--color-text);
 }
 
-@media (min-width: 768px) {
+@media (--not-mobile) {
   .modal {
     max-width: 560px;
     padding: var(--space-20) 0;

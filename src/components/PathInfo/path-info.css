@@ -2,7 +2,7 @@
   margin: 0 0 var(--space-8) 0;
 }
 
-@media (max-width: 767px) {
+@media (--mobile) {
   .path-info {
     margin: 0 0 var(--space-10) 0;
   }

@@ -70,6 +70,20 @@ const typographyClasses = [
   { className: 'text-sm', label: '.text-sm', desc: 'Rubik 400 / 16px' },
 ];
 
+const navItems = [
+  { id: 'colors', key: 'colors' },
+  { id: 'semantic-colors', key: 'semanticColors' },
+  { id: 'spacing', key: 'spacing' },
+  { id: 'radius', key: 'radius' },
+  { id: 'transitions', key: 'transitions' },
+  { id: 'shadows', key: 'shadows' },
+  { id: 'typography', key: 'typography' },
+  { id: 'fonts', key: 'fonts' },
+  { id: 'breakpoints', key: 'breakpoints' },
+  { id: 'grid', key: 'grid' },
+  { id: 'utilities', key: 'utilities' },
+];
+
 const DemoPage = () => {
   const { t } = useTranslation();
 
@@ -80,8 +94,17 @@ const DemoPage = () => {
         <LanguageSwitcher />
       </div>
 
+      {/* === NAV === */}
+      <nav className="demo__nav">
+        {navItems.map((item) => (
+          <a key={item.id} href={`#${item.id}`} className="demo__nav-link">
+            {t(`pages.demo.${item.key}`)}
+          </a>
+        ))}
+      </nav>
+
       {/* === COLORS === */}
-      <section className="demo__section">
+      <section id="colors" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.colors')}</h2>
         <div className="demo__colors">
           {colors.map((color) => (
@@ -98,7 +121,7 @@ const DemoPage = () => {
       </section>
 
       {/* === SEMANTIC COLORS === */}
-      <section className="demo__section">
+      <section id="semantic-colors" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.semanticColors')}</h2>
         <div className="demo__token-grid">
           {semanticColors.map((item) => (
@@ -115,7 +138,7 @@ const DemoPage = () => {
       </section>
 
       {/* === SPACING === */}
-      <section className="demo__section">
+      <section id="spacing" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.spacing')}</h2>
         <div className="demo__spacing-list">
           {spacingTokens.map((item) => (
@@ -134,7 +157,7 @@ const DemoPage = () => {
       </section>
 
       {/* === RADIUS === */}
-      <section className="demo__section">
+      <section id="radius" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.radius')}</h2>
         <div className="demo__radius-list">
           {radiusTokens.map((item) => (
@@ -151,7 +174,7 @@ const DemoPage = () => {
       </section>
 
       {/* === TRANSITIONS === */}
-      <section className="demo__section">
+      <section id="transitions" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.transitions')}</h2>
         <div className="demo__token-grid">
           {transitionTokens.map((item) => (
@@ -170,7 +193,7 @@ const DemoPage = () => {
       </section>
 
       {/* === SHADOWS === */}
-      <section className="demo__section">
+      <section id="shadows" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.shadows')}</h2>
         <div className="demo__shadow-list">
           {shadowTokens.map((item) => (
@@ -186,7 +209,7 @@ const DemoPage = () => {
       </section>
 
       {/* === TYPOGRAPHY === */}
-      <section className="demo__section">
+      <section id="typography" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.typography')}</h2>
         {typographyClasses.map((item) => (
           <div key={item.className} className="demo__type-row">
@@ -200,7 +223,7 @@ const DemoPage = () => {
       </section>
 
       {/* === FONTS === */}
-      <section className="demo__section">
+      <section id="fonts" className="demo__section">
         <h2 className="demo__section-title">{t('pages.demo.fonts')}</h2>
         <div className="demo__fonts">
           <div className="demo__font-card">
@@ -244,6 +267,256 @@ const DemoPage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* === BREAKPOINTS === */}
+      <section id="breakpoints" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.breakpoints')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.breakpointsTokens')}</h3>
+        <div className="demo__utilities-table mb-6">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">--mobile</code>
+            <span className="demo__token-value">max-width: 767px</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">--tablet</code>
+            <span className="demo__token-value">768px — 1199px</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">--desktop</code>
+            <span className="demo__token-value">min-width: 1200px</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">--not-mobile</code>
+            <span className="demo__token-value">min-width: 768px (tablet + desktop)</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">--not-desktop</code>
+            <span className="demo__token-value">max-width: 1199px (mobile + tablet)</span>
+          </div>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.breakpointsUsage')}</h3>
+        <div className="demo__code-block mb-6">
+          <pre className="demo__code">
+            {`/* breakpoints.css */
+@custom-media --mobile (max-width: 767px);
+@custom-media --tablet (min-width: 768px) and (max-width: 1199px);
+@custom-media --desktop (min-width: 1200px);
+@custom-media --not-mobile (min-width: 768px);
+@custom-media --not-desktop (max-width: 1199px);
+
+/* component.css */
+.card {
+  padding: var(--space-6);
+}
+
+@media (--mobile) {
+  .card {
+    padding: var(--space-3);
+  }
+}
+
+@media (--not-mobile) {
+  .card {
+    display: flex;
+    gap: var(--space-6);
+  }
+}`}
+          </pre>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.breakpointsLive')}</h3>
+        <div className="demo__breakpoint-live">
+          <div className="demo__breakpoint-indicator demo__breakpoint-indicator--mobile visible-mobile">
+            MOBILE (&lt; 768px)
+          </div>
+          <div className="demo__breakpoint-indicator demo__breakpoint-indicator--tablet visible-tablet">
+            TABLET (768px — 1199px)
+          </div>
+          <div className="demo__breakpoint-indicator demo__breakpoint-indicator--desktop visible-desktop">
+            DESKTOP (1200px+)
+          </div>
+        </div>
+
+        <h3 className="demo__subsection-title mt-6">{t('pages.demo.breakpointsCheatsheet')}</h3>
+        <div className="demo__utilities-table">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">{t('pages.demo.breakpointsOnlyMobile')}</code>
+            <code className="demo__token-value">@media (--mobile) {'{ ... }'}</code>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">{t('pages.demo.breakpointsOnlyTablet')}</code>
+            <code className="demo__token-value">@media (--tablet) {'{ ... }'}</code>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">{t('pages.demo.breakpointsOnlyDesktop')}</code>
+            <code className="demo__token-value">@media (--desktop) {'{ ... }'}</code>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">{t('pages.demo.breakpointsTabletUp')}</code>
+            <code className="demo__token-value">@media (--not-mobile) {'{ ... }'}</code>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">{t('pages.demo.breakpointsMobileTablet')}</code>
+            <code className="demo__token-value">@media (--not-desktop) {'{ ... }'}</code>
+          </div>
+        </div>
+      </section>
+
+      {/* === GRID === */}
+      <section id="grid" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.grid')}</h2>
+
+        <h3 className="demo__subsection-title">12 {t('pages.demo.gridColumns')}</h3>
+        <div className="row row--gap-sm mb-6">
+          {Array.from({ length: 12 }, (_, i) => (
+            <div key={i} className="col-1">
+              <div className="demo__grid-cell">1</div>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title">6 + 6</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-6"><div className="demo__grid-cell">col-6</div></div>
+          <div className="col-6"><div className="demo__grid-cell">col-6</div></div>
+        </div>
+
+        <h3 className="demo__subsection-title">4 + 4 + 4</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-4"><div className="demo__grid-cell">col-4</div></div>
+          <div className="col-4"><div className="demo__grid-cell">col-4</div></div>
+          <div className="col-4"><div className="demo__grid-cell">col-4</div></div>
+        </div>
+
+        <h3 className="demo__subsection-title">3 + 3 + 3 + 3</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+        </div>
+
+        <h3 className="demo__subsection-title">2 + 2 + 2 + 2 + 2 + 2</h3>
+        <div className="row row--gap-sm mb-6">
+          {Array.from({ length: 6 }, (_, i) => (
+            <div key={i} className="col-2"><div className="demo__grid-cell">col-2</div></div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title">1 x 12</h3>
+        <div className="row row--gap-sm mb-6">
+          {Array.from({ length: 12 }, (_, i) => (
+            <div key={i} className="col-1"><div className="demo__grid-cell">1</div></div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.gridMixed')}</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-8"><div className="demo__grid-cell">col-8</div></div>
+          <div className="col-4"><div className="demo__grid-cell">col-4</div></div>
+        </div>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+          <div className="col-6"><div className="demo__grid-cell">col-6</div></div>
+          <div className="col-3"><div className="demo__grid-cell">col-3</div></div>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.gridResponsive')}</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-12 col-md-6 col-lg-3"><div className="demo__grid-cell">col-12 / md-6 / lg-3</div></div>
+          <div className="col-12 col-md-6 col-lg-3"><div className="demo__grid-cell">col-12 / md-6 / lg-3</div></div>
+          <div className="col-12 col-md-6 col-lg-3"><div className="demo__grid-cell">col-12 / md-6 / lg-3</div></div>
+          <div className="col-12 col-md-6 col-lg-3"><div className="demo__grid-cell">col-12 / md-6 / lg-3</div></div>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.gridOffset')}</h3>
+        <div className="row row--gap-sm mb-6">
+          <div className="col-6 offset-3"><div className="demo__grid-cell">col-6 offset-3</div></div>
+        </div>
+        <div className="row row--gap-sm">
+          <div className="col-4 offset-1"><div className="demo__grid-cell">col-4 offset-1</div></div>
+          <div className="col-4 offset-2"><div className="demo__grid-cell">col-4 offset-2</div></div>
+        </div>
+      </section>
+
+      {/* === UTILITIES === */}
+      <section id="utilities" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.utilities')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.utilitiesSpacing')}</h3>
+        <div className="demo__utilities-table">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.mt-4, .mb-4, .ml-4, .mr-4</code>
+            <span className="demo__token-value">margin-top/bottom/left/right: var(--space-4)</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.mx-auto</code>
+            <span className="demo__token-value">margin-left: auto; margin-right: auto</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.p-4, .px-4, .py-4</code>
+            <span className="demo__token-value">padding / padding-x / padding-y: var(--space-4)</span>
+          </div>
+        </div>
+        <div className="demo__utilities-demo mt-4">
+          <div className="demo__utilities-box p-2"><code>.p-2</code></div>
+          <div className="demo__utilities-box p-4"><code>.p-4</code></div>
+          <div className="demo__utilities-box p-6"><code>.p-6</code></div>
+          <div className="demo__utilities-box p-8"><code>.p-8</code></div>
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.utilitiesDisplay')}</h3>
+        <div className="demo__utilities-table">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.d-none, .d-block, .d-flex, .d-inline-block</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesDisplayDesc')}</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.d-md-none, .d-md-flex, .d-lg-block</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesResponsiveDesc')}</span>
+          </div>
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.utilitiesFlex')}</h3>
+        <div className="demo__utilities-table">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.flex-row, .flex-column, .flex-wrap</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesFlexDirection')}</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.justify-center, .justify-between, .align-center</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesFlexAlign')}</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.gap-1 ... .gap-8</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesGap')}</span>
+          </div>
+        </div>
+        <div className="d-flex gap-4 flex-wrap mt-4">
+          <div className="demo__grid-cell px-4 py-2">flex item 1</div>
+          <div className="demo__grid-cell px-4 py-2">flex item 2</div>
+          <div className="demo__grid-cell px-4 py-2">flex item 3</div>
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.utilitiesText')}</h3>
+        <div className="demo__utilities-table">
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.text-left, .text-center, .text-right</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesTextAlign')}</span>
+          </div>
+          <div className="demo__utilities-row">
+            <code className="demo__token-name">.text-uppercase, .text-truncate</code>
+            <span className="demo__token-value">{t('pages.demo.utilitiesTextTransform')}</span>
+          </div>
+        </div>
+        <div className="row row--gap-sm mt-4">
+          <div className="col-4"><div className="demo__grid-cell text-left">.text-left</div></div>
+          <div className="col-4"><div className="demo__grid-cell text-center">.text-center</div></div>
+          <div className="col-4"><div className="demo__grid-cell text-right">.text-right</div></div>
         </div>
       </section>
     </div>

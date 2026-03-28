@@ -90,7 +90,7 @@
   padding: var(--space-4) var(--space-10);
 }
 
-@media (max-width: 767px) {
+@media (--mobile) {
   .btn--xs {
     padding: var(--space-2) var(--space-4);
   }

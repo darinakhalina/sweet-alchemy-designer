@@ -8,9 +8,11 @@ const HomeLayout = () => {
   return (
     <div className="home-layout">
       <LanguageSwitcher />
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      <div className="f-container">
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </div>
       <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
     </div>
   );

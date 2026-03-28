@@ -71,7 +71,7 @@
   pointer-events: none;
 }
 
-@media (max-width: 767px) {
+@media (--mobile) {
   .dropdown {
     width: 100%;
   }

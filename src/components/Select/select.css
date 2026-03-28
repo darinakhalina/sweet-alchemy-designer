@@ -62,7 +62,7 @@
   background: var(--color-bg-active);
 }
 
-@media (min-width: 768px) {
+@media (--not-mobile) {
   .select__input {
     padding: var(--space-4) 18px;
   }

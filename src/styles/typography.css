@@ -51,3 +51,39 @@
   font-size: 16px;
   line-height: 150%;
 }
+
+/* --- Adaptive typography --- */
+
+@media (--not-desktop) {
+  .h1 {
+    font-size: 48px;
+  }
+
+  .h1-accent {
+    font-size: 48px;
+  }
+}
+
+@media (--mobile) {
+  .h1 {
+    font-size: 36px;
+  }
+
+  .h1-accent {
+    font-size: 36px;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+
+  .text-bold,
+  .text {
+    font-size: 16px;
+  }
+
+  .text-sm-bold,
+  .text-sm {
+    font-size: 14px;
+  }
+}

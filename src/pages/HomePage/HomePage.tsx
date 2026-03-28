@@ -15,21 +15,25 @@ const HomePage = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="home-page f-container">
-      <h1 className="h1">{t('pages.home.title')}</h1>
-      <p className="text">{t('pages.home.subtitle')}</p>
+    <main className="home-page">
+      <div className="row">
+        <div className="col-12 col-md-8">
+          <h1 className="h1">{t('pages.home.title')}</h1>
+          <p className="text mt-4">{t('pages.home.subtitle')}</p>
+        </div>
+      </div>
 
-      <nav className="home-page__nav">
+      <nav className="home-page__nav mt-10">
         <h2 className="h2">{t('pages.home.navigation')}</h2>
-        <ul className="home-page__list">
+        <div className="row row--gap-md mt-5">
           {pages.map((page) => (
-            <li key={page.path} className="home-page__item">
+            <div key={page.path} className="col-12 col-md-6 col-lg-4">
               <Link to={page.path} className="home-page__link" viewTransition>
                 {t(page.key)}
               </Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </nav>
     </main>
   );

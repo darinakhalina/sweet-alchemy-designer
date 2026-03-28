@@ -3,26 +3,16 @@
   padding: var(--space-10) 0;
 }
 
-.home-page__nav {
-  margin-top: var(--space-10);
-}
-
-.home-page__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-top: var(--space-5);
-}
-
 .home-page__link {
-  display: inline-block;
-  padding: var(--space-3) var(--space-6);
+  display: block;
+  padding: var(--space-4) var(--space-6);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   color: var(--color-text);
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
+  text-align: center;
   transition:
     background-color var(--transition-normal),
     border-color var(--transition-normal);
