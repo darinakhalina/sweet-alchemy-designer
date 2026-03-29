@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Icon from '@/components/Icon';
+import Button from '@/components/Button';
+import Loader from '@/components/Loader';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -48,6 +50,7 @@ const radiusTokens = [
   { name: '--radius-lg', value: '24px' },
   { name: '--radius-xl', value: '30px' },
   { name: '--radius-full', value: '50%' },
+  { name: '--radius-pill', value: '50px' },
 ];
 
 const transitionTokens = [
@@ -93,6 +96,8 @@ const iconColorExamples = [
 
 const navItems = [
   { id: 'icons', key: 'icons' },
+  { id: 'buttons', key: 'buttons' },
+  { id: 'loader', key: 'loader' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
   { id: 'spacing', key: 'spacing' },
@@ -169,6 +174,130 @@ const DemoPage = () => {
 .my-icon {
   color: var(--brand-600);
 }`}
+          </pre>
+        </div>
+      </section>
+
+      {/* === BUTTONS === */}
+      <section id="buttons" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.buttons')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsVariants')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button variant="primary">{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="secondary">{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="brand">{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="ghost">{t('pages.demo.buttonsLabel')}</Button>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsSizes')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button size="sm">{t('pages.demo.buttonsLabel')}</Button>
+          <Button size="md">{t('pages.demo.buttonsLabel')}</Button>
+          <Button size="lg">{t('pages.demo.buttonsLabel')}</Button>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsWithIcons')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button iconLeft="icon-search">{t('pages.demo.buttonsSearch')}</Button>
+          <Button iconRight="icon-arrow-right">{t('pages.demo.buttonsNext')}</Button>
+          <Button variant="brand" iconLeft="icon-magic">{t('pages.demo.buttonsMagic')}</Button>
+          <Button variant="secondary" iconLeft="icon-plus">{t('pages.demo.buttonsAdd')}</Button>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsIconOnly')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button
+            variant="brand"
+            size="sm"
+            iconLeft="icon-plus"
+            iconOnly
+          >+
+          </Button>
+          <Button
+            variant="primary"
+            size="md"
+            iconLeft="icon-search"
+            iconOnly
+          >Search
+          </Button>
+          <Button
+            variant="secondary"
+            size="md"
+            iconLeft="icon-edit"
+            iconOnly
+          >Edit
+          </Button>
+          <Button
+            variant="ghost"
+            size="lg"
+            iconLeft="icon-menu"
+            iconOnly
+          >Menu
+          </Button>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsUppercase')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button uppercase>{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="brand" uppercase>{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="secondary" uppercase>{t('pages.demo.buttonsLabel')}</Button>
+          <Button variant="ghost" uppercase>{t('pages.demo.buttonsLabel')}</Button>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.buttonsStates')}</h3>
+        <div className="d-flex flex-wrap gap-4 align-center mb-8">
+          <Button isDisabled>{t('pages.demo.buttonsDisabled')}</Button>
+          <Button variant="secondary" isDisabled>{t('pages.demo.buttonsDisabled')}</Button>
+          <Button isLoading>{t('pages.demo.buttonsLoading')}</Button>
+          <Button variant="brand" isLoading>{t('pages.demo.buttonsLoading')}</Button>
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.buttonsUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`<Button variant="primary" size="md">Click me</Button>
+<Button variant="brand" iconLeft="icon-magic">Magic</Button>
+<Button variant="secondary" iconLeft="icon-edit" iconOnly>Edit</Button>
+<Button size="lg" iconRight="icon-arrow-right">Next</Button>
+<Button uppercase>SUBMIT</Button>`}
+          </pre>
+        </div>
+      </section>
+
+      {/* === LOADER === */}
+      <section id="loader" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.loader')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.loaderSizes')}</h3>
+        <div className="d-flex flex-wrap gap-8 align-center mb-8">
+          <Loader size="sm" />
+          <Loader size="md" />
+          <Loader size="lg" />
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.loaderVariants')}</h3>
+        <div className="d-flex flex-wrap gap-8 align-center mb-8">
+          <Loader variant="primary" />
+          <Loader variant="brand" />
+          <div className="p-6" style={{ background: 'var(--neutral-400)', borderRadius: 'var(--radius-md)' }}>
+            <Loader variant="light" />
+          </div>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.loaderOverlay')}</h3>
+        <div className="demo__loader-overlay-demo">
+          <p className="text-sm">{t('pages.demo.loaderOverlayDesc')}</p>
+          <Loader overlay />
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.loaderUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`<Loader />
+<Loader size="sm" variant="brand" />
+<Loader size="lg" />
+<Loader overlay />  {/* fullscreen overlay */}`}
           </pre>
         </div>
       </section>
@@ -584,9 +713,9 @@ const DemoPage = () => {
           </div>
         </div>
         <div className="row row--gap-sm mt-4">
-          <div className="col-4"><div className="demo__grid-cell text-left">.text-left</div></div>
-          <div className="col-4"><div className="demo__grid-cell text-center">.text-center</div></div>
-          <div className="col-4"><div className="demo__grid-cell text-right">.text-right</div></div>
+          <div className="col-4"><div className="demo__text-align-cell text-left">.text-left</div></div>
+          <div className="col-4"><div className="demo__text-align-cell text-center">.text-center</div></div>
+          <div className="col-4"><div className="demo__text-align-cell text-right">.text-right</div></div>
         </div>
       </section>
     </div>

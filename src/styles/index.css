@@ -1,3 +1,6 @@
+/* === Reset === */
+@import 'modern-normalize';
+
 /* === Tokens === */
 @import './breakpoints.css';
 @import './colors.css';

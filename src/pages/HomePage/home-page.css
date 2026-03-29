@@ -11,7 +11,7 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   text-align: center;
   transition:
     background-color var(--transition-normal),

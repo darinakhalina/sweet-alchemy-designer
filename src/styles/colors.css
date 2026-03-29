@@ -29,4 +29,18 @@
   /* === Font stacks === */
   --font-primary: 'Rubik', sans-serif;
   --font-accent: 'Playpen Sans', cursive;
+
+  /* === Font weights === */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* === Line heights === */
+  --line-height-none: 1;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+  /* === UI states === */
+  --disabled-opacity: 0.3;
 }

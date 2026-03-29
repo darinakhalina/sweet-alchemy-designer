@@ -63,9 +63,9 @@ When creating a new component, don't forget to add its CSS import to `src/styles
 | File | Tokens |
 |------|--------|
 | `breakpoints.css` | `--mobile`, `--tablet`, `--desktop`, `--not-mobile`, `--not-desktop` |
-| `colors.css` | `--brand-600`, `--neutral-*`, `--color-text`, `--color-bg`, etc. |
+| `colors.css` | `--brand-600`, `--neutral-*`, `--color-text`, `--color-bg`, `--font-weight-*`, `--line-height-*`, `--disabled-opacity`, etc. |
 | `spacing.css` | `--space-1` (4px) ... `--space-20` (80px) |
-| `radius.css` | `--radius-xs` (4px) ... `--radius-full` (50%) |
+| `radius.css` | `--radius-xs` (4px) ... `--radius-full` (50%), `--radius-pill` (50px) |
 | `transitions.css` | `--transition-fast/normal/slow` |
 | `shadows.css` | `--shadow-sm`, `--shadow-md` |
 | `z-index.css` | `--z-dropdown`, `--z-modal-overlay`, `--z-modal` |
@@ -114,6 +114,9 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - **No hardcoded UI text** — use `t('key')`. Backend data is the exception
 - **No relative imports** — use `@/components/...`, `@/hooks/...`, never `../../`
 - **No interfaces in component files** — each interface gets its own file in `interfaces/`
+- **No constants in component files** — extract maps, arrays, configs to `constants/` folder (one file per constant)
+- **No hardcoded font-weight numbers** — use `var(--font-weight-regular/medium/bold/extrabold)` (`@font-face` is the only exception)
+- **No hardcoded line-height for standard values** — use `var(--line-height-none)` (1), `var(--line-height-tight)` (1.2), `var(--line-height-normal)` (1.5)
 - **No CSS imports in components** — only add `@import` lines in `styles/index.css`
 - **No `f-container` in pages** — it's already in `HomePageLayout`
 - **No inline styles for things tokens cover** — if you reach for `style={{ marginTop: 16 }}`, use `.mt-4` instead

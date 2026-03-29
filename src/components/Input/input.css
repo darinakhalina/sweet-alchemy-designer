@@ -5,8 +5,8 @@
 .input__field {
   color: var(--color-text);
   font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
   padding: 14px;
   align-items: center;
   border-radius: var(--radius-xl);

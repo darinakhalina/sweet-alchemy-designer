@@ -1,17 +1,22 @@
-import { ColorRing } from 'react-loader-spinner';
+import clsx from 'clsx';
+import type { LoaderProps } from './interfaces/LoaderProps';
 
-const Loader = () => {
-  return (
-    <ColorRing
-      visible={true}
-      height="80"
-      width="80"
-      ariaLabel="color-ring-loading"
-      wrapperStyle={{}}
-      wrapperClass="loader"
-      colors={['#1a1a1a', '#e8e8e8', '#bfbebe', '#e8e8e8', '#050505']}
-    />
+const Loader = ({ size = 'md', variant = 'primary', overlay = false, className }: LoaderProps) => {
+  const spinner = (
+    <div
+      className={clsx('loader', `loader--${size}`, `loader--${variant}`, className)}
+      role="status"
+      aria-label="Loading"
+    >
+      <span className="loader__sr-only">Loading...</span>
+    </div>
   );
+
+  if (overlay) {
+    return <div className="loader-overlay">{spinner}</div>;
+  }
+
+  return spinner;
 };
 
 export default Loader;

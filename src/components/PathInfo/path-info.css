@@ -14,7 +14,7 @@
 }
 
 .path-info__separator {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
@@ -23,7 +23,7 @@
 }
 
 .path-info__link {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
@@ -33,7 +33,7 @@
 }
 
 .path-info__current {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;

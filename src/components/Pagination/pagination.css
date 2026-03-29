@@ -22,7 +22,7 @@
   justify-content: center;
   cursor: pointer;
   font-size: 16px;
-  line-height: 1;
+  line-height: var(--line-height-none);
 }
 
 .pagination__link:hover {

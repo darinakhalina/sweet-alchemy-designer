@@ -22,7 +22,6 @@
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
     "react-i18next": "^16.5.3",
-    "react-loader-spinner": "^8.0.2",
     "react-modal": "^3.16.3",
     "react-paginate": "^8.3.0",
     "react-router-dom": "^7.13.2"

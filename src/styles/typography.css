@@ -1,14 +1,14 @@
 .h1 {
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 64px;
-  line-height: 100%;
+  line-height: var(--line-height-none);
   text-transform: uppercase;
 }
 
 .h1-accent {
   font-family: var(--font-accent);
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
   font-size: 64px;
   line-height: 110%;
   letter-spacing: -0.03em;
@@ -18,7 +18,7 @@
 
 .h2 {
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 28px;
   line-height: 110%;
   color: var(--brand-600);
@@ -26,30 +26,30 @@
 
 .text-bold {
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 20px;
-  line-height: 150%;
+  line-height: var(--line-height-normal);
 }
 
 .text-sm-bold {
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
-  line-height: 150%;
+  line-height: var(--line-height-normal);
 }
 
 .text {
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
-  line-height: 150%;
+  line-height: var(--line-height-normal);
 }
 
 .text-sm {
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 16px;
-  line-height: 150%;
+  line-height: var(--line-height-normal);
 }
 
 /* --- Adaptive typography --- */

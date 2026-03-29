@@ -6,9 +6,9 @@
 }
 
 .input-container label:first-of-type {
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
   font-size: 16px;
-  line-height: 150%;
+  line-height: var(--line-height-normal);
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }

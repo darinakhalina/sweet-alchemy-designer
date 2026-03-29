@@ -31,7 +31,7 @@
 .demo__nav-link {
   font-family: var(--font-primary);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   text-decoration: none;
   padding: var(--space-1) var(--space-3);
@@ -46,7 +46,7 @@
 
 .demo__title {
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 36px;
 }
 
@@ -56,7 +56,7 @@
 
 .demo__section-title {
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 24px;
   margin-bottom: var(--space-6);
   color: var(--color-text);
@@ -85,14 +85,14 @@
 
 .demo__swatch-name {
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 14px;
   color: var(--color-text);
 }
 
 .demo__swatch-value {
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 12px;
   color: var(--color-text-secondary);
 }
@@ -127,7 +127,7 @@
 .demo__token-name {
   font-family: var(--font-primary);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-text);
   min-width: 200px;
 }
@@ -251,7 +251,7 @@
 .demo__type-label {
   display: inline-block;
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -264,7 +264,7 @@
 
 .demo__type-meta {
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 13px;
   color: var(--color-text-muted);
   margin-top: var(--space-2);
@@ -284,7 +284,7 @@
 }
 
 .demo__font-name {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 14px;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-3);
@@ -311,7 +311,7 @@
 
 .demo__font-weight-label {
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 12px;
   color: var(--color-text-muted);
 }
@@ -326,7 +326,7 @@
 
 .demo__subsection-title {
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-3);
@@ -339,13 +339,25 @@
   color: var(--white);
   font-family: var(--font-primary);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   text-align: center;
   padding: var(--space-3) var(--space-2);
   border-radius: var(--radius-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* --- Text-align demo cell (no hardcoded text-align so utility classes work) --- */
+
+.demo__text-align-cell {
+  background: var(--brand-600);
+  color: var(--white);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-sm);
 }
 
 /* --- Utilities demo --- */
@@ -413,7 +425,7 @@
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-md);
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 18px;
   text-align: center;
   flex: 1;
@@ -432,6 +444,23 @@
 .demo__breakpoint-indicator--desktop {
   background: #D1FAE5;
   color: #059669;
+}
+
+/* --- Loader overlay demo --- */
+
+.demo__loader-overlay-demo {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.demo__loader-overlay-demo .loader-overlay {
+  position: absolute;
 }
 
 /* --- Icons demo --- */

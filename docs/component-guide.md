@@ -11,6 +11,8 @@ ComponentName/
 ├── index.ts                  # Barrel export
 ├── interfaces/               # One file per interface (PascalCase)
 │   └── ComponentNameProps.ts
+├── constants/                # One file per constant (camelCase)
+│   └── someMap.ts
 └── i18n/                     # Translations (only if component has visible text)
     ├── uk.json
     └── en.json
@@ -60,6 +62,28 @@ export interface DessertCardProps {
 ```
 
 Each interface — its own file. Don't put interfaces inside the component file.
+
+### 1b. Extract constants
+
+If a component uses maps, arrays, or config objects — put each one in its own file inside `constants/`:
+
+`src/components/Button/constants/iconSizeMap.ts`
+
+```ts
+import type { IconProps } from '@/components/Icon/interfaces/IconProps';
+
+export const iconSizeMap: Record<string, IconProps['size']> = {
+  sm: 'xs',
+  md: 'sm',
+  lg: 'md',
+};
+```
+
+Rules:
+- One constant per file, named after the export (camelCase)
+- Component-specific constants go in `ComponentName/constants/`
+- App-wide constants go in `src/constants/` (one file per constant)
+- Never define constants inline in the component file — keep `.tsx` files focused on JSX and hooks
 
 ### 2. Create the component
 
@@ -137,6 +161,8 @@ Key points:
 
 Rules:
 - Use design tokens (`var(--space-*)`, `var(--radius-*)`, `var(--color-*)`)
+- Use global font-weight tokens: `var(--font-weight-regular)` (400), `var(--font-weight-medium)` (500), `var(--font-weight-bold)` (700), `var(--font-weight-extrabold)` (800) — never hardcode font-weight numbers
+- Use `var(--disabled-opacity)` for disabled states — keeps opacity consistent across all components
 - If a value doesn't fit any token, create a scoped CSS variable at the top of the block (`--card-image-height`) — not a magic number
 - Breakpoints only via `@media (--mobile)`, `@media (--not-mobile)`, etc.
 - Never import this CSS in the component — it goes into the global collector

@@ -16,7 +16,7 @@
   gap: var(--space-3);
 
   font-size: 16px;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: var(--color-text);
   cursor: pointer;
 }
@@ -55,7 +55,7 @@
 .dropdown__item {
   padding: var(--space-3) var(--space-4);
   font-size: 16px;
-  line-height: 1.25;
+  line-height: var(--line-height-tight);
   color: var(--color-text);
   cursor: pointer;
   user-select: none;

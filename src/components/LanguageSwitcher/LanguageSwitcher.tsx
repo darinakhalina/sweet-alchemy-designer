@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-
-const languages = [
-  { code: 'uk', label: 'UA' },
-  { code: 'en', label: 'EN' },
-];
+import { languages } from './constants/languages';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
