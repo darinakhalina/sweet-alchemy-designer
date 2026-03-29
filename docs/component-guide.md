@@ -18,6 +18,20 @@ ComponentName/
     └── en.json
 ```
 
+Tests live in `src/tests/` mirroring component structure:
+
+```
+src/tests/
+├── setup.ts                          # Global setup (jest-dom, i18n mock)
+└── components/
+    ├── Icon/
+    │   └── Icon.test.tsx
+    ├── Button/
+    │   └── Button.test.tsx
+    └── Loader/
+        └── Loader.test.tsx
+```
+
 Pages follow the same structure, but live in `src/pages/`:
 
 ```
@@ -143,7 +157,7 @@ Key points:
 
 .dessert-card__title {
   padding: var(--space-4);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .dessert-card__weight {
@@ -215,12 +229,105 @@ For pages — in the `Pages` section:
 @import '../pages/SearchPage/search-page.css';
 ```
 
-### 7. Verify
+### 7. Write tests
+
+`src/tests/components/DessertCard/DessertCard.test.tsx`
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import DessertCard from '@/components/DessertCard';
+
+describe('DessertCard', () => {
+  it('renders title and weight', () => {
+    render(<DessertCard title="Cake" image="/cake.jpg" weight={500} />);
+    expect(screen.getByText('Cake')).toBeInTheDocument();
+    expect(screen.getByText('500 common.grams')).toBeInTheDocument();
+  });
+
+  it('renders image with alt text', () => {
+    render(<DessertCard title="Cake" image="/cake.jpg" weight={500} />);
+    expect(screen.getByAltText('Cake')).toHaveAttribute('src', '/cake.jpg');
+  });
+
+  it('passes additional className', () => {
+    const { container } = render(
+      <DessertCard title="Cake" image="/cake.jpg" weight={500} className="mt-4" />
+    );
+    expect(container.firstChild).toHaveClass('dessert-card', 'mt-4');
+  });
+});
+```
+
+Rules:
+- Test files live in `src/tests/` mirroring component structure: `src/tests/components/Button/Button.test.tsx`
+- Import components via `@/` alias: `import Button from '@/components/Button'`
+- Use `@testing-library/react` — render, screen, fireEvent
+- Test behavior, not implementation: what the user sees and can interact with
+- Use `getByRole`, `getByText`, `getByAltText` — prefer accessible queries
+- Use `container.querySelector` only for CSS classes or elements without roles
+- `react-i18next` is mocked globally in `src/tests/setup.ts` — `t('key')` returns the key as-is
+- Test files are excluded from `tsc` build — write freely, linter still checks them
+
+What to test:
+- Renders expected content (text, images, icons)
+- Applies correct CSS classes for props (variants, sizes, modifiers)
+- Interactive behavior (clicks, state changes)
+- Disabled/loading states
+- Accessibility attributes (`role`, `aria-*`)
+
+What NOT to test:
+- CSS visual appearance (that's what the demo page is for)
+- Internal implementation details (state variables, private functions)
+- Third-party libraries (react-modal, formik internals)
+
+### Beyond components
+
+Vitest covers everything, not just UI components:
+
+```ts
+// Redux slice test
+import { store } from '@/store';
+import { addToCart } from '@/store/cartSlice';
+
+it('adds item to cart', () => {
+  store.dispatch(addToCart({ id: 1, name: 'Торт' }));
+  expect(store.getState().cart.items).toHaveLength(1);
+});
+```
+
+```ts
+// API endpoint test (msw for HTTP mocking)
+import { setupServer } from 'msw/node';
+import { http, HttpResponse } from 'msw';
+
+const server = setupServer(
+  http.get('/api/recipes', () => HttpResponse.json([{ id: 1, title: 'Торт' }]))
+);
+beforeAll(() => server.listen());
+afterAll(() => server.close());
+```
+
+```ts
+// Custom hook test
+import { renderHook, act } from '@testing-library/react';
+import { useCounter } from '@/hooks/useCounter';
+
+it('increments counter', () => {
+  const { result } = renderHook(() => useCounter());
+  act(() => result.current.increment());
+  expect(result.current.count).toBe(1);
+});
+```
+
+Mocking tools: `vi.mock()`, `vi.fn()`, `vi.spyOn()` — same API as Jest.
+
+### 8. Verify
 
 ```bash
 npm run lint        # No errors
 npm run typecheck   # No errors
 npm run build       # Build passes
+npm run test:run    # Tests pass
 ```
 
 ## Splitting Components

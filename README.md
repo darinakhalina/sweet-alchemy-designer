@@ -39,6 +39,8 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 | `npm run lint` | Run ESLint (check only) |
 | `npm run lint:fix` | Run ESLint + auto-fix + formatting |
 | `npm run typecheck` | Run TypeScript type check only |
+| `npm test` | Vitest watch mode |
+| `npm run test:run` | Vitest single run |
 
 ## Tech Stack
 
@@ -50,6 +52,7 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 - **clsx** — conditional classNames
 - **ESLint 10** + **@stylistic** — linting + formatting (no Prettier needed)
 - **Husky** + **lint-staged** — pre-commit hooks (auto lint on commit)
+- **Vitest** + **@testing-library/react** — unit & component testing
 - **BEM** — CSS methodology, global collector in `styles/index.css`
 
 ## Project Structure
@@ -67,7 +70,13 @@ src/
 │           ├── uk.json
 │           └── en.json
 ├── pages/               <- page components (same structure)
+├── tests/               <- unit tests (mirrors src/ structure)
+│   ├── setup.ts         <- global setup (jest-dom + i18n mock)
+│   └── components/      <- component tests
+│       └── Button/
+│           └── Button.test.tsx
 ├── hooks/               <- custom React hooks
+├── constants/           <- app-wide constants (one file per constant)
 ├── i18n/                <- i18next config + shared translations
 │   ├── index.ts         <- auto-collects all **/i18n/*.json via import.meta.glob
 │   └── shared/          <- translations for components that don't exist yet
@@ -101,6 +110,21 @@ src/
 | `/demo` | Design System Demo |
 | `*` | 404 Not Found |
 
+## Testing
+
+**Vitest** — native Vite test runner with the same API as Jest (`describe`, `it`, `expect`, `vi.mock`, `vi.fn`).
+
+Tests live in `src/tests/` mirroring the source structure. Test files are excluded from `tsc` build — Vitest handles them separately.
+
+What Vitest covers:
+- **Components** — `@testing-library/react` (render, screen, fireEvent)
+- **Redux store/slices** — direct dispatch + state assertions
+- **API endpoints** — `msw` (Mock Service Worker) for HTTP mocking
+- **Services/utils** — plain unit tests
+- **Custom hooks** — `renderHook` from `@testing-library/react`
+
+Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-i18next`.
+
 ## Design Tokens
 
 All visual values are defined as CSS custom properties in `src/styles/`:
@@ -114,6 +138,9 @@ All visual values are defined as CSS custom properties in `src/styles/`:
 | `--shadow-{size}` | `--shadow-md` | `shadows.css` |
 | `--z-{name}` | `--z-modal` = 1001 | `z-index.css` |
 | `--font-{name}` | `--font-primary` = Rubik | `colors.css` |
+| `--font-weight-{name}` | `--font-weight-medium` = 500 | `colors.css` |
+| `--line-height-{name}` | `--line-height-normal` = 1.5 | `colors.css` |
+| `--disabled-opacity` | 0.3 | `colors.css` |
 
 ## Key Conventions
 
@@ -123,7 +150,9 @@ All visual values are defined as CSS custom properties in `src/styles/`:
 - **Path aliases** — use `@/` instead of relative paths (`import Button from '@/components/Button'`).
 - **Barrel exports** — every component folder has `index.ts` for clean imports.
 - **Interfaces** — each interface in its own file inside `interfaces/` folder within the component.
+- **Constants** — each constant in its own file. Component-specific in `ComponentName/constants/`, app-wide in `src/constants/`.
 - **Translations** — each component owns its translations in `i18n/` subfolder, auto-collected at build time.
+- **Tests** — every component has a test file in `src/tests/components/`. Use Vitest + @testing-library/react.
 
 ## Localization
 

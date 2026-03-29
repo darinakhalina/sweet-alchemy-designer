@@ -10,6 +10,8 @@ npm run build        # TypeScript check + production build
 npm run lint         # ESLint check
 npm run lint:fix     # ESLint + auto-fix
 npm run typecheck    # TypeScript only
+npm test             # Vitest watch mode
+npm run test:run     # Vitest single run
 ```
 
 ## Tech Stack
@@ -20,6 +22,7 @@ npm run typecheck    # TypeScript only
 - ESLint 10 + @stylistic (no Prettier)
 - Husky + lint-staged (pre-commit)
 - PostCSS: postcss-custom-media (breakpoint tokens)
+- Vitest + @testing-library/react (unit tests)
 - Deploy: Vercel (`vercel.json` handles SPA rewrites)
 
 ## Architecture
@@ -105,6 +108,39 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 | `/profile/edit` | ProfileEditPage | HomePageLayout |
 | `/demo` | DemoPage | None (standalone) |
 | `*` | NotFoundPage | None |
+
+## Testing
+
+**Stack:** Vitest + @testing-library/react + @testing-library/jest-dom, jsdom environment.
+
+**Config:** `vite.config.ts` → `test` section. Global setup in `src/tests/setup.ts` (jest-dom matchers + react-i18next mock).
+
+**Test files excluded from `tsc` build** via `tsconfig.json` → `exclude`. Vitest handles them separately.
+
+**Where tests live:** `src/tests/` with mirrored structure — `src/tests/components/Button/Button.test.tsx`.
+
+**What Vitest covers** (not just components):
+
+| What | How |
+|------|-----|
+| Components | `@testing-library/react` — render, screen, fireEvent |
+| Redux store/slices | Direct import + dispatch + expect state |
+| RTK Query / API | `msw` (Mock Service Worker) for HTTP mocking |
+| Services / utils | Plain unit tests — import function, check result |
+| Custom hooks | `renderHook` from `@testing-library/react` |
+| Mocking | `vi.mock()`, `vi.fn()`, `vi.spyOn()` — full Jest-compatible API |
+
+**Approach:**
+- Test what the user sees: rendered text, applied classes, interactive behavior
+- Use accessible queries first: `getByRole`, `getByText`, `getByAltText`
+- Use `container.querySelector` only for CSS class checks or elements without semantic roles
+- `react-i18next` is globally mocked — `t('key')` returns the key string
+- Every new component should have a test file
+
+**What NOT to test:**
+- CSS visual appearance (demo page covers that)
+- Third-party library internals (formik, react-modal)
+- Implementation details (internal state, private methods)
 
 ## What NOT to do
 

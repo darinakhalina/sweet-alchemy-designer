@@ -20,6 +20,7 @@
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
 
+    "types": ["vitest/globals"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
