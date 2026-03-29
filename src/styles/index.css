@@ -16,8 +16,8 @@
 @import './base.css';
 
 /* === Components === */
+@import '../components/Icon/icon.css';
 @import '../components/Button/button.css';
-@import '../components/ButtonIcon/button-icon.css';
 @import '../components/Dropdown/dropdown.css';
 @import '../components/Input/input.css';
 @import '../components/InputContainer/input-container.css';

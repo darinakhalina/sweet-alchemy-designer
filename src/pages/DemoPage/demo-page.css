@@ -434,6 +434,79 @@
   color: #059669;
 }
 
+/* --- Icons demo --- */
+
+.demo__icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.demo__icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-width: 120px;
+  color: var(--color-text);
+}
+
+.demo__icon-label {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.demo__icon-sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-6);
+  color: var(--color-text);
+}
+
+.demo__icon-size-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.demo__icon-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.demo__icon-color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.demo__icon-color--text {
+  color: var(--color-text);
+}
+
+.demo__icon-color--brand {
+  color: var(--brand-600);
+}
+
+.demo__icon-color--secondary {
+  color: var(--color-text-secondary);
+}
+
+.demo__icon-color--error {
+  color: var(--color-error);
+}
+
+.demo__icon-color--success {
+  color: var(--color-success);
+}
+
 /* --- Responsive --- */
 
 @media (--mobile) {

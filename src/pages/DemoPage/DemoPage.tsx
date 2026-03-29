@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Icon from '@/components/Icon';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -70,7 +71,28 @@ const typographyClasses = [
   { className: 'text-sm', label: '.text-sm', desc: 'Rubik 400 / 16px' },
 ];
 
+const iconNames = [
+  'icon-arrow-down', 'icon-arrow-left', 'icon-arrow-right', 'icon-arrow-section', 'icon-arrow-up',
+  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-cook-hat',
+  'icon-dots', 'icon-edit', 'icon-effects', 'icon-facebook',
+  'icon-folder', 'icon-instagram', 'icon-magic', 'icon-menu',
+  'icon-multi-rectangle', 'icon-peas', 'icon-play-back', 'icon-play',
+  'icon-plus-circle', 'icon-plus', 'icon-remove', 'icon-search',
+  'icon-trending-down', 'icon-whirlwind', 'icon-x',
+];
+
+const iconSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+
+const iconColorExamples = [
+  { label: '--color-text', className: 'demo__icon-color--text' },
+  { label: '--brand-600', className: 'demo__icon-color--brand' },
+  { label: '--color-text-secondary', className: 'demo__icon-color--secondary' },
+  { label: '--color-error', className: 'demo__icon-color--error' },
+  { label: '--color-success', className: 'demo__icon-color--success' },
+];
+
 const navItems = [
+  { id: 'icons', key: 'icons' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
   { id: 'spacing', key: 'spacing' },
@@ -102,6 +124,54 @@ const DemoPage = () => {
           </a>
         ))}
       </nav>
+
+      {/* === ICONS === */}
+      <section id="icons" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.icons')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.iconsAllIcons')}</h3>
+        <div className="demo__icon-grid">
+          {iconNames.map((name) => (
+            <div key={name} className="demo__icon-item">
+              <Icon name={name} size="lg" />
+              <code className="demo__icon-label">{name}</code>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsSizes')}</h3>
+        <div className="demo__icon-sizes">
+          {iconSizes.map((size) => (
+            <div key={size} className="demo__icon-size-item">
+              <Icon name="icon-magic" size={size} />
+              <code className="demo__icon-label">{size}</code>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsColors')}</h3>
+        <div className="demo__icon-colors">
+          {iconColorExamples.map((item) => (
+            <div key={item.label} className="demo__icon-color-item">
+              <Icon name="icon-magic" size="xl" className={item.className} />
+              <code className="demo__icon-label">{item.label}</code>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`<Icon name="icon-search" size="md" />
+<Icon name="icon-magic" size="lg" className="my-icon" />
+
+/* CSS — color via class */
+.my-icon {
+  color: var(--brand-600);
+}`}
+          </pre>
+        </div>
+      </section>
 
       {/* === COLORS === */}
       <section id="colors" className="demo__section">

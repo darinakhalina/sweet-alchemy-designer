@@ -2,6 +2,11 @@
   "pages": {
     "demo": {
       "title": "Демо дизайн-системи",
+      "icons": "Іконки",
+      "iconsAllIcons": "Усі іконки",
+      "iconsSizes": "Розміри (xs / sm / md / lg / xl)",
+      "iconsColors": "Колір через CSS-клас",
+      "iconsUsage": "Використання",
       "colors": "Палітра кольорів",
       "semanticColors": "Семантичні кольори",
       "spacing": "Відступи (Spacing)",

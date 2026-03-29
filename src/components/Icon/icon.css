@@ -1,0 +1,31 @@
+.icon {
+  display: inline-block;
+  fill: currentColor;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.icon--xs {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--sm {
+  width: 20px;
+  height: 20px;
+}
+
+.icon--md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--lg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--xl {
+  width: 48px;
+  height: 48px;
+}

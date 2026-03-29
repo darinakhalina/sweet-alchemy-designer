@@ -2,6 +2,11 @@
   "pages": {
     "demo": {
       "title": "Design System Demo",
+      "icons": "Icons",
+      "iconsAllIcons": "All icons",
+      "iconsSizes": "Sizes (xs / sm / md / lg / xl)",
+      "iconsColors": "Color via CSS class",
+      "iconsUsage": "Usage",
       "colors": "Color Palette",
       "semanticColors": "Semantic Colors",
       "spacing": "Spacing",
