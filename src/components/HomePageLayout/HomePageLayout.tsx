@@ -4,21 +4,24 @@ import { Outlet } from 'react-router-dom';
 import Loader from '@/components/Loader';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import AuthStatus from '@/components/AuthStatus';
+import AuthModalProvider from '@/components/AuthModal';
 
 const HomeLayout = () => {
   return (
-    <div className="home-layout">
-      <div className="home-layout__toolbar">
-        <AuthStatus />
-        <LanguageSwitcher />
+    <AuthModalProvider>
+      <div className="home-layout">
+        <div className="home-layout__toolbar">
+          <AuthStatus />
+          <LanguageSwitcher />
+        </div>
+        <div className="f-container">
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </div>
+        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
       </div>
-      <div className="f-container">
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </div>
-      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
-    </div>
+    </AuthModalProvider>
   );
 };
 

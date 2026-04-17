@@ -1,0 +1,9 @@
+.auth-modal {
+  text-align: center;
+}
+
+.auth-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

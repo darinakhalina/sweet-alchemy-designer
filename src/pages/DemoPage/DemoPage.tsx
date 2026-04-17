@@ -89,7 +89,7 @@ const typographyClasses = [
 
 const iconNames = [
   'icon-arrow-down', 'icon-arrow-left', 'icon-arrow-right', 'icon-arrow-section', 'icon-arrow-up',
-  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-cook-hat',
+  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-close', 'icon-cook-hat',
   'icon-dots', 'icon-edit', 'icon-effects', 'icon-facebook',
   'icon-folder', 'icon-instagram', 'icon-magic', 'icon-menu',
   'icon-multi-rectangle', 'icon-peas', 'icon-play-back', 'icon-play',

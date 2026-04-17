@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
 
+const root = document.createElement('div');
+root.id = 'root';
+document.body.appendChild(root);
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,

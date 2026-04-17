@@ -12,6 +12,8 @@
         "errorButton": "Викликати помилку",
         "unknownErrorButton": "Невідома помилка",
         "networkErrorButton": "Помилка мережі",
+        "addToRecipes": "Додати в мої рецепти",
+        "recipeAdded": "Рецепт додано до вашої колекції!",
         "cookingTime": "Час приготування",
         "minutes": "хв"
       }

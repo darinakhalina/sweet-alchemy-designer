@@ -10,7 +10,12 @@ import toast from 'react-hot-toast';
 import HomePage from '@/pages/HomePage';
 
 vi.mock('react-hot-toast', () => ({
-  default: { error: vi.fn() },
+  default: { error: vi.fn(), success: vi.fn() },
+}));
+
+const mockRequireAuth = vi.fn((cb: () => void) => cb());
+vi.mock('@/hooks/useAuthModal', () => ({
+  useAuthModal: () => ({ requireAuth: mockRequireAuth }),
 }));
 
 vi.mock('@/services/dessertService', () => ({

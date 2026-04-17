@@ -7,6 +7,7 @@ import { getErrorMessage } from '@/services/helpers/getErrorMessage';
 import { ERROR_CODES } from '@/constants/errorCodes';
 import { ROUTES, buildRecipeDetailPath } from '@/constants/routes';
 import type { ApiError } from '@/services/interfaces/ApiError';
+import { useAuthModal } from '@/hooks/useAuthModal';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import AnimatedList from '@/components/AnimatedList';
@@ -48,6 +49,14 @@ const HomePage = () => {
 
   const handleNetworkError = () => {
     toast.error(t(`errors.${ERROR_CODES.common.networkError}`));
+  };
+
+  const { requireAuth } = useAuthModal();
+
+  const handleAddToRecipes = () => {
+    requireAuth(() => {
+      toast.success(t('pages.home.showcase.recipeAdded'));
+    });
   };
 
   return (
@@ -107,6 +116,13 @@ const HomePage = () => {
               onClick={handleNetworkError}
             >
               {t('pages.home.showcase.networkErrorButton')}
+            </Button>
+            <Button
+              variant="brand"
+              size="sm"
+              onClick={handleAddToRecipes}
+            >
+              {t('pages.home.showcase.addToRecipes')}
             </Button>
           </div>
         </div>

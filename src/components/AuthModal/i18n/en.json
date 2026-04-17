@@ -1,0 +1,9 @@
+{
+  "authModal": {
+    "title": "Login required",
+    "description": "Please log in to perform this action.",
+    "login": "Log in",
+    "loginError": "Log in (error demo)",
+    "cancel": "Cancel"
+  }
+}

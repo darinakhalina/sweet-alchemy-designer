@@ -12,6 +12,8 @@
         "errorButton": "Trigger error",
         "unknownErrorButton": "Unknown error",
         "networkErrorButton": "Network error",
+        "addToRecipes": "Add to my recipes",
+        "recipeAdded": "Recipe added to your collection!",
         "cookingTime": "Cooking time",
         "minutes": "min"
       }
