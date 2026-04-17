@@ -4,7 +4,17 @@
       "title": "Солодка Алхімія",
       "subtitle": "Точність у кожному рецепті",
       "navigation": "Сторінки",
-      "demo": "Демо дизайн-системи"
+      "demo": "Демо дизайн-системи",
+      "showcase": {
+        "title": "Демо API",
+        "emptyText": "Десерти ще не завантажені",
+        "fetchButton": "Завантажити десерти",
+        "errorButton": "Викликати помилку",
+        "unknownErrorButton": "Невідома помилка",
+        "networkErrorButton": "Помилка мережі",
+        "cookingTime": "Час приготування",
+        "minutes": "хв"
+      }
     }
   }
 }

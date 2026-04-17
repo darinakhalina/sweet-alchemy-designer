@@ -1,8 +1,8 @@
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import { env } from '@/config/env';
 import { store } from '@/store/store';
 import { logout } from '@/store/auth/authSlice';
+import { normalizeError } from '@/services/helpers/normalizeError';
 
 export const api = axios.create({
   baseURL: env.apiBaseUrl,
@@ -23,20 +23,13 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (axios.isAxiosError(error)) {
-      const status = error.response?.status;
-      const message = error.response?.data?.message
-        || error.message
-        || 'Something went wrong';
+    const apiError = normalizeError(error);
 
-      if (status === 401) {
-        store.dispatch(logout());
-      } else {
-        toast.error(message);
-      }
+    if (apiError.status === 401) {
+      store.dispatch(logout());
     }
 
-    return Promise.reject(error);
+    return Promise.reject(apiError);
     // TODO: add retry logic for 5xx/network errors
   },
 );

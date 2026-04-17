@@ -4,7 +4,17 @@
       "title": "Sweet Alchemy",
       "subtitle": "Precision in every recipe",
       "navigation": "Pages",
-      "demo": "Design system demo"
+      "demo": "Design system demo",
+      "showcase": {
+        "title": "API Demo",
+        "emptyText": "No desserts loaded yet",
+        "fetchButton": "Fetch desserts",
+        "errorButton": "Trigger error",
+        "unknownErrorButton": "Unknown error",
+        "networkErrorButton": "Network error",
+        "cookingTime": "Cooking time",
+        "minutes": "min"
+      }
     }
   }
 }

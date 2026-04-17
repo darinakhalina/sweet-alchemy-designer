@@ -55,9 +55,17 @@ npm run test:run     # Vitest single run
    ```
    Never hardcode breakpoint pixels — always use these tokens.
 
-## Creating Components
+## Guides
 
-See [docs/component-guide.md](docs/component-guide.md) for the full step-by-step guide, folder structure, and examples.
+| Guide | What's inside |
+|-------|--------------|
+| [Component Guide](docs/component-guide.md) | Folder structure, BEM, barrel exports, CSS registration, examples |
+| [Error Handling](docs/error-handling.md) | Backend contract, error code map, localization, thunk pattern, testing |
+| [State Management](docs/state-management.md) | Redux vs local state, creating slices/thunks, typed hooks |
+| [API Services](docs/api-services.md) | Axios instance, interceptors, service pattern, stubs, env config |
+| [i18n Guide](docs/i18n-guide.md) | Auto-collection, key naming, shared vs local, interpolation |
+| [Testing Guide](docs/testing-guide.md) | data-testid selectors, components, slices, services, toast mocking |
+| [Routing Guide](docs/routing-guide.md) | Route constants, protected/public, lazy loading, adding routes |
 
 When creating a new component, don't forget to add its CSS import to `src/styles/index.css`.
 
