@@ -9,6 +9,7 @@ import { ROUTES, buildRecipeDetailPath } from '@/constants/routes';
 import type { ApiError } from '@/services/interfaces/ApiError';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
+import AnimatedList from '@/components/AnimatedList';
 
 const pages = [
   { path: ROUTES.CONSTRUCTOR, key: 'header.constructor' },
@@ -123,7 +124,7 @@ const HomePage = () => {
         )}
 
         {!isLoading && items.length > 0 && (
-          <div className="row row--gap-md mt-6" data-testid="home-showcase-cards">
+          <AnimatedList className="row row--gap-md mt-6" data-testid="home-showcase-cards">
             {items.map((dessert) => (
               <div key={dessert.id} className="col-12 col-md-6 col-lg-4">
                 <div className="home-showcase__card" data-testid="home-showcase-card">
@@ -135,7 +136,7 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </AnimatedList>
         )}
       </section>
     </main>

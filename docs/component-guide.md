@@ -492,3 +492,67 @@ Each logical section gets its own `.row`:
   </section>
 </main>
 ```
+
+## Animating Lists
+
+Use `AnimatedList` (`src/components/AnimatedList`) to add staggered entrance animation to any list of elements. Children fade in from below, one by one.
+
+### Basic usage
+
+Replace a plain container `<div>` with `<AnimatedList>`:
+
+```tsx
+import AnimatedList from '@/components/AnimatedList';
+
+// Before — no animation
+<div className="row row--gap-md">
+  {items.map((item) => (
+    <div key={item.id} className="col-12 col-md-6 col-lg-4">
+      <Card {...item} />
+    </div>
+  ))}
+</div>
+
+// After — staggered fade-in
+<AnimatedList className="row row--gap-md">
+  {items.map((item) => (
+    <div key={item.id} className="col-12 col-md-6 col-lg-4">
+      <Card {...item} />
+    </div>
+  ))}
+</AnimatedList>
+```
+
+`AnimatedList` injects the animation class and `--item-index` CSS variable into each direct child via `cloneElement` — no extra wrapper divs are added, so grid layouts work as-is.
+
+### Custom stagger delay
+
+Default delay between items is 100ms. Override with `staggerDelay`:
+
+```tsx
+<AnimatedList className="row row--gap-md" staggerDelay={150}>
+  ...
+</AnimatedList>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | List items to animate |
+| `staggerDelay` | `number` | `100` | Delay in ms between each item's animation |
+| `className` | `string` | — | CSS classes for the container (grid, spacing, etc.) |
+| `...rest` | `HTMLDivAttributes` | — | Any div attribute (`data-testid`, `id`, etc.) |
+
+### How it works
+
+- CSS `@keyframes fadeInUp` — opacity 0→1, translateY 16px→0
+- Duration: `--duration-slow` (300ms), easing: `--ease-in-out`
+- Each child gets `animation-delay: calc(index * staggerDelay)`
+- Only `opacity` + `transform` are animated — GPU-accelerated, no layout thrashing
+
+### When to use
+
+- Cards appearing after a fetch (desserts, recipes, search results)
+- Grid items loading on page mount
+- Any list where sequential appearance looks better than all-at-once

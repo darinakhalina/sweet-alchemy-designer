@@ -35,6 +35,7 @@
 @import '../components/PathInfo/path-info.css';
 @import '../components/ErrorBoundary/error-boundary.css';
 @import '../components/AuthStatus/auth-status.css';
+@import '../components/AnimatedList/animated-list.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';
