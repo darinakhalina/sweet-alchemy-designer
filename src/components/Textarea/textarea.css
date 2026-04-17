@@ -19,7 +19,7 @@
   resize: none;
   overflow-y: hidden;
   font-weight: var(--font-weight-regular);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--color-text);
 }
@@ -34,7 +34,7 @@
 
 .textarea__counter {
   font-weight: var(--font-weight-regular);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--color-text-secondary);
 }
@@ -53,7 +53,7 @@
 
 .textarea__error {
   font-weight: var(--font-weight-regular);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
   color: var(--brand-800);
   margin-top: var(--space-1);
@@ -61,7 +61,7 @@
 
 @media (min-width: 481px) {
   .textarea__input {
-    font-size: 20px;
+    font-size: var(--font-size-lg);
     line-height: var(--line-height-normal);
   }
 }

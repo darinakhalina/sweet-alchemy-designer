@@ -1,0 +1,7 @@
+{
+  "login": {
+    "title": "Login",
+    "stub": "Test mode — click the button to log in with fake data.",
+    "submit": "Log in"
+  }
+}

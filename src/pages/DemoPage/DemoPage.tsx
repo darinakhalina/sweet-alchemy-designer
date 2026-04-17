@@ -64,6 +64,19 @@ const shadowTokens = [
   { name: '--shadow-md', value: '0 2px 6px rgba(0,0,0,0.05), 0 12px 24px rgba(0,0,0,0.06)' },
 ];
 
+const fontSizeTokens = [
+  { name: '--font-size-xs', value: '12px' },
+  { name: '--font-size-sm', value: '14px' },
+  { name: '--font-size-base', value: '16px' },
+  { name: '--font-size-md', value: '18px' },
+  { name: '--font-size-lg', value: '20px' },
+  { name: '--font-size-xl', value: '24px' },
+  { name: '--font-size-2xl', value: '28px' },
+  { name: '--font-size-3xl', value: '36px' },
+  { name: '--font-size-4xl', value: '48px' },
+  { name: '--font-size-5xl', value: '64px' },
+];
+
 const typographyClasses = [
   { className: 'h1', label: '.h1', desc: 'Rubik 700 / 64px / uppercase' },
   { className: 'h1-accent', label: '.h1-accent', desc: 'Playpen Sans 800 / 64px / uppercase / brand-600' },
@@ -104,6 +117,7 @@ const navItems = [
   { id: 'radius', key: 'radius' },
   { id: 'transitions', key: 'transitions' },
   { id: 'shadows', key: 'shadows' },
+  { id: 'font-sizes', key: 'fontSizes' },
   { id: 'typography', key: 'typography' },
   { id: 'fonts', key: 'fonts' },
   { id: 'breakpoints', key: 'breakpoints' },
@@ -402,6 +416,22 @@ const DemoPage = () => {
                 style={{ boxShadow: `var(${item.name})` }}
               />
               <code className="demo__token-name">{item.name}</code>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* === FONT SIZES === */}
+      <section id="font-sizes" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.fontSizes')}</h2>
+        <div className="demo__token-grid">
+          {fontSizeTokens.map((item) => (
+            <div key={item.name} className="demo__token-row">
+              <code className="demo__token-name">{item.name}</code>
+              <span style={{ fontSize: `var(${item.name})` }}>
+                SweetAlchemy
+              </span>
+              <span className="demo__token-value">{item.value}</span>
             </div>
           ))}
         </div>

@@ -15,7 +15,7 @@
 
 .path-info__separator {
   font-weight: var(--font-weight-bold);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   line-height: 18px;
   text-transform: uppercase;
   color: var(--color-text-secondary);
@@ -24,7 +24,7 @@
 
 .path-info__link {
   font-weight: var(--font-weight-bold);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   line-height: 18px;
   text-transform: uppercase;
   cursor: pointer;
@@ -34,7 +34,7 @@
 
 .path-info__current {
   font-weight: var(--font-weight-bold);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   line-height: 18px;
   text-transform: uppercase;
   color: var(--color-text);

@@ -2,7 +2,7 @@
   /* === Size tokens (md defaults) === */
   --btn-height: 48px;
   --btn-padding-x: var(--space-6);
-  --btn-font-size: 16px;
+  --btn-font-size: var(--font-size-base);
   --btn-line-height: 24px;
   --btn-icon-size: 48px;
   --btn-spinner-size: 20px;
@@ -37,7 +37,7 @@
 
 .btn--sm {
   --btn-height: 42px;
-  --btn-font-size: 12px;
+  --btn-font-size: var(--font-size-xs);
   --btn-line-height: 18px;
   --btn-icon-size: 40px;
   --btn-spinner-size: 16px;
@@ -47,7 +47,7 @@
 .btn--lg {
   --btn-height: 62px;
   --btn-padding-x: var(--space-8);
-  --btn-font-size: 20px;
+  --btn-font-size: var(--font-size-lg);
   --btn-line-height: 30px;
   --btn-icon-size: 56px;
   --btn-spinner-size: 24px;
@@ -67,7 +67,7 @@
   .btn--lg {
     --btn-height: 48px;
     --btn-padding-x: var(--space-6);
-    --btn-font-size: 16px;
+    --btn-font-size: var(--font-size-base);
   }
 }
 

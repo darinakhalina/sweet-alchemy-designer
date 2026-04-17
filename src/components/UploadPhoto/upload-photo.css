@@ -5,7 +5,7 @@
   cursor: pointer;
   margin-top: var(--space-4);
   font-weight: var(--font-weight-medium);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   line-height: 143%;
   letter-spacing: -0.02em;
   text-decoration: underline;
@@ -55,7 +55,7 @@
 
 .upload-photo__label span {
   color: var(--color-text);
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   text-align: center;
   text-decoration: underline;
@@ -72,7 +72,7 @@
 @media (min-width: 481px) {
   .upload-photo__another {
     margin-top: var(--space-5);
-    font-size: 16px;
+    font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
   }
 }

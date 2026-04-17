@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-none);
 }
 

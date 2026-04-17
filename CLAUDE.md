@@ -66,7 +66,7 @@ When creating a new component, don't forget to add its CSS import to `src/styles
 | File | Tokens |
 |------|--------|
 | `breakpoints.css` | `--mobile`, `--tablet`, `--desktop`, `--not-mobile`, `--not-desktop` |
-| `colors.css` | `--brand-600`, `--neutral-*`, `--color-text`, `--color-bg`, `--font-weight-*`, `--line-height-*`, `--disabled-opacity`, etc. |
+| `colors.css` | `--brand-600`, `--neutral-*`, `--color-text`, `--color-bg`, `--font-size-xs/sm/base/md/lg/xl/2xl/3xl/4xl/5xl`, `--font-weight-*`, `--line-height-*`, `--disabled-opacity`, etc. |
 | `spacing.css` | `--space-1` (4px) ... `--space-20` (80px) |
 | `radius.css` | `--radius-xs` (4px) ... `--radius-full` (50%), `--radius-pill` (50px) |
 | `transitions.css` | `--transition-fast/normal/slow` |
@@ -151,6 +151,7 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - **No relative imports** — use `@/components/...`, `@/hooks/...`, never `../../`
 - **No interfaces in component files** — each interface gets its own file in `interfaces/`
 - **No constants in component files** — extract maps, arrays, configs to `constants/` folder (one file per constant)
+- **No hardcoded font-size pixels** — use `var(--font-size-xs/sm/base/md/lg/xl/2xl/3xl/4xl/5xl)`. If a component needs a non-standard size, create a scoped CSS variable (e.g. `--demo-font-size-meta: 13px`)
 - **No hardcoded font-weight numbers** — use `var(--font-weight-regular/medium/bold/extrabold)` (`@font-face` is the only exception)
 - **No hardcoded line-height for standard values** — use `var(--line-height-none)` (1), `var(--line-height-tight)` (1.2), `var(--line-height-normal)` (1.5)
 - **No CSS imports in components** — only add `@import` lines in `styles/index.css`

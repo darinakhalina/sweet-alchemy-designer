@@ -1,0 +1,25 @@
+.auth-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.auth-status__name {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.auth-status__login-link {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--brand-600);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.auth-status__login-link:hover {
+  color: var(--brand-800);
+}

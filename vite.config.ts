@@ -18,6 +18,7 @@ export default defineConfig({
           react: ['react', 'react-dom'],
           router: ['react-router-dom'],
           i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+          redux: ['@reduxjs/toolkit', 'react-redux'],
         },
       },
     },

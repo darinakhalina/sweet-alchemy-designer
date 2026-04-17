@@ -1,7 +1,7 @@
 .h1 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: 64px;
+  font-size: var(--font-size-5xl);
   line-height: var(--line-height-none);
   text-transform: uppercase;
 }
@@ -9,7 +9,7 @@
 .h1-accent {
   font-family: var(--font-accent);
   font-weight: var(--font-weight-extrabold);
-  font-size: 64px;
+  font-size: var(--font-size-5xl);
   line-height: 110%;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -19,7 +19,7 @@
 .h2 {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: 28px;
+  font-size: var(--font-size-2xl);
   line-height: 110%;
   color: var(--brand-600);
 }
@@ -27,28 +27,28 @@
 .text-bold {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   line-height: var(--line-height-normal);
 }
 
 .text-sm-bold {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
 }
 
 .text {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   line-height: var(--line-height-normal);
 }
 
 .text-sm {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
 }
 
@@ -56,34 +56,34 @@
 
 @media (--not-desktop) {
   .h1 {
-    font-size: 48px;
+    font-size: var(--font-size-4xl);
   }
 
   .h1-accent {
-    font-size: 48px;
+    font-size: var(--font-size-4xl);
   }
 }
 
 @media (--mobile) {
   .h1 {
-    font-size: 36px;
+    font-size: var(--font-size-3xl);
   }
 
   .h1-accent {
-    font-size: 36px;
+    font-size: var(--font-size-3xl);
   }
 
   .h2 {
-    font-size: 24px;
+    font-size: var(--font-size-xl);
   }
 
   .text-bold,
   .text {
-    font-size: 16px;
+    font-size: var(--font-size-base);
   }
 
   .text-sm-bold,
   .text-sm {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 }

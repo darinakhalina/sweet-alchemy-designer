@@ -7,7 +7,7 @@
 
 .input-container label:first-of-type {
   font-weight: var(--font-weight-extrabold);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -19,7 +19,7 @@
   }
 
   .input-container label:first-of-type {
-    font-size: 20px;
+    font-size: var(--font-size-lg);
     line-height: 120%;
   }
 }

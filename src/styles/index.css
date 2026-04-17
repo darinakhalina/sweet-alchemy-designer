@@ -34,6 +34,7 @@
 @import '../components/HomePageLayout/home-layout.css';
 @import '../components/PathInfo/path-info.css';
 @import '../components/ErrorBoundary/error-boundary.css';
+@import '../components/AuthStatus/auth-status.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';
@@ -43,4 +44,5 @@
 @import '../pages/RecipeDetailPage/recipe-detail-page.css';
 @import '../pages/ProfilePage/profile-page.css';
 @import '../pages/ProfileEditPage/profile-edit-page.css';
+@import '../pages/LoginPage/login-page.css';
 @import '../pages/DemoPage/demo-page.css';

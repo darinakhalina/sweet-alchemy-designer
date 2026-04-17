@@ -1,4 +1,6 @@
 .demo {
+  --demo-font-size-meta: 13px;
+
   padding: var(--space-10);
   max-width: 1200px;
   margin: 0 auto;
@@ -30,7 +32,7 @@
 
 .demo__nav-link {
   font-family: var(--font-primary);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   text-decoration: none;
@@ -47,7 +49,7 @@
 .demo__title {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: 36px;
+  font-size: var(--font-size-3xl);
 }
 
 .demo__section {
@@ -57,7 +59,7 @@
 .demo__section-title {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: 24px;
+  font-size: var(--font-size-xl);
   margin-bottom: var(--space-6);
   color: var(--color-text);
 }
@@ -86,14 +88,14 @@
 .demo__swatch-name {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text);
 }
 
 .demo__swatch-value {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
 }
 
@@ -126,7 +128,7 @@
 
 .demo__token-name {
   font-family: var(--font-primary);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
   min-width: 200px;
@@ -134,7 +136,7 @@
 
 .demo__token-value {
   font-family: var(--font-primary);
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   color: var(--color-text-muted);
 }
 
@@ -252,7 +254,7 @@
   display: inline-block;
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
@@ -265,7 +267,7 @@
 .demo__type-meta {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   color: var(--color-text-muted);
   margin-top: var(--space-2);
 }
@@ -285,13 +287,13 @@
 
 .demo__font-name {
   font-weight: var(--font-weight-medium);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-3);
 }
 
 .demo__font-sample {
-  font-size: 32px;
+  font-size: var(--font-size-2xl);
   line-height: 1.3;
   color: var(--color-text);
 }
@@ -312,12 +314,12 @@
 .demo__font-weight-label {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
 .demo__font-weight-text {
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   line-height: 1.4;
   color: var(--color-text);
 }
@@ -327,7 +329,7 @@
 .demo__subsection-title {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-medium);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-3);
 }
@@ -338,7 +340,7 @@
   background: var(--brand-600);
   color: var(--white);
   font-family: var(--font-primary);
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   font-weight: var(--font-weight-medium);
   text-align: center;
   padding: var(--space-3) var(--space-2);
@@ -354,7 +356,7 @@
   background: var(--brand-600);
   color: var(--white);
   font-family: var(--font-primary);
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   font-weight: var(--font-weight-medium);
   padding: var(--space-3) var(--space-2);
   border-radius: var(--radius-sm);
@@ -392,7 +394,7 @@
   border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-sm);
   font-family: var(--font-primary);
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   color: var(--color-text-secondary);
 }
 
@@ -407,7 +409,7 @@
 
 .demo__code {
   font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
-  font-size: 13px;
+  font-size: var(--demo-font-size-meta);
   line-height: 1.6;
   color: var(--neutral-50);
   margin: 0;
@@ -426,7 +428,7 @@
   border-radius: var(--radius-md);
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: 18px;
+  font-size: var(--font-size-md);
   text-align: center;
   flex: 1;
 }
@@ -485,7 +487,7 @@
 
 .demo__icon-label {
   font-family: var(--font-primary);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
 }
 
@@ -549,13 +551,13 @@
   }
 
   .demo__nav-link {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     padding: var(--space-1) var(--space-2);
   }
 
   .demo__token-name {
     min-width: 140px;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
   }
 
   .demo__utilities-row {

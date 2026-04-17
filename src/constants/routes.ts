@@ -7,6 +7,7 @@ export const ROUTES = {
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
   DEMO: '/demo',
+  LOGIN: '/login',
 } as const;
 
 export const buildRecipeDetailPath = (id: string | number): string =>
