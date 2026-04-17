@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ROUTES } from '@/constants/routes';
 
 const RecipeDetailPage = () => {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ const RecipeDetailPage = () => {
           <h1 className="h1">{t('recipe.dessertComposition')}</h1>
           <p className="text-sm mt-2">ID: {id}</p>
           <p className="text mt-4">
-            <Link to="/">{t('common.back')}</Link>
+            <Link to={ROUTES.HOME}>{t('common.back')}</Link>
           </p>
         </div>
       </div>

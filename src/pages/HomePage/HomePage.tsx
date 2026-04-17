@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ROUTES, buildRecipeDetailPath } from '@/constants/routes';
 
 const pages = [
-  { path: '/constructor', key: 'header.constructor' },
-  { path: '/search', key: 'header.searchRecipes' },
-  { path: '/my-recipes', key: 'header.myRecipes' },
-  { path: '/recipe/1', key: 'recipe.dessertComposition' },
-  { path: '/profile', key: 'profile.title' },
-  { path: '/profile/edit', key: 'profile.edit' },
-  { path: '/demo', key: 'pages.home.demo' },
+  { path: ROUTES.CONSTRUCTOR, key: 'header.constructor' },
+  { path: ROUTES.SEARCH, key: 'header.searchRecipes' },
+  { path: ROUTES.MY_RECIPES, key: 'header.myRecipes' },
+  { path: buildRecipeDetailPath(1), key: 'recipe.dessertComposition' }, // TODO: replace with real recipe id when data is available
+  { path: ROUTES.PROFILE, key: 'profile.title' },
+  { path: ROUTES.PROFILE_EDIT, key: 'profile.edit' },
+  { path: ROUTES.DEMO, key: 'pages.home.demo' },
 ];
 
 const HomePage = () => {

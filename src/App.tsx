@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePageLayout from '@/components/HomePageLayout';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Loader from '@/components/Loader';
+import { ROUTES } from '@/constants/routes';
 
 // Pages
 const HomePage = lazy(() => import('@/pages/HomePage'));
@@ -21,17 +22,17 @@ const App = () => {
     <ErrorBoundary>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomePageLayout />}>
+          <Route path={ROUTES.HOME} element={<HomePageLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="constructor" element={<ConstructorPage />} />
-            <Route path="search" element={<SearchPage />} />
-            <Route path="my-recipes" element={<MyRecipesPage />} />
-            <Route path="recipe/:id" element={<RecipeDetailPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-            <Route path="profile/edit" element={<ProfileEditPage />} />
+            <Route path={ROUTES.CONSTRUCTOR} element={<ConstructorPage />} />
+            <Route path={ROUTES.SEARCH} element={<SearchPage />} />
+            <Route path={ROUTES.MY_RECIPES} element={<MyRecipesPage />} />
+            <Route path={ROUTES.RECIPE_DETAIL} element={<RecipeDetailPage />} />
+            <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+            <Route path={ROUTES.PROFILE_EDIT} element={<ProfileEditPage />} />
           </Route>
 
-          <Route path="/demo" element={<DemoPage />} />
+          <Route path={ROUTES.DEMO} element={<DemoPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
