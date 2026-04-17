@@ -20,8 +20,8 @@ const AuthStatus = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="auth-status">
-        <Link to={ROUTES.LOGIN} className="auth-status__login-link">
+      <div className="auth-status" data-testid="auth-status">
+        <Link to={ROUTES.LOGIN} className="auth-status__login-link" data-testid="auth-status-login">
           {t('auth.login')}
         </Link>
       </div>
@@ -29,8 +29,8 @@ const AuthStatus = () => {
   }
 
   return (
-    <div className="auth-status">
-      <span className="auth-status__name">{user?.name}</span>
+    <div className="auth-status" data-testid="auth-status">
+      <span className="auth-status__name" data-testid="auth-status-name">{user?.name}</span>
       <Button variant="ghost" size="sm" onClick={handleLogout}>
         {t('auth.logout')}
       </Button>

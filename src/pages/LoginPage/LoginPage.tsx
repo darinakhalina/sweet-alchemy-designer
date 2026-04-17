@@ -34,8 +34,8 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="login-page">
-      <div className="login-page__card">
+    <main className="login-page" data-testid="login-page">
+      <div className="login-page__card" data-testid="login-card">
         <h1 className="h2">{t('login.title')}</h1>
         <p className="text-sm mt-4">{t('login.stub')}</p>
         <div className="login-page__actions mt-6">

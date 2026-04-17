@@ -132,8 +132,9 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 
 **Approach:**
 - Test what the user sees: rendered text, applied classes, interactive behavior
-- Use accessible queries first: `getByRole`, `getByText`, `getByAltText`
-- Use `container.querySelector` only for CSS class checks or elements without semantic roles
+- **Prefer `data-testid` selectors** — every component and page must have `data-testid` attributes on key elements (kebab-case: `btn`, `btn-label`, `loader-overlay`, `login-page`). Tests use `screen.getByTestId()` / `screen.queryByTestId()` / `screen.getAllByTestId()` as the primary query strategy
+- Fall back to `getByRole`, `getByText`, `getByAltText` when testid doesn't make sense (e.g. checking accessible text content)
+- Use `container.querySelector` only when no testid or semantic query works (e.g. `<use>` element inside SVG)
 - `react-i18next` is globally mocked — `t('key')` returns the key string
 - Every new component should have a test file
 
@@ -158,3 +159,4 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - **No `f-container` in pages** — it's already in `HomePageLayout`
 - **No inline styles for things tokens cover** — if you reach for `style={{ marginTop: 16 }}`, use `.mt-4` instead
 - **No new CSS files without registering them** — every `.css` file must be imported in `styles/index.css`
+- **No components without `data-testid`** — every component/page must have `data-testid` on key elements. Tests must primarily use `getByTestId` / `queryByTestId` / `getAllByTestId`

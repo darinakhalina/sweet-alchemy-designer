@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Icon from '@/components/Icon';
 
 describe('Icon', () => {
@@ -9,26 +9,23 @@ describe('Icon', () => {
   });
 
   it('applies default size class md', () => {
-    const { container } = render(<Icon name="icon-search" />);
-    const svg = container.querySelector('svg');
+    render(<Icon name="icon-search" />);
+    const svg = screen.getByTestId('icon');
     expect(svg).toHaveClass('icon', 'icon--md');
   });
 
   it('applies specified size class', () => {
-    const { container } = render(<Icon name="icon-search" size="lg" />);
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveClass('icon--lg');
+    render(<Icon name="icon-search" size="lg" />);
+    expect(screen.getByTestId('icon')).toHaveClass('icon--lg');
   });
 
   it('passes additional className', () => {
-    const { container } = render(<Icon name="icon-search" className="my-icon" />);
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveClass('icon', 'my-icon');
+    render(<Icon name="icon-search" className="my-icon" />);
+    expect(screen.getByTestId('icon')).toHaveClass('icon', 'my-icon');
   });
 
   it('has aria-hidden attribute', () => {
-    const { container } = render(<Icon name="icon-search" />);
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('aria-hidden', 'true');
+    render(<Icon name="icon-search" />);
+    expect(screen.getByTestId('icon')).toHaveAttribute('aria-hidden', 'true');
   });
 });

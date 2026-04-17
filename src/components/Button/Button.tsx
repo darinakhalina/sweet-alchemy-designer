@@ -23,6 +23,7 @@ const Button = ({
     <button
       disabled={isDisabled || isLoading}
       type={type}
+      data-testid="btn"
       className={clsx('btn', `btn--${variant}`, `btn--${size}`, className, {
         'btn--uppercase': uppercase,
         'btn--loading': isLoading,
@@ -32,7 +33,7 @@ const Button = ({
       onClick={onClick}
     >
       {iconLeft && <Icon name={iconLeft} size={iconSize} className="btn__icon" />}
-      <span className={clsx('btn__label', { 'btn__label--hidden': iconOnly })}>{children}</span>
+      <span data-testid="btn-label" className={clsx('btn__label', { 'btn__label--hidden': iconOnly })}>{children}</span>
       {iconRight && <Icon name={iconRight} size={iconSize} className="btn__icon" />}
     </button>
   );
