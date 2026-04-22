@@ -1,44 +1,82 @@
+/* ===========================
+   Pagination
+   =========================== */
+
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .pagination--disabled {
+  opacity: var(--disabled-opacity);
   pointer-events: none;
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
-.pagination__link {
-  width: var(--space-10);
-  height: var(--space-10);
-  border-radius: var(--radius-full);
-  border: 1px solid transparent;
-  background: transparent;
+/* --- Page button --- */
+
+.pagination__btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: var(--space-10);
+  height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
   cursor: pointer;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-none);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.pagination__link:hover {
-  background-color: var(--color-hover-light);
+.pagination__btn:hover {
+  background-color: var(--color-bg-hover);
 }
 
-.pagination__item--active a {
-  border-color: var(--color-border-strong);
+.pagination__btn--active {
+  color: var(--brand-800);
+  font-weight: var(--font-weight-medium);
 }
 
-.pagination__break {
-  margin-top: var(--space-2);
-  pointer-events: none;
+.pagination__btn--active:hover {
+  background-color: transparent;
+  cursor: default;
 }
 
-.pagination__icon {
-  width: var(--space-5);
-  height: var(--space-5);
+/* --- Ellipsis --- */
+
+.pagination__ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--space-10);
+  height: 44px;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+/* --- Mobile --- */
+
+@media (--mobile) {
+  .pagination {
+    gap: var(--space-1);
+  }
+
+  .pagination__btn,
+  .pagination__ellipsis {
+    min-width: var(--space-8);
+    height: 36px;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-base);
+  }
 }

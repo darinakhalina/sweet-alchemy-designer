@@ -1,6 +1,9 @@
 export interface PaginationProps {
-  currentPage: number;
+  page: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
-  isDisabled?: boolean;
+  onChange: (page: number) => void;
+  siblingCount?: number;
+  boundaryCount?: number;
+  disabled?: boolean;
+  className?: string;
 }

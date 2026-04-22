@@ -21,16 +21,12 @@
 /* === Components === */
 @import '../components/Icon/icon.css';
 @import '../components/Button/button.css';
-@import '../components/Dropdown/dropdown.css';
 @import '../components/Input/input.css';
 @import '../components/Loader/loader.css';
 @import '../components/Modal/modal.css';
 @import '../components/Pagination/pagination.css';
-@import '../components/Select/select.css';
-@import '../components/UploadPhoto/upload-photo.css';
 @import '../components/LanguageSwitcher/lang-switcher.css';
 @import '../components/HomePageLayout/home-layout.css';
-@import '../components/PathInfo/path-info.css';
 @import '../components/ErrorBoundary/error-boundary.css';
 @import '../components/AuthStatus/auth-status.css';
 @import '../components/AnimatedList/animated-list.css';

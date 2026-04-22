@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -5,6 +6,7 @@ import Icon from '@/components/Icon';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Input from '@/components/Input';
+import Pagination from '@/components/Pagination';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -113,6 +115,7 @@ const navItems = [
   { id: 'icons', key: 'icons' },
   { id: 'buttons', key: 'buttons' },
   { id: 'inputs', key: 'inputs' },
+  { id: 'pagination', key: 'pagination' },
   { id: 'loader', key: 'loader' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
@@ -130,6 +133,8 @@ const navItems = [
 
 const DemoPage = () => {
   const { t } = useTranslation();
+  const [demoPage, setDemoPage] = useState(1);
+  const [demoPage2, setDemoPage2] = useState(5);
 
   return (
     <div className="demo">
@@ -500,6 +505,62 @@ const DemoPage = () => {
             </div>
           </Form>
         </Formik>
+      </section>
+
+      {/* === PAGINATION === */}
+      <section id="pagination" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.pagination')}</h2>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.paginationDefault')}</h3>
+        <div className="mb-8">
+          <Pagination page={demoPage} totalPages={15} onChange={setDemoPage} />
+          <p className="text-sm text-center mt-4">
+            {t('pages.demo.paginationCurrent')}: {demoPage}
+          </p>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.paginationSiblings')}</h3>
+        <div className="mb-8">
+          <Pagination
+            page={demoPage2}
+            totalPages={20}
+            onChange={setDemoPage2}
+            siblingCount={2}
+            boundaryCount={2}
+          />
+          <p className="text-sm text-center mt-4">
+            {t('pages.demo.paginationCurrent')}: {demoPage2} (siblingCount=2, boundaryCount=2)
+          </p>
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.paginationFewPages')}</h3>
+        <div className="mb-8">
+          <Pagination page={2} totalPages={5} onChange={() => {}} />
+        </div>
+
+        <h3 className="demo__subsection-title">{t('pages.demo.paginationDisabled')}</h3>
+        <div className="mb-8">
+          <Pagination
+            page={3}
+            totalPages={10}
+            onChange={() => {}}
+            disabled
+          />
+        </div>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.paginationUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`<Pagination page={page} totalPages={15} onChange={setPage} />
+
+{/* More visible pages */}
+<Pagination page={page} totalPages={20} onChange={setPage}
+  siblingCount={2} boundaryCount={2} />
+
+{/* Disabled */}
+<Pagination page={3} totalPages={10} onChange={fn} disabled />`}
+          </pre>
+        </div>
       </section>
 
       {/* === LOADER === */}
