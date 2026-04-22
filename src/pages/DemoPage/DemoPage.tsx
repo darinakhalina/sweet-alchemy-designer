@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { Formik, Form } from 'formik';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Icon from '@/components/Icon';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
+import Input from '@/components/Input';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -110,6 +112,7 @@ const iconColorExamples = [
 const navItems = [
   { id: 'icons', key: 'icons' },
   { id: 'buttons', key: 'buttons' },
+  { id: 'inputs', key: 'inputs' },
   { id: 'loader', key: 'loader' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
@@ -277,6 +280,226 @@ const DemoPage = () => {
 <Button uppercase>SUBMIT</Button>`}
           </pre>
         </div>
+      </section>
+
+      {/* === INPUTS === */}
+      <section id="inputs" className="demo__section">
+        <h2 className="demo__section-title">Inputs</h2>
+
+        <Formik
+          initialValues={{
+            name: '',
+            email: 'baker@gmail',
+            password: '',
+            search: '',
+            searchIcons: '',
+            portions: '6',
+            diameter: '16',
+            shape: '',
+            disabledField: 'Disabled value',
+            readonlyField: 'Read-only text',
+            technology: '',
+            filledDefault: '',
+            filledValue: 'Ягідна хмаринка',
+            filledError: '6',
+          }}
+          initialErrors={{
+            email: 'Невірний email',
+            filledError: 'Це поле обов\'язкове',
+          }}
+          initialTouched={{
+            email: true,
+            filledError: true,
+          }}
+          validate={(values) => {
+            const errors: Record<string, string> = {};
+            if (!values.name) errors.name = 'Обов\'язкове поле';
+            if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+              errors.email = 'Невірний email';
+            }
+            if (values.password && values.password.length < 6) {
+              errors.password = 'Мінімум 6 символів';
+            }
+            return errors;
+          }}
+          onSubmit={(values) => {
+            alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          <Form>
+            <h3 className="demo__subsection-title">Outlined (default)</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <Input
+                  name="name"
+                  label="Ім'я"
+                  placeholder="Оксана"
+                  required
+                />
+              </div>
+              <div className="col-12 col-md-6">
+                <Input
+                  name="email"
+                  type="email"
+                  label="Електронна пошта"
+                  placeholder="baker@gmail.com"
+                  helpText="Введіть вашу електронну пошту"
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">Filled variant</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-4">
+                <Input
+                  name="filledDefault"
+                  variant="filled"
+                  label="Кількість порцій"
+                  placeholder="Введіть значення"
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Input
+                  name="filledValue"
+                  variant="filled"
+                  label="Назва"
+                  helpText="Введіть назву рецепту"
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Input
+                  name="filledError"
+                  variant="filled"
+                  label="Кількість порцій"
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">Password with validation</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <Input
+                  name="password"
+                  type="password"
+                  label="Пароль"
+                  placeholder="******"
+                  showPasswordToggle
+                  helpText="Мінімум 6 символів"
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">With icons</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <Input
+                  name="search"
+                  startIcon="icon-search"
+                  placeholder="Шукати рецепти"
+                />
+              </div>
+              <div className="col-12 col-md-6">
+                <Input
+                  name="searchIcons"
+                  placeholder="торт"
+                  endAdornment={(
+                    <>
+                      <button type="button" className="input__icon-btn">
+                        <Icon name="icon-search" size="lg" />
+                      </button>
+                      <button type="button" className="input__icon-btn">
+                        <Icon name="icon-edit" size="md" />
+                      </button>
+                    </>
+                  )}
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">Grid layout (3 columns)</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-4">
+                <Input
+                  name="portions"
+                  label="Кількість порцій"
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Input
+                  name="diameter"
+                  label="Діаметр"
+                  helpText="В сантиметрах"
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Input
+                  name="shape"
+                  label="Форма"
+                  placeholder="кругла"
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">States</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <Input
+                  name="disabledField"
+                  label="Disabled"
+                  disabled
+                />
+              </div>
+              <div className="col-12 col-md-6">
+                <Input
+                  name="readonlyField"
+                  label="Read-only"
+                  readOnly
+                />
+              </div>
+            </div>
+
+            <h3 className="demo__subsection-title">Textarea (multiline)</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12">
+                <Input
+                  name="technology"
+                  multiline
+                  rows={5}
+                  label="Технологія"
+                  placeholder="Подрібніть печиво в блендері, додайте розтоплене масло і добре перемішайте..."
+                />
+              </div>
+            </div>
+
+            <div className="d-flex gap-4 mb-8">
+              <Button type="submit" variant="primary">Зберегти</Button>
+              <Button type="reset" variant="secondary">Скинути</Button>
+            </div>
+
+            <h3 className="demo__subsection-title mt-8">Usage</h3>
+            <div className="demo__code-block">
+              <pre className="demo__code">
+                {`{/* Outlined (default) */}
+<Input name="email" label="Пошта" placeholder="baker@gmail.com" />
+
+{/* Filled variant */}
+<Input name="name" variant="filled" label="Назва" />
+
+{/* Password with toggle */}
+<Input name="password" type="password" showPasswordToggle />
+
+{/* Search with icons */}
+<Input name="search" startIcon="icon-search" placeholder="Шукати..." />
+<Input name="q" endAdornment={<><IconBtn .../><IconBtn .../></>} />
+
+{/* Textarea */}
+<Input name="tech" multiline rows={5} label="Технологія" />
+
+{/* Formik validation — just add validate to <Formik> */}`}
+              </pre>
+            </div>
+          </Form>
+        </Formik>
       </section>
 
       {/* === LOADER === */}

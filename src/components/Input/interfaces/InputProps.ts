@@ -1,15 +1,24 @@
 import type { ReactNode } from 'react';
-import type { FormikErrors, FormikTouched } from 'formik';
 
 export interface InputProps {
   name: string;
-  type?: string;
+  type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
+  variant?: 'outlined' | 'filled';
+  label?: string;
   placeholder?: string;
-  required?: boolean;
+  helpText?: string;
+  startIcon?: string;
+  endIcon?: string;
+  onEndIconClick?: () => void;
+  endAdornment?: ReactNode;
+  multiline?: boolean;
+  rows?: number;
+  maxLength?: number;
   showPasswordToggle?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  autoComplete?: string;
+  autoFocus?: boolean;
   className?: string;
-  children?: ReactNode;
-  errors: FormikErrors<Record<string, string>>;
-  touched: FormikTouched<Record<string, string>>;
-  [key: string]: unknown;
 }

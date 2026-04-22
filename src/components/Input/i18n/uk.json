@@ -1,8 +1,6 @@
 {
-  "components": {
-    "input": {
-      "showPassword": "Показати пароль",
-      "hidePassword": "Сховати пароль"
-    }
+  "input": {
+    "showPassword": "Показати пароль",
+    "hidePassword": "Сховати пароль"
   }
 }
