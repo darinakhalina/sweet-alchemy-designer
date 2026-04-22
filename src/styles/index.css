@@ -23,12 +23,10 @@
 @import '../components/Button/button.css';
 @import '../components/Dropdown/dropdown.css';
 @import '../components/Input/input.css';
-@import '../components/InputContainer/input-container.css';
 @import '../components/Loader/loader.css';
 @import '../components/Modal/modal.css';
 @import '../components/Pagination/pagination.css';
 @import '../components/Select/select.css';
-@import '../components/Textarea/textarea.css';
 @import '../components/UploadPhoto/upload-photo.css';
 @import '../components/LanguageSwitcher/lang-switcher.css';
 @import '../components/HomePageLayout/home-layout.css';
