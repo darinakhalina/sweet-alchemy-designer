@@ -19,6 +19,7 @@
       "buttonsDisabled": "Вимкнена",
       "buttonsLoading": "Завантаження",
       "inputs": "Інпути",
+      "dropdowns": "Dropdown & Select",
       "pagination": "Пагінація",
       "paginationDefault": "За замовчуванням (siblingCount=1, boundaryCount=1)",
       "paginationSiblings": "Розширений діапазон",

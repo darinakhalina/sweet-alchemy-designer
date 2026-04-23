@@ -18,7 +18,7 @@ npm run test:run     # Vitest single run
 
 - React 19, TypeScript 5, Vite 7
 - React Router DOM 7 (BrowserRouter)
-- i18next (UK / EN), Formik, clsx
+- i18next (UK / EN), Formik, Downshift (headless select/dropdown), clsx
 - ESLint 10 + @stylistic (no Prettier)
 - Husky + lint-staged (pre-commit)
 - PostCSS: postcss-custom-media (breakpoint tokens)
@@ -27,7 +27,7 @@ npm run test:run     # Vitest single run
 
 ## Architecture
 
-- `src/components/` — shared components (Button, Modal, Select, etc.)
+- `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, etc.)
 - `src/pages/` — page components
 - `src/hooks/` — custom React hooks
 - `src/i18n/` — i18next config, auto-collects all `**/i18n/*.json`

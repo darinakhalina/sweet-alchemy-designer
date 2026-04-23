@@ -19,6 +19,7 @@
       "buttonsDisabled": "Disabled",
       "buttonsLoading": "Loading",
       "inputs": "Inputs",
+      "dropdowns": "Dropdown & Select",
       "pagination": "Pagination",
       "paginationDefault": "Default (siblingCount=1, boundaryCount=1)",
       "paginationSiblings": "Extended range",

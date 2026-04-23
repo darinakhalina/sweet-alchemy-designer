@@ -7,6 +7,9 @@ import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Input from '@/components/Input';
 import Pagination from '@/components/Pagination';
+import Dropdown from '@/components/Dropdown';
+import Select from '@/components/Select';
+import type { DropdownOption } from '@/components/Dropdown';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -115,6 +118,7 @@ const navItems = [
   { id: 'icons', key: 'icons' },
   { id: 'buttons', key: 'buttons' },
   { id: 'inputs', key: 'inputs' },
+  { id: 'dropdowns', key: 'dropdowns' },
   { id: 'pagination', key: 'pagination' },
   { id: 'loader', key: 'loader' },
   { id: 'colors', key: 'colors' },
@@ -131,10 +135,53 @@ const navItems = [
   { id: 'utilities', key: 'utilities' },
 ];
 
+const portionOptions: DropdownOption[] = [
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '4', label: '4' },
+  { value: '6', label: '6' },
+  { value: '8', label: '8' },
+  { value: '12', label: '12' },
+];
+
+const categoryOptions: DropdownOption[] = [
+  { value: 'cake', label: 'Торт' },
+  { value: 'pastry', label: 'Тістечко' },
+  { value: 'mousse', label: 'Мус' },
+  { value: 'cookie', label: 'Печиво' },
+  { value: 'candy', label: 'Цукерки' },
+];
+
+const ingredientOptions: DropdownOption[] = [
+  { value: 'sugar', label: 'Цукор' },
+  { value: 'gelatin', label: 'Желатин' },
+  { value: 'water', label: 'Вода' },
+  { value: 'oreo', label: 'Печиво Oreo' },
+  { value: 'strawberry', label: 'Полуниця' },
+  { value: 'cream', label: 'Вершки' },
+  { value: 'butter', label: 'Масло' },
+  { value: 'flour', label: 'Борошно' },
+];
+
+const unitOptions: DropdownOption[] = [
+  { value: 'g', label: 'г' },
+  { value: 'ml', label: 'мл' },
+  { value: 'pcs', label: 'шт' },
+  { value: 'tsp', label: 'ч.л.' },
+  { value: 'tbsp', label: 'ст.л.' },
+];
+
+const currencyOptions: DropdownOption[] = [
+  { value: 'UAH', label: 'UAH' },
+  { value: 'USD', label: 'USD' },
+  { value: 'EUR', label: 'EUR' },
+];
+
 const DemoPage = () => {
   const { t } = useTranslation();
   const [demoPage, setDemoPage] = useState(1);
   const [demoPage2, setDemoPage2] = useState(5);
+  const [dropdownValue, setDropdownValue] = useState('6');
 
   return (
     <div className="demo">
@@ -307,6 +354,11 @@ const DemoPage = () => {
             filledDefault: '',
             filledValue: 'Ягідна хмаринка',
             filledError: '6',
+            selectPortions: '6',
+            selectCategory: '',
+            selectIngredient: '',
+            selectUnit: 'g',
+            selectCurrency: 'UAH',
           }}
           initialErrors={{
             email: 'Невірний email',
@@ -505,6 +557,162 @@ const DemoPage = () => {
             </div>
           </Form>
         </Formik>
+      </section>
+
+      {/* === DROPDOWNS & SELECTS === */}
+      <section id="dropdowns" className="demo__section">
+        <h2 className="demo__section-title">Dropdown & Select</h2>
+
+        <h3 className="demo__subsection-title">Dropdown (standalone, any trigger)</h3>
+        <div className="row row--gap-md mb-8">
+          <div className="col-12 col-md-6">
+            <p className="text-sm mb-4">Button trigger</p>
+            <Dropdown
+              options={portionOptions}
+              selectedValue={dropdownValue}
+              onSelect={(opt) => setDropdownValue(opt.value)}
+              trigger={({ isOpen, selectedOption, toggleProps }) => (
+                <button {...toggleProps} type="button" className="btn btn--secondary btn--md">
+                  <span className="btn__label">
+                    {selectedOption?.label ?? 'Обрати'}
+                    {isOpen ? ' (open)' : ''}
+                  </span>
+                  <Icon name="icon-arrow-down" size="md" className="btn__icon" />
+                </button>
+              )}
+              data-testid="demo-dropdown-btn"
+            />
+            <p className="text-sm mt-4">
+              Selected: {dropdownValue}
+            </p>
+          </div>
+          <div className="col-12 col-md-6">
+            <p className="text-sm mb-4">Searchable dropdown</p>
+            <Dropdown
+              options={ingredientOptions}
+              onSelect={(opt) => alert(`Selected: ${opt.label}`)}
+              searchable
+              searchPlaceholder="Шукати рецепти"
+              trigger={({ toggleProps }) => (
+                <button {...toggleProps} type="button" className="btn btn--ghost btn--md">
+                  <span className="btn__label">Інгредієнти</span>
+                  <Icon name="icon-arrow-down" size="md" className="btn__icon" />
+                </button>
+              )}
+              data-testid="demo-dropdown-search"
+            />
+          </div>
+        </div>
+
+        <h3 className="demo__subsection-title">Select (Formik-integrated)</h3>
+        <Formik
+          initialValues={{
+            selectPortions: '6',
+            selectCategory: '',
+            selectIngredient: '',
+            selectUnit: 'g',
+            selectCurrency: 'UAH',
+          }}
+          validate={(values) => {
+            const errors: Record<string, string> = {};
+            if (!values.selectCategory) errors.selectCategory = 'Оберіть категорію';
+            return errors;
+          }}
+          onSubmit={(values) => {
+            alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          <Form>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-4">
+                <Select
+                  name="selectPortions"
+                  options={portionOptions}
+                  label="Кількість порцій"
+                  placeholder="Обрати"
+                  helpText="Від 1 до 12"
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Select
+                  name="selectCategory"
+                  options={categoryOptions}
+                  label="Категорія десерту"
+                  placeholder="Обрати категорію"
+                  searchable
+                  searchPlaceholder="Шукати..."
+                  required
+                />
+              </div>
+              <div className="col-12 col-md-4">
+                <Select
+                  name="selectCurrency"
+                  options={currencyOptions}
+                  label="Валюта"
+                />
+              </div>
+            </div>
+
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <Select
+                  name="selectIngredient"
+                  options={ingredientOptions}
+                  label="Інгредієнт"
+                  placeholder="Оберіть інгредієнт"
+                  searchable
+                  searchPlaceholder="Шукати інгредієнт..."
+                />
+              </div>
+              <div className="col-12 col-md-3">
+                <Select
+                  name="selectUnit"
+                  options={unitOptions}
+                  label="Одиниця"
+                />
+              </div>
+              <div className="col-12 col-md-3">
+                <Select
+                  name="selectPortions"
+                  options={portionOptions}
+                  disabled
+                  label="Disabled"
+                />
+              </div>
+            </div>
+
+            <div className="d-flex gap-4 mb-8">
+              <Button type="submit" variant="primary">Зберегти</Button>
+              <Button type="reset" variant="secondary">Скинути</Button>
+            </div>
+          </Form>
+        </Formik>
+
+        <h3 className="demo__subsection-title mt-8">Usage</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`{/* Dropdown — standalone, any trigger */}
+<Dropdown
+  options={options}
+  selectedValue={value}
+  onSelect={(opt) => setValue(opt.value)}
+  trigger={({ isOpen }) => <Button>Обрати {isOpen ? '▲' : '▼'}</Button>}
+/>
+
+{/* Dropdown — searchable */}
+<Dropdown options={options} onSelect={fn} searchable trigger={...} />
+
+{/* Select — Formik, split-pill trigger */}
+<Select
+  name="category"
+  options={options}
+  label="Категорія"
+  placeholder="Обрати"
+  searchable
+  required
+/>`}
+          </pre>
+        </div>
       </section>
 
       {/* === PAGINATION === */}

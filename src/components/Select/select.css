@@ -1,0 +1,150 @@
+/* ===========================
+   Select — pill-shaped form select
+   =========================== */
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.select--disabled {
+  opacity: var(--disabled-opacity);
+  pointer-events: none;
+}
+
+/* --- Label --- */
+
+.select__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+}
+
+.select__required {
+  color: var(--brand-800);
+}
+
+/* --- Trigger (split pill) --- */
+
+.select__trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--space-15);
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  outline: none;
+  font: inherit;
+  text-align: left;
+  transition: border-color var(--transition-normal);
+}
+
+.select__trigger:focus-visible {
+  border-color: var(--color-text);
+}
+
+.select__trigger:hover {
+  border-color: var(--color-border-strong);
+}
+
+.select__trigger--error {
+  border-color: var(--brand-800);
+}
+
+.select__trigger--disabled {
+  cursor: not-allowed;
+}
+
+/* --- Value part (left side of split pill) --- */
+
+.select__value {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select__value--placeholder {
+  color: var(--color-text-muted);
+}
+
+/* --- Caret part (right side of split pill) --- */
+
+.select__caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-15);
+  height: var(--space-15);
+  flex-shrink: 0;
+  border-left: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-normal);
+}
+
+.select__caret-icon {
+  transition: transform var(--transition-normal);
+}
+
+.select__caret-icon--open {
+  transform: rotate(180deg);
+}
+
+/* --- Help / error text --- */
+
+.select__help {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.select__help--error {
+  color: var(--brand-800);
+  animation: select-help-appear var(--duration-normal) ease-out;
+}
+
+@keyframes select-help-appear {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-1)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Mobile --- */
+
+@media (--mobile) {
+  .select__trigger {
+    min-height: 52px;
+  }
+
+  .select__value {
+    font-size: var(--font-size-base);
+    padding: var(--space-4);
+  }
+
+  .select__caret {
+    width: 52px;
+    height: 52px;
+  }
+}

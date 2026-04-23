@@ -493,6 +493,119 @@ Each logical section gets its own `.row`:
 </main>
 ```
 
+## Dropdown
+
+Headless dropdown powered by **Downshift** (`useSelect`). Handles keyboard navigation, ARIA, and open/close state. Styling is fully custom via BEM CSS.
+
+### Architecture
+
+- **Dropdown** — generic dropdown panel. Renders a trigger via render function, a floating panel with optional search, and a list of options. On mobile (≤767px) it switches to a bottom-sheet with overlay.
+- **Select** — Formik-integrated form select. Wraps `Dropdown` with a split-pill trigger (value + caret), label, help/error text. Reads/writes field value via `useField`.
+
+### Dropdown usage (standalone)
+
+```tsx
+import Dropdown from '@/components/Dropdown';
+import type { DropdownOption } from '@/components/Dropdown';
+
+const options: DropdownOption[] = [
+  { value: 'uah', label: 'UAH' },
+  { value: 'usd', label: 'USD' },
+  { value: 'eur', label: 'EUR' },
+];
+
+<Dropdown
+  options={options}
+  selectedValue={currency}
+  onSelect={(opt) => setCurrency(opt.value)}
+  trigger={({ isOpen, selectedOption, toggleProps }) => (
+    <button {...toggleProps} type="button" className="my-trigger">
+      {selectedOption?.label ?? 'Choose…'}
+    </button>
+  )}
+/>
+```
+
+**Important:** `toggleProps` must be spread on a `<button>` element — Downshift requires a natively interactive element for click/keyboard handling.
+
+### Select usage (inside Formik)
+
+```tsx
+import Select from '@/components/Select';
+
+<Select
+  name="portions"
+  options={portionOptions}
+  label={t('constructor.portions')}
+  placeholder={t('constructor.selectPortions')}
+  required
+/>
+```
+
+Searchable:
+
+```tsx
+<Select
+  name="category"
+  options={categoryOptions}
+  label={t('constructor.category')}
+  placeholder={t('constructor.selectCategory')}
+  searchable
+  searchPlaceholder={t('common.search')}
+/>
+```
+
+### Props
+
+**DropdownOption**
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `value` | `string` | Unique option value |
+| `label` | `string` | Display text |
+| `disabled` | `boolean?` | Prevents selection |
+
+**Dropdown**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `DropdownOption[]` | — | Available options |
+| `selectedValue` | `string?` | — | Currently selected value |
+| `onSelect` | `(option) => void` | — | Selection callback |
+| `trigger` | `(props) => ReactNode` | — | Render function for trigger element |
+| `searchable` | `boolean` | `false` | Show search input in panel |
+| `searchPlaceholder` | `string?` | — | Placeholder for search input |
+| `placement` | `'bottom-start' \| 'bottom-end'` | `'bottom-start'` | Panel alignment |
+
+**Select** (Formik)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Formik field name |
+| `options` | `DropdownOption[]` | — | Available options |
+| `label` | `string?` | — | Label text |
+| `placeholder` | `string?` | — | Placeholder when nothing selected |
+| `helpText` | `string?` | — | Help text below the field |
+| `searchable` | `boolean` | `false` | Enable search |
+| `searchPlaceholder` | `string?` | — | Search input placeholder |
+| `disabled` | `boolean` | `false` | Disables the field |
+| `required` | `boolean` | `false` | Shows asterisk on label |
+
+### Mobile behavior
+
+On screens ≤767px the dropdown panel renders as a bottom-sheet (`position: fixed; bottom: 0`) with a backdrop overlay, matching the Modal component pattern. `useLockBodyScroll` prevents background scrolling.
+
+### Exports
+
+```ts
+// Dropdown
+import Dropdown from '@/components/Dropdown';
+import type { DropdownOption, DropdownTriggerRenderProps } from '@/components/Dropdown';
+
+// Select
+import Select from '@/components/Select';
+```
+
 ## Animating Lists
 
 Use `AnimatedList` (`src/components/AnimatedList`) to add staggered entrance animation to any list of elements. Children fade in from below, one by one.

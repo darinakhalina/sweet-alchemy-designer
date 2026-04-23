@@ -31,6 +31,8 @@
 @import '../components/AuthStatus/auth-status.css';
 @import '../components/AnimatedList/animated-list.css';
 @import '../components/AuthModal/auth-modal.css';
+@import '../components/Dropdown/dropdown.css';
+@import '../components/Select/select.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';

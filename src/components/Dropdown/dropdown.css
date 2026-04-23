@@ -1,0 +1,201 @@
+/* ===========================
+   Dropdown
+   =========================== */
+
+.dropdown {
+  position: relative;
+}
+
+/* --- Trigger --- */
+
+.dropdown__trigger {
+  cursor: pointer;
+}
+
+/* --- Overlay (mobile only) --- */
+
+.dropdown__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-overlay);
+  z-index: var(--z-modal-overlay);
+  animation: dropdown-fade-in var(--duration-normal) var(--ease-default);
+}
+
+/* --- Panel --- */
+
+.dropdown__panel {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  min-width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--space-2)));
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+  pointer-events: none;
+}
+
+.dropdown__panel--end {
+  left: auto;
+  right: 0;
+}
+
+.dropdown__panel--open {
+  max-height: 320px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.dropdown__panel--open .dropdown__list {
+  overflow-y: auto;
+  max-height: 240px;
+}
+
+/* --- Search --- */
+
+.dropdown__search {
+  padding: var(--space-4);
+}
+
+.dropdown__search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: border-color var(--transition-normal);
+}
+
+.dropdown__search-field:focus-within {
+  border-color: var(--color-text);
+}
+
+.dropdown__search-icon {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.dropdown__search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  outline: none;
+  padding: 0;
+}
+
+.dropdown__search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* --- List --- */
+
+.dropdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Item --- */
+
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown__item--highlighted {
+  background-color: var(--color-bg-hover);
+}
+
+.dropdown__item--selected {
+  font-weight: var(--font-weight-medium);
+}
+
+.dropdown__item--disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dropdown__item--empty {
+  color: var(--color-text-muted);
+  cursor: default;
+  justify-content: center;
+}
+
+/* --- Separator between items --- */
+
+.dropdown__item + .dropdown__item {
+  border-top: 1px solid var(--color-bg-hover);
+}
+
+/* ===========================
+   Mobile — bottom sheet
+   =========================== */
+
+@media (--mobile) {
+  .dropdown__panel--mobile {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    max-height: 0;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    z-index: var(--z-modal);
+    box-shadow: none;
+    transform: translateY(100%);
+    transition:
+      opacity var(--transition-normal),
+      transform var(--transition-normal);
+  }
+
+  .dropdown__panel--mobile.dropdown__panel--open {
+    max-height: 70vh;
+    transform: translateY(0);
+  }
+
+  .dropdown__panel--mobile.dropdown__panel--open .dropdown__list {
+    max-height: calc(70vh - var(--space-20));
+  }
+
+  .dropdown__search-field {
+    min-height: var(--space-15);
+  }
+}
+
+/* --- Animations --- */
+
+@keyframes dropdown-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
