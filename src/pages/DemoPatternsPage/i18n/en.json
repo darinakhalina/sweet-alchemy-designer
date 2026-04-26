@@ -1,0 +1,38 @@
+{
+  "pages": {
+    "demoPatterns": {
+      "title": "Patterns & Integrations",
+      "backToDemo": "Back to demo",
+      "backToHome": "Home",
+      "navFormikInputs": "Formik + Input",
+      "navFormikSelect": "Formik + Select",
+      "navErrorHandling": "Error handling",
+      "formikInputs": "Formik + Input integration",
+      "formikInputsOutlined": "Outlined (default)",
+      "formikInputsFilled": "Filled variant",
+      "formikInputsPassword": "Password with validation",
+      "formikInputsWithIcons": "With icons",
+      "formikInputsGrid": "Grid layout (3 columns)",
+      "formikInputsStates": "States",
+      "formikInputsTextarea": "Textarea (multiline)",
+      "formikInputsSave": "Save",
+      "formikInputsReset": "Reset",
+      "formikInputsUsage": "Usage",
+      "formikSelect": "Formik + Select integration",
+      "formikSelectSave": "Save",
+      "formikSelectReset": "Reset",
+      "showcase": {
+        "title": "API Demo & Error Handling",
+        "emptyText": "No desserts loaded yet",
+        "fetchButton": "Fetch desserts",
+        "errorButton": "Trigger error",
+        "unknownErrorButton": "Unknown error",
+        "networkErrorButton": "Network error",
+        "addToRecipes": "Add to my recipes",
+        "recipeAdded": "Recipe added to your collection!",
+        "cookingTime": "Cooking time",
+        "minutes": "min"
+      }
+    }
+  }
+}

@@ -23,13 +23,34 @@ Tests live in `src/tests/` mirroring component structure:
 ```
 src/tests/
 ├── setup.ts                          # Global setup (jest-dom, i18n mock)
-└── components/
-    ├── Icon/
-    │   └── Icon.test.tsx
-    ├── Button/
-    │   └── Button.test.tsx
-    └── Loader/
-        └── Loader.test.tsx
+├── components/
+│   ├── AnimatedList/
+│   │   └── AnimatedList.test.tsx
+│   ├── AuthModal/
+│   │   └── AuthModal.test.tsx
+│   ├── Button/
+│   │   └── Button.test.tsx
+│   ├── Icon/
+│   │   └── Icon.test.tsx
+│   ├── Input/
+│   │   └── Input.test.tsx
+│   ├── Loader/
+│   │   └── Loader.test.tsx
+│   ├── Modal/
+│   │   └── Modal.test.tsx
+│   ├── Pagination/
+│   │   └── Pagination.test.tsx
+│   └── PrivateRoute/
+│       └── PrivateRoute.test.tsx
+├── pages/
+│   └── HomePage/
+│       └── HomePage.test.tsx
+├── store/
+│   ├── auth/authSlice.test.ts
+│   └── desserts/dessertsSlice.test.ts
+└── services/
+    ├── dessertService.test.ts
+    └── getErrorMessage.test.ts
 ```
 
 Pages follow the same structure, but live in `src/pages/`:

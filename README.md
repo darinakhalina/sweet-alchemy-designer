@@ -2,10 +2,6 @@
 
 Sweet Alchemy instantly adapts the recipe to any shape or weight. This is the magic of precision—no formulas, no mistakes.
 
-## Demo
-
-[sweet-alchemy-designer.vercel.app](https://sweet-alchemy-designer.vercel.app)
-
 ## Requirements
 
 - **Node.js** >= 18
@@ -47,11 +43,16 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 - **React 19** + **TypeScript 5**
 - **Vite 7** — build tool
 - **React Router DOM 7** — routing (BrowserRouter)
+- **Redux Toolkit** + **react-redux** — state management
+- **Axios** — HTTP client
 - **i18next** — localization (UK / EN), auto-collected from component folders
 - **Formik** — forms
+- **react-hot-toast** — toast notifications
+- **react-modal** — modals
 - **clsx** — conditional classNames
 - **ESLint 10** + **@stylistic** — linting + formatting (no Prettier needed)
 - **Husky** + **lint-staged** — pre-commit hooks (auto lint on commit)
+- **PostCSS custom-media** — breakpoint tokens
 - **Vitest** + **@testing-library/react** — unit & component testing
 - **BEM** — CSS methodology, global collector in `styles/index.css`
 
@@ -77,9 +78,12 @@ src/
 │           └── Button.test.tsx
 ├── hooks/               <- custom React hooks
 ├── constants/           <- app-wide constants (one file per constant)
+├── config/              <- typed environment variables
+├── services/            <- API client (Axios), service functions, error helpers
+├── store/               <- Redux Toolkit (slices, thunks, typed hooks)
 ├── i18n/                <- i18next config + shared translations
 │   ├── index.ts         <- auto-collects all **/i18n/*.json via import.meta.glob
-│   └── shared/          <- translations for components that don't exist yet
+│   └── shared/          <- app-wide translations (header, footer, common, errors)
 ├── styles/              <- design tokens & global styles
 │   ├── index.css        <- CSS collector (@import all tokens + components + pages)
 │   ├── colors.css       <- palette, semantic colors, overlays, font stacks
@@ -107,6 +111,7 @@ src/
 | `/recipe/:id` | Recipe Detail |
 | `/profile` | Profile |
 | `/profile/edit` | Edit Profile |
+| `/login` | Login |
 | `/demo` | Design System Demo |
 | `*` | 404 Not Found |
 
@@ -119,7 +124,7 @@ Tests live in `src/tests/` mirroring the source structure. Test files are exclud
 What Vitest covers:
 - **Components** — `@testing-library/react` (render, screen, fireEvent)
 - **Redux store/slices** — direct dispatch + state assertions
-- **API endpoints** — `msw` (Mock Service Worker) for HTTP mocking
+- **Services** — stub services with mock data (to be replaced with real API)
 - **Services/utils** — plain unit tests
 - **Custom hooks** — `renderHook` from `@testing-library/react`
 

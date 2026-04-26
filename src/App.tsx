@@ -16,7 +16,9 @@ const MyRecipesPage = lazy(() => import('@/pages/MyRecipesPage'));
 const RecipeDetailPage = lazy(() => import('@/pages/RecipeDetailPage'));
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const ProfileEditPage = lazy(() => import('@/pages/ProfileEditPage'));
+const AboutProductPage = lazy(() => import('@/pages/AboutProductPage'));
 const DemoPage = lazy(() => import('@/pages/DemoPage'));
+const DemoPatternsPage = lazy(() => import('@/pages/DemoPatternsPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App = () => {
@@ -26,6 +28,7 @@ const App = () => {
         <Routes>
           <Route path={ROUTES.HOME} element={<HomePageLayout />}>
             <Route index element={<HomePage />} />
+            <Route path={ROUTES.ABOUT} element={<AboutProductPage />} />
 
             <Route element={<PrivateRoute />}>
               <Route path={ROUTES.CONSTRUCTOR} element={<ConstructorPage />} />
@@ -39,6 +42,7 @@ const App = () => {
 
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route path={ROUTES.DEMO} element={<DemoPage />} />
+          <Route path={ROUTES.DEMO_PATTERNS} element={<DemoPatternsPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

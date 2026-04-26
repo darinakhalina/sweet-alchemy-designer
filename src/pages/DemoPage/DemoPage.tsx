@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
+import { ROUTES } from '@/constants/routes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Icon from '@/components/Icon';
 import Button from '@/components/Button';
@@ -8,7 +10,6 @@ import Loader from '@/components/Loader';
 import Input from '@/components/Input';
 import Pagination from '@/components/Pagination';
 import Dropdown from '@/components/Dropdown';
-import Select from '@/components/Select';
 import type { DropdownOption } from '@/components/Dropdown';
 
 const colors = [
@@ -133,6 +134,7 @@ const navItems = [
   { id: 'breakpoints', key: 'breakpoints' },
   { id: 'grid', key: 'grid' },
   { id: 'utilities', key: 'utilities' },
+  { id: 'patterns', key: 'patterns' },
 ];
 
 const portionOptions: DropdownOption[] = [
@@ -144,14 +146,6 @@ const portionOptions: DropdownOption[] = [
   { value: '12', label: '12' },
 ];
 
-const categoryOptions: DropdownOption[] = [
-  { value: 'cake', label: 'Торт' },
-  { value: 'pastry', label: 'Тістечко' },
-  { value: 'mousse', label: 'Мус' },
-  { value: 'cookie', label: 'Печиво' },
-  { value: 'candy', label: 'Цукерки' },
-];
-
 const ingredientOptions: DropdownOption[] = [
   { value: 'sugar', label: 'Цукор' },
   { value: 'gelatin', label: 'Желатин' },
@@ -161,20 +155,6 @@ const ingredientOptions: DropdownOption[] = [
   { value: 'cream', label: 'Вершки' },
   { value: 'butter', label: 'Масло' },
   { value: 'flour', label: 'Борошно' },
-];
-
-const unitOptions: DropdownOption[] = [
-  { value: 'g', label: 'г' },
-  { value: 'ml', label: 'мл' },
-  { value: 'pcs', label: 'шт' },
-  { value: 'tsp', label: 'ч.л.' },
-  { value: 'tbsp', label: 'ст.л.' },
-];
-
-const currencyOptions: DropdownOption[] = [
-  { value: 'UAH', label: 'UAH' },
-  { value: 'USD', label: 'USD' },
-  { value: 'EUR', label: 'EUR' },
 ];
 
 const DemoPage = () => {
@@ -192,10 +172,19 @@ const DemoPage = () => {
 
       {/* === NAV === */}
       <nav className="demo__nav">
+        <Link to={ROUTES.HOME} className="demo__nav-link">
+          {t('pages.demo.backToHome')}
+        </Link>
         {navItems.map((item) => (
-          <a key={item.id} href={`#${item.id}`} className="demo__nav-link">
-            {t(`pages.demo.${item.key}`)}
-          </a>
+          item.id === 'patterns' ? (
+            <Link key={item.id} to={ROUTES.DEMO_PATTERNS} className="demo__nav-link">
+              {t(`pages.demo.${item.key}`)}
+            </Link>
+          ) : (
+            <a key={item.id} href={`#${item.id}`} className="demo__nav-link">
+              {t(`pages.demo.${item.key}`)}
+            </a>
+          )
         ))}
       </nav>
 
@@ -336,103 +325,40 @@ const DemoPage = () => {
 
       {/* === INPUTS === */}
       <section id="inputs" className="demo__section">
-        <h2 className="demo__section-title">Inputs</h2>
+        <h2 className="demo__section-title">{t('pages.demo.inputs')}</h2>
 
         <Formik
           initialValues={{
-            name: '',
-            email: 'baker@gmail',
+            outlined: '',
+            filled: 'Ягідна хмаринка',
             password: '',
-            search: '',
-            searchIcons: '',
-            portions: '6',
-            diameter: '16',
-            shape: '',
-            disabledField: 'Disabled value',
-            readonlyField: 'Read-only text',
-            technology: '',
-            filledDefault: '',
-            filledValue: 'Ягідна хмаринка',
-            filledError: '6',
-            selectPortions: '6',
-            selectCategory: '',
-            selectIngredient: '',
-            selectUnit: 'g',
-            selectCurrency: 'UAH',
+            searchDemo: '',
+            disabledDemo: 'Disabled value',
+            readonlyDemo: 'Read-only text',
+            textareaDemo: '',
           }}
-          initialErrors={{
-            email: 'Невірний email',
-            filledError: 'Це поле обов\'язкове',
-          }}
-          initialTouched={{
-            email: true,
-            filledError: true,
-          }}
-          validate={(values) => {
-            const errors: Record<string, string> = {};
-            if (!values.name) errors.name = 'Обов\'язкове поле';
-            if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-              errors.email = 'Невірний email';
-            }
-            if (values.password && values.password.length < 6) {
-              errors.password = 'Мінімум 6 символів';
-            }
-            return errors;
-          }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
-          }}
+          onSubmit={() => {}}
         >
           <Form>
-            <h3 className="demo__subsection-title">Outlined (default)</h3>
+            <h3 className="demo__subsection-title">{t('pages.demo.inputsOutlined')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
                 <Input
-                  name="name"
-                  label="Ім'я"
+                  name="outlined"
+                  label="Outlined"
                   placeholder="Оксана"
-                  required
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
-                  name="email"
-                  type="email"
-                  label="Електронна пошта"
-                  placeholder="baker@gmail.com"
-                  helpText="Введіть вашу електронну пошту"
+                  name="filled"
+                  variant="filled"
+                  label="Filled"
                 />
               </div>
             </div>
 
-            <h3 className="demo__subsection-title">Filled variant</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-4">
-                <Input
-                  name="filledDefault"
-                  variant="filled"
-                  label="Кількість порцій"
-                  placeholder="Введіть значення"
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Input
-                  name="filledValue"
-                  variant="filled"
-                  label="Назва"
-                  helpText="Введіть назву рецепту"
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Input
-                  name="filledError"
-                  variant="filled"
-                  label="Кількість порцій"
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">Password with validation</h3>
+            <h3 className="demo__subsection-title">{t('pages.demo.inputsPassword')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
                 <Input
@@ -441,132 +367,74 @@ const DemoPage = () => {
                   label="Пароль"
                   placeholder="******"
                   showPasswordToggle
-                  helpText="Мінімум 6 символів"
                 />
               </div>
             </div>
 
-            <h3 className="demo__subsection-title">With icons</h3>
+            <h3 className="demo__subsection-title">{t('pages.demo.inputsWithIcons')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
                 <Input
-                  name="search"
+                  name="searchDemo"
                   startIcon="icon-search"
                   placeholder="Шукати рецепти"
                 />
               </div>
-              <div className="col-12 col-md-6">
-                <Input
-                  name="searchIcons"
-                  placeholder="торт"
-                  endAdornment={(
-                    <>
-                      <button type="button" className="input__icon-btn">
-                        <Icon name="icon-search" size="lg" />
-                      </button>
-                      <button type="button" className="input__icon-btn">
-                        <Icon name="icon-edit" size="md" />
-                      </button>
-                    </>
-                  )}
-                />
-              </div>
             </div>
 
-            <h3 className="demo__subsection-title">Grid layout (3 columns)</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-4">
-                <Input
-                  name="portions"
-                  label="Кількість порцій"
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Input
-                  name="diameter"
-                  label="Діаметр"
-                  helpText="В сантиметрах"
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Input
-                  name="shape"
-                  label="Форма"
-                  placeholder="кругла"
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">States</h3>
+            <h3 className="demo__subsection-title">{t('pages.demo.inputsStates')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
                 <Input
-                  name="disabledField"
+                  name="disabledDemo"
                   label="Disabled"
                   disabled
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
-                  name="readonlyField"
+                  name="readonlyDemo"
                   label="Read-only"
                   readOnly
                 />
               </div>
             </div>
 
-            <h3 className="demo__subsection-title">Textarea (multiline)</h3>
+            <h3 className="demo__subsection-title">{t('pages.demo.inputsTextarea')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12">
                 <Input
-                  name="technology"
+                  name="textareaDemo"
                   multiline
-                  rows={5}
-                  label="Технологія"
-                  placeholder="Подрібніть печиво в блендері, додайте розтоплене масло і добре перемішайте..."
+                  rows={3}
+                  label="Textarea"
+                  placeholder="Подрібніть печиво..."
                 />
               </div>
             </div>
-
-            <div className="d-flex gap-4 mb-8">
-              <Button type="submit" variant="primary">Зберегти</Button>
-              <Button type="reset" variant="secondary">Скинути</Button>
-            </div>
-
-            <h3 className="demo__subsection-title mt-8">Usage</h3>
-            <div className="demo__code-block">
-              <pre className="demo__code">
-                {`{/* Outlined (default) */}
-<Input name="email" label="Пошта" placeholder="baker@gmail.com" />
-
-{/* Filled variant */}
-<Input name="name" variant="filled" label="Назва" />
-
-{/* Password with toggle */}
-<Input name="password" type="password" showPasswordToggle />
-
-{/* Search with icons */}
-<Input name="search" startIcon="icon-search" placeholder="Шукати..." />
-<Input name="q" endAdornment={<><IconBtn .../><IconBtn .../></>} />
-
-{/* Textarea */}
-<Input name="tech" multiline rows={5} label="Технологія" />
-
-{/* Formik validation — just add validate to <Formik> */}`}
-              </pre>
-            </div>
           </Form>
         </Formik>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.inputsUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`<Input name="email" label="Пошта" placeholder="baker@gmail.com" />
+<Input name="name" variant="filled" label="Назва" />
+<Input name="password" type="password" showPasswordToggle />
+<Input name="search" startIcon="icon-search" placeholder="Шукати..." />
+<Input name="tech" multiline rows={5} label="Технологія" />`}
+          </pre>
+        </div>
       </section>
 
-      {/* === DROPDOWNS & SELECTS === */}
+      {/* === DROPDOWNS === */}
       <section id="dropdowns" className="demo__section">
-        <h2 className="demo__section-title">Dropdown & Select</h2>
+        <h2 className="demo__section-title">{t('pages.demo.dropdowns')}</h2>
 
-        <h3 className="demo__subsection-title">Dropdown (standalone, any trigger)</h3>
+        <h3 className="demo__subsection-title">{t('pages.demo.dropdownsStandalone')}</h3>
         <div className="row row--gap-md mb-8">
           <div className="col-12 col-md-6">
-            <p className="text-sm mb-4">Button trigger</p>
+            <p className="text-sm mb-4">{t('pages.demo.dropdownsButtonTrigger')}</p>
             <Dropdown
               options={portionOptions}
               selectedValue={dropdownValue}
@@ -587,7 +455,7 @@ const DemoPage = () => {
             </p>
           </div>
           <div className="col-12 col-md-6">
-            <p className="text-sm mb-4">Searchable dropdown</p>
+            <p className="text-sm mb-4">{t('pages.demo.dropdownsSearchable')}</p>
             <Dropdown
               options={ingredientOptions}
               onSelect={(opt) => alert(`Selected: ${opt.label}`)}
@@ -604,91 +472,7 @@ const DemoPage = () => {
           </div>
         </div>
 
-        <h3 className="demo__subsection-title">Select (Formik-integrated)</h3>
-        <Formik
-          initialValues={{
-            selectPortions: '6',
-            selectCategory: '',
-            selectIngredient: '',
-            selectUnit: 'g',
-            selectCurrency: 'UAH',
-          }}
-          validate={(values) => {
-            const errors: Record<string, string> = {};
-            if (!values.selectCategory) errors.selectCategory = 'Оберіть категорію';
-            return errors;
-          }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
-          }}
-        >
-          <Form>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectPortions"
-                  options={portionOptions}
-                  label="Кількість порцій"
-                  placeholder="Обрати"
-                  helpText="Від 1 до 12"
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectCategory"
-                  options={categoryOptions}
-                  label="Категорія десерту"
-                  placeholder="Обрати категорію"
-                  searchable
-                  searchPlaceholder="Шукати..."
-                  required
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectCurrency"
-                  options={currencyOptions}
-                  label="Валюта"
-                />
-              </div>
-            </div>
-
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Select
-                  name="selectIngredient"
-                  options={ingredientOptions}
-                  label="Інгредієнт"
-                  placeholder="Оберіть інгредієнт"
-                  searchable
-                  searchPlaceholder="Шукати інгредієнт..."
-                />
-              </div>
-              <div className="col-12 col-md-3">
-                <Select
-                  name="selectUnit"
-                  options={unitOptions}
-                  label="Одиниця"
-                />
-              </div>
-              <div className="col-12 col-md-3">
-                <Select
-                  name="selectPortions"
-                  options={portionOptions}
-                  disabled
-                  label="Disabled"
-                />
-              </div>
-            </div>
-
-            <div className="d-flex gap-4 mb-8">
-              <Button type="submit" variant="primary">Зберегти</Button>
-              <Button type="reset" variant="secondary">Скинути</Button>
-            </div>
-          </Form>
-        </Formik>
-
-        <h3 className="demo__subsection-title mt-8">Usage</h3>
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.dropdownsUsage')}</h3>
         <div className="demo__code-block">
           <pre className="demo__code">
             {`{/* Dropdown — standalone, any trigger */}
@@ -700,17 +484,7 @@ const DemoPage = () => {
 />
 
 {/* Dropdown — searchable */}
-<Dropdown options={options} onSelect={fn} searchable trigger={...} />
-
-{/* Select — Formik, split-pill trigger */}
-<Select
-  name="category"
-  options={options}
-  label="Категорія"
-  placeholder="Обрати"
-  searchable
-  required
-/>`}
+<Dropdown options={options} onSelect={fn} searchable trigger={...} />`}
           </pre>
         </div>
       </section>

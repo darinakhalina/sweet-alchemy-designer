@@ -30,6 +30,9 @@ npm run test:run     # Vitest single run
 - `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, etc.)
 - `src/pages/` — page components
 - `src/hooks/` — custom React hooks
+- `src/store/` — Redux Toolkit (slices, thunks, typed hooks)
+- `src/services/` — API client (Axios), service functions, error helpers
+- `src/config/` — typed environment variables
 - `src/i18n/` — i18next config, auto-collects all `**/i18n/*.json`
 - `src/styles/` — design tokens + global styles
 
@@ -37,7 +40,7 @@ npm run test:run     # Vitest single run
 
 `App.tsx` defines routes. Pages inside `HomePageLayout` get: LanguageSwitcher, Toaster, and `.f-container` (max-width: 1440px with responsive padding). Pages use `.row` > `.col-*` for grid layout. Don't add `.f-container` inside pages — it's already in the layout.
 
-`DemoPage` (`/demo`) and `NotFoundPage` live outside `HomePageLayout` and manage their own layout.
+`LoginPage` (`/login`), `DemoPage` (`/demo`), and `NotFoundPage` live outside `HomePageLayout` and manage their own layout.
 
 ## CSS Rules
 
@@ -114,6 +117,7 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 | `/recipe/:id` | RecipeDetailPage | HomePageLayout |
 | `/profile` | ProfilePage | HomePageLayout |
 | `/profile/edit` | ProfileEditPage | HomePageLayout |
+| `/login` | LoginPage | None (standalone) |
 | `/demo` | DemoPage | None (standalone) |
 | `*` | NotFoundPage | None |
 

@@ -17,9 +17,15 @@ Tests mirror the source structure inside `src/tests/`:
 src/tests/
 ├── setup.ts                              # Global setup
 ├── components/
+│   ├── AnimatedList/AnimatedList.test.tsx
+│   ├── AuthModal/AuthModal.test.tsx
 │   ├── Button/Button.test.tsx
 │   ├── Icon/Icon.test.tsx
-│   └── Loader/Loader.test.tsx
+│   ├── Input/Input.test.tsx
+│   ├── Loader/Loader.test.tsx
+│   ├── Modal/Modal.test.tsx
+│   ├── Pagination/Pagination.test.tsx
+│   └── PrivateRoute/PrivateRoute.test.tsx
 ├── pages/
 │   └── HomePage/HomePage.test.tsx
 ├── store/

@@ -19,7 +19,17 @@
       "buttonsDisabled": "Вимкнена",
       "buttonsLoading": "Завантаження",
       "inputs": "Інпути",
-      "dropdowns": "Dropdown & Select",
+      "inputsOutlined": "Outlined / Filled",
+      "inputsPassword": "Пароль",
+      "inputsWithIcons": "З іконками",
+      "inputsStates": "Стани (disabled / read-only)",
+      "inputsTextarea": "Textarea",
+      "inputsUsage": "Використання",
+      "dropdowns": "Dropdown",
+      "dropdownsStandalone": "Dropdown (будь-який тригер)",
+      "dropdownsButtonTrigger": "Button trigger",
+      "dropdownsSearchable": "Searchable dropdown",
+      "dropdownsUsage": "Використання",
       "pagination": "Пагінація",
       "paginationDefault": "За замовчуванням (siblingCount=1, boundaryCount=1)",
       "paginationSiblings": "Розширений діапазон",
@@ -72,7 +82,9 @@
       "utilitiesGap": "Відстань між елементами через spacing-токени",
       "utilitiesText": "Текст",
       "utilitiesTextAlign": "Вирівнювання тексту",
-      "utilitiesTextTransform": "Трансформація та overflow"
+      "utilitiesTextTransform": "Трансформація та overflow",
+      "backToHome": "На головну",
+      "patterns": "Патерни"
     }
   }
 }

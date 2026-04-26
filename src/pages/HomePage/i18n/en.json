@@ -5,18 +5,7 @@
       "subtitle": "Precision in every recipe",
       "navigation": "Pages",
       "demo": "Design system demo",
-      "showcase": {
-        "title": "API Demo",
-        "emptyText": "No desserts loaded yet",
-        "fetchButton": "Fetch desserts",
-        "errorButton": "Trigger error",
-        "unknownErrorButton": "Unknown error",
-        "networkErrorButton": "Network error",
-        "addToRecipes": "Add to my recipes",
-        "recipeAdded": "Recipe added to your collection!",
-        "cookingTime": "Cooking time",
-        "minutes": "min"
-      }
+      "demoPatterns": "Patterns & Integrations"
     }
   }
 }

@@ -1,0 +1,38 @@
+{
+  "pages": {
+    "demoPatterns": {
+      "title": "Патерни та інтеграції",
+      "backToDemo": "Назад до демо",
+      "backToHome": "На головну",
+      "navFormikInputs": "Formik + Input",
+      "navFormikSelect": "Formik + Select",
+      "navErrorHandling": "Обробка помилок",
+      "formikInputs": "Formik + Input інтеграція",
+      "formikInputsOutlined": "Outlined (default)",
+      "formikInputsFilled": "Filled variant",
+      "formikInputsPassword": "Пароль з валідацією",
+      "formikInputsWithIcons": "З іконками",
+      "formikInputsGrid": "Grid layout (3 колонки)",
+      "formikInputsStates": "Стани",
+      "formikInputsTextarea": "Textarea (multiline)",
+      "formikInputsSave": "Зберегти",
+      "formikInputsReset": "Скинути",
+      "formikInputsUsage": "Використання",
+      "formikSelect": "Formik + Select інтеграція",
+      "formikSelectSave": "Зберегти",
+      "formikSelectReset": "Скинути",
+      "showcase": {
+        "title": "Демо API та обробка помилок",
+        "emptyText": "Десерти ще не завантажені",
+        "fetchButton": "Завантажити десерти",
+        "errorButton": "Викликати помилку",
+        "unknownErrorButton": "Невідома помилка",
+        "networkErrorButton": "Помилка мережі",
+        "addToRecipes": "Додати в мої рецепти",
+        "recipeAdded": "Рецепт додано до вашої колекції!",
+        "cookingTime": "Час приготування",
+        "minutes": "хв"
+      }
+    }
+  }
+}

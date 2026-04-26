@@ -19,7 +19,17 @@
       "buttonsDisabled": "Disabled",
       "buttonsLoading": "Loading",
       "inputs": "Inputs",
-      "dropdowns": "Dropdown & Select",
+      "inputsOutlined": "Outlined / Filled",
+      "inputsPassword": "Password",
+      "inputsWithIcons": "With icons",
+      "inputsStates": "States (disabled / read-only)",
+      "inputsTextarea": "Textarea",
+      "inputsUsage": "Usage",
+      "dropdowns": "Dropdown",
+      "dropdownsStandalone": "Dropdown (any trigger)",
+      "dropdownsButtonTrigger": "Button trigger",
+      "dropdownsSearchable": "Searchable dropdown",
+      "dropdownsUsage": "Usage",
       "pagination": "Pagination",
       "paginationDefault": "Default (siblingCount=1, boundaryCount=1)",
       "paginationSiblings": "Extended range",
@@ -72,7 +82,9 @@
       "utilitiesGap": "Gap between items via spacing tokens",
       "utilitiesText": "Text",
       "utilitiesTextAlign": "Text alignment",
-      "utilitiesTextTransform": "Transform and overflow"
+      "utilitiesTextTransform": "Transform and overflow",
+      "backToHome": "Home",
+      "patterns": "Patterns"
     }
   }
 }

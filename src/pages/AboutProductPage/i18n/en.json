@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "aboutProduct": {
+      "hero": {
+        "title": "YOUR DIGITAL KITCHEN ASSISTANT THAT TAKES ON THE MOST BORING WORK",
+        "description": "Sugar price changed? One click and the cost of desserts is updated. Need a cake for 5 kg instead of 2? The system will recalculate the ingredients automatically.",
+        "cta": "Try for free",
+        "imageAlt": "SweetAlchemy dessert designer"
+      },
+      "howItWorks": {
+        "title": "HOW IT WORKS?",
+        "step1": {
+          "number": "01",
+          "title": "Choose a recipe",
+          "description": "Find the dessert you need in the catalog or create your own recipe from scratch."
+        },
+        "step2": {
+          "number": "02",
+          "title": "Set new parameters",
+          "description": "Specify the desired weight, number of servings, or shape — the system will adapt to your needs."
+        },
+        "step3": {
+          "number": "03",
+          "title": "Get the recalculation",
+          "description": "Instantly receive an updated list of ingredients, weight, and cost of the dessert."
+        }
+      }
+    }
+  }
+}

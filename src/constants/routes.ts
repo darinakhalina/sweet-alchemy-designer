@@ -6,7 +6,9 @@ export const ROUTES = {
   RECIPE_DETAIL: '/recipe/:id',
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
+  ABOUT: '/about',
   DEMO: '/demo',
+  DEMO_PATTERNS: '/demo/patterns',
   LOGIN: '/login',
 } as const;
 
