@@ -27,7 +27,7 @@ npm run test:run     # Vitest single run
 
 ## Architecture
 
-- `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, etc.)
+- `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, Checkbox, Switch, RadioGroup, etc.)
 - `src/pages/` — page components
 - `src/hooks/` — custom React hooks (`useMediaQuery`, `useLockBodyScroll`, `useAuthModal`)
 - `src/store/` — Redux Toolkit (slices, thunks, typed hooks)
@@ -166,7 +166,7 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 
 ## Building Features
 
-**Always use existing components first.** Before writing any UI, check what's already in `src/components/` (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, etc.) and `src/hooks/` (useMediaQuery, useLockBodyScroll, useAuthModal). Compose pages and features from these building blocks — don't create new components for things that existing ones already cover.
+**Always use existing components first.** Before writing any UI, check what's already in `src/components/` (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, Checkbox, Switch, RadioGroup, etc.) and `src/hooks/` (useMediaQuery, useLockBodyScroll, useAuthModal). Compose pages and features from these building blocks — don't create new components for things that existing ones already cover.
 
 **If a needed component doesn't exist** — propose creating it and wait for confirmation before writing any code. Explain what the component would do and why existing ones don't fit. Never silently create new components during feature work.
 
@@ -175,7 +175,11 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - **No CSS Modules** (`.module.css`) — only BEM with global CSS collected in `styles/index.css`
 - **No magic pixels** — use spacing/radius/shadow tokens. If no token fits, create a scoped CSS variable in the component, not a bare `12px`
 - **No hardcoded media queries** — CSS: use `@media (--mobile)` etc.; JS: use `MEDIA.*` constants from `@/constants/breakpoints` + `useMediaQuery` hook. Never write raw pixel breakpoints
-- **No hardcoded UI text** — use `t('key')`. Backend data is the exception
+- **No hardcoded UI text** — use `t('key')`. Backend data is the exception. This applies everywhere visible text appears:
+  - JSX props: `label`, `placeholder`, `helpText`, `searchPlaceholder` — all must use `t()`
+  - Options arrays (`DropdownOption[]`, RadioGroup options): if labels are user-visible strings, define the array **inside the component** with `useMemo([t])` so labels update on language switch. Arrays defined outside the component cannot access `t()`
+  - Formik `validate` errors, `initialErrors`: use `t()` — the function is available via closure
+  - Stepper step labels, modal titles, toast messages — all must use `t()`
 - **No relative imports** — use `@/components/...`, `@/hooks/...`, never `../../`
 - **No interfaces in component files** — each interface gets its own file in `interfaces/`
 - **No constants in component files** — extract maps, arrays, configs to `constants/` folder (one file per constant)
