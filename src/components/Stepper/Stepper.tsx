@@ -17,6 +17,7 @@ function Stepper({
   const baseId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  const shouldScrollRef = useRef(false);
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(
     () => controlledValue ?? defaultValue ?? '',
@@ -28,6 +29,7 @@ function Stepper({
   const setActiveValue = useCallback(
     (newValue: string) => {
       if (newValue === (isControlled ? controlledValue : internalValue)) return;
+      shouldScrollRef.current = true;
       if (!isControlled) {
         setInternalValue(newValue);
       }
@@ -41,9 +43,10 @@ function Stepper({
       isFirstRender.current = false;
       return;
     }
-    if (isMobile && panelRef.current) {
+    if (isMobile && panelRef.current && shouldScrollRef.current) {
       panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
+    shouldScrollRef.current = false;
   }, [activeValue, isMobile]);
 
   const steps: StepperStepProps[] = [];

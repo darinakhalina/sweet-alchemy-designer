@@ -16,6 +16,9 @@ import Input from '@/components/Input';
 import Select from '@/components/Select';
 import AnimatedList from '@/components/AnimatedList';
 import Stepper from '@/components/Stepper';
+import Checkbox from '@/components/Checkbox';
+import Switch from '@/components/Switch';
+import RadioGroup from '@/components/RadioGroup';
 import type { DropdownOption } from '@/components/Dropdown';
 
 const navItems = [
@@ -65,6 +68,13 @@ const currencyOptions: DropdownOption[] = [
   { value: 'UAH', label: 'UAH' },
   { value: 'USD', label: 'USD' },
   { value: 'EUR', label: 'EUR' },
+];
+
+const deliveryOptions: DropdownOption[] = [
+  { value: 'pickup', label: 'Самовивіз' },
+  { value: 'courier', label: 'Кур\'єр' },
+  { value: 'post', label: 'Нова пошта' },
+  { value: 'other', label: 'Інше', disabled: true },
 ];
 
 const DemoPatternsPage = () => {
@@ -142,6 +152,8 @@ const DemoPatternsPage = () => {
             filledDefault: '',
             filledValue: 'Ягідна хмаринка',
             filledError: '6',
+            publishRecipe: false,
+            saveToFavorites: true,
           }}
           initialErrors={{
             email: 'Невірний email',
@@ -311,6 +323,12 @@ const DemoPatternsPage = () => {
               </div>
             </div>
 
+            <h3 className="demo-patterns__subsection-title">{t('pages.demoPatterns.formikInputsPublish')}</h3>
+            <div className="d-flex flex-column gap-4 mb-8">
+              <Switch name="publishRecipe" label="Опублікувати рецепт" />
+              <Checkbox name="saveToFavorites" label="Додати в обрані" />
+            </div>
+
             <div className="d-flex gap-4 mb-8">
               <Button type="submit" variant="primary">{t('pages.demoPatterns.formikInputsSave')}</Button>
               <Button type="reset" variant="secondary">{t('pages.demoPatterns.formikInputsReset')}</Button>
@@ -353,6 +371,7 @@ const DemoPatternsPage = () => {
             selectIngredient: '',
             selectUnit: 'g',
             selectCurrency: 'UAH',
+            deliveryMethod: 'pickup',
           }}
           validate={(values) => {
             const errors: Record<string, string> = {};
@@ -419,6 +438,12 @@ const DemoPatternsPage = () => {
                   disabled
                   label="Disabled"
                 />
+              </div>
+            </div>
+
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <RadioGroup name="deliveryMethod" options={deliveryOptions} label="Спосіб доставки" />
               </div>
             </div>
 
@@ -506,7 +531,7 @@ const DemoPatternsPage = () => {
         )}
       </section>
 
-      {/* === SECTION C: STEPPER === */}
+      {/* === SECTION D: STEPPER === */}
       <section id="stepper-demo" className="demo-patterns__section" data-testid="demo-patterns-stepper">
         <h2 className="demo-patterns__section-title">Stepper</h2>
 

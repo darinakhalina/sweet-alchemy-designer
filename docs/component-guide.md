@@ -30,6 +30,8 @@ src/tests/
 │   │   └── AuthModal.test.tsx
 │   ├── Button/
 │   │   └── Button.test.tsx
+│   ├── Checkbox/
+│   │   └── Checkbox.test.tsx
 │   ├── Icon/
 │   │   └── Icon.test.tsx
 │   ├── Input/
@@ -42,8 +44,12 @@ src/tests/
 │   │   └── Pagination.test.tsx
 │   ├── PrivateRoute/
 │   │   └── PrivateRoute.test.tsx
-│   └── Stepper/
-│       └── Stepper.test.tsx
+│   ├── RadioGroup/
+│   │   └── RadioGroup.test.tsx
+│   ├── Stepper/
+│   │   └── Stepper.test.tsx
+│   └── Switch/
+│       └── Switch.test.tsx
 ├── hooks/
 │   └── useMediaQuery.test.ts
 ├── pages/
@@ -798,3 +804,114 @@ const isDesktop = useMediaQuery(MEDIA.desktop);
 - SSR-safe (`typeof window` check)
 - Subscribes to `matchMedia` `change` event, cleans up on unmount
 - Global `window.matchMedia` mock is set up in `src/tests/setup.ts` for jsdom
+
+## Form Controls (Checkbox, Switch, RadioGroup)
+
+All three are **Formik-integrated** — they read and write field values via `useField`. Wrap them in `<Formik>` + `<Form>`.
+
+### Checkbox
+
+Square toggle with animated pink checkmark. Uses `icon-check` from the SVG sprite.
+
+```tsx
+import Checkbox from '@/components/Checkbox';
+
+<Formik initialValues={{ agree: false }} onSubmit={fn}>
+  <Form>
+    <Checkbox name="agree" label="Погоджуюсь з умовами" />
+    <Checkbox name="newsletter" label="Підписатись" />
+    <Checkbox name="terms" label="Заблокований" disabled />
+  </Form>
+</Formik>
+```
+
+**Props**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Formik field name |
+| `label` | `string?` | — | Label text |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `className` | `string?` | — | Additional CSS class |
+
+**Visual:** 24×24px box, `neutral-50` background, `radius-sm` (8px). Checkmark: `icon-check`, 20px, `brand-600`. Animation: spring pop on check (320ms), fade+shrink on uncheck (200ms).
+
+**`data-testid` attributes:** `{name}-checkbox`, `{name}-checkbox-input`, `{name}-checkbox-box`, `{name}-checkbox-label`.
+
+---
+
+### Switch
+
+Toggle switch with a ring-shaped thumb that slides between OFF and ON.
+
+```tsx
+import Switch from '@/components/Switch';
+
+<Formik initialValues={{ darkMode: true, notifications: false }} onSubmit={fn}>
+  <Form>
+    <Switch name="darkMode" label="Темна тема" />
+    <Switch name="notifications" label="Сповіщення" />
+    <Switch name="autoSave" label="Заблокований" disabled />
+  </Form>
+</Formik>
+```
+
+**Props**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Formik field name |
+| `label` | `string?` | — | Label text |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `className` | `string?` | — | Additional CSS class |
+
+**Visual:** Track 60×32px, `neutral-50` background (20px tall visual bar, inset 6px). Thumb: 32×32px ring (`border: 8px solid`). OFF: `neutral-200`; ON: `brand-600`. Has `role="switch"` and `aria-checked` on the input.
+
+**`data-testid` attributes:** `{name}-switch`, `{name}-switch-input`, `{name}-switch-track`, `{name}-switch-thumb`, `{name}-switch-label`.
+
+---
+
+### RadioGroup
+
+Group of radio buttons. Each option is a round circle with an animated pink dot when selected.
+
+```tsx
+import RadioGroup from '@/components/RadioGroup';
+import type { DropdownOption } from '@/components/Dropdown';
+
+const sizeOptions: DropdownOption[] = [
+  { value: 'sm', label: 'Маленький' },
+  { value: 'md', label: 'Середній' },
+  { value: 'lg', label: 'Великий' },
+];
+
+<Formik initialValues={{ size: 'md' }} onSubmit={fn}>
+  <Form>
+    <RadioGroup name="size" options={sizeOptions} label="Розмір" />
+  </Form>
+</Formik>
+```
+
+Individual options can be disabled:
+
+```tsx
+const options = [
+  { value: 'pickup', label: 'Самовивіз' },
+  { value: 'courier', label: 'Кур\'єр' },
+  { value: 'other', label: 'Інше', disabled: true },
+];
+```
+
+**Props**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Formik field name |
+| `options` | `DropdownOption[]` | — | Available options |
+| `label` | `string?` | — | Legend text above the group |
+| `disabled` | `boolean` | `false` | Disables the entire group |
+| `className` | `string?` | — | Additional CSS class |
+
+**Visual:** Circle 24×24px, `neutral-50` background, fully round (`radius-full`). Dot: 14px, `brand-600`. Animation: spring pop on select (320ms), fade+shrink on deselect (200ms).
+
+**`data-testid` attributes:** `{name}-radio-group`, `{name}-radio-group-legend`, `{name}-radio-{value}`, `{name}-radio-input-{value}`, `{name}-radio-circle-{value}`.

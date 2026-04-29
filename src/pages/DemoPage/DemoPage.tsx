@@ -10,6 +10,9 @@ import Loader from '@/components/Loader';
 import Input from '@/components/Input';
 import Pagination from '@/components/Pagination';
 import Dropdown from '@/components/Dropdown';
+import Checkbox from '@/components/Checkbox';
+import Switch from '@/components/Switch';
+import RadioGroup from '@/components/RadioGroup';
 import type { DropdownOption } from '@/components/Dropdown';
 
 const colors = [
@@ -97,12 +100,25 @@ const typographyClasses = [
 
 const iconNames = [
   'icon-arrow-down', 'icon-arrow-left', 'icon-arrow-right', 'icon-arrow-section', 'icon-arrow-up',
-  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-close', 'icon-cook-hat',
+  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-check', 'icon-close', 'icon-cook-hat',
   'icon-dots', 'icon-edit', 'icon-effects', 'icon-facebook',
   'icon-folder', 'icon-instagram', 'icon-magic', 'icon-menu',
   'icon-multi-rectangle', 'icon-peas', 'icon-play-back', 'icon-play',
   'icon-plus-circle', 'icon-plus', 'icon-remove', 'icon-search',
   'icon-trending-down', 'icon-whirlwind', 'icon-x',
+];
+
+const sizeOptions: DropdownOption[] = [
+  { value: 'sm', label: 'Маленький' },
+  { value: 'md', label: 'Середній' },
+  { value: 'lg', label: 'Великий' },
+];
+
+const deliveryOptions: DropdownOption[] = [
+  { value: 'pickup', label: 'Самовивіз' },
+  { value: 'courier', label: 'Кур\'єр' },
+  { value: 'post', label: 'Нова пошта' },
+  { value: 'other', label: 'Інше', disabled: true },
 ];
 
 const iconSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
@@ -119,6 +135,7 @@ const navItems = [
   { id: 'icons', key: 'icons' },
   { id: 'buttons', key: 'buttons' },
   { id: 'inputs', key: 'inputs' },
+  { id: 'form-controls', key: 'formControls' },
   { id: 'dropdowns', key: 'dropdowns' },
   { id: 'pagination', key: 'pagination' },
   { id: 'loader', key: 'loader' },
@@ -423,6 +440,66 @@ const DemoPage = () => {
 <Input name="password" type="password" showPasswordToggle />
 <Input name="search" startIcon="icon-search" placeholder="Шукати..." />
 <Input name="tech" multiline rows={5} label="Технологія" />`}
+          </pre>
+        </div>
+      </section>
+
+      {/* === FORM CONTROLS === */}
+      <section id="form-controls" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.formControls')}</h2>
+
+        <Formik
+          initialValues={{
+            agree: false,
+            newsletter: true,
+            terms: false,
+            notifications: false,
+            darkMode: true,
+            autoSave: false,
+            size: 'md',
+            delivery: '',
+          }}
+          onSubmit={() => {}}
+        >
+          <Form>
+            <h3 className="demo__subsection-title">{t('pages.demo.formControlsCheckbox')}</h3>
+            <div className="d-flex flex-column gap-4 mb-8">
+              <Checkbox name="agree" label="Погоджуюсь з умовами" />
+              <Checkbox name="newsletter" label="Підписатись на розсилку" />
+              <Checkbox name="terms" label="Заблокований" disabled />
+            </div>
+
+            <h3 className="demo__subsection-title">{t('pages.demo.formControlsSwitch')}</h3>
+            <div className="d-flex flex-column gap-4 mb-8">
+              <Switch name="notifications" label="Сповіщення" />
+              <Switch name="darkMode" label="Темна тема" />
+              <Switch name="autoSave" label="Заблокований" disabled />
+            </div>
+
+            <h3 className="demo__subsection-title">{t('pages.demo.formControlsRadioGroup')}</h3>
+            <div className="row row--gap-md mb-8">
+              <div className="col-12 col-md-6">
+                <RadioGroup name="size" options={sizeOptions} label="Розмір" />
+              </div>
+              <div className="col-12 col-md-6">
+                <RadioGroup name="delivery" options={deliveryOptions} label="Доставка" />
+              </div>
+            </div>
+          </Form>
+        </Formik>
+
+        <h3 className="demo__subsection-title mt-8">{t('pages.demo.formControlsUsage')}</h3>
+        <div className="demo__code-block">
+          <pre className="demo__code">
+            {`{/* Checkbox — Formik field */}
+<Checkbox name="agree" label="Погоджуюсь з умовами" />
+<Checkbox name="terms" label="Заблокований" disabled />
+
+{/* Switch — Formik field */}
+<Switch name="darkMode" label="Темна тема" />
+
+{/* RadioGroup — Formik field */}
+<RadioGroup name="size" options={sizeOptions} label="Розмір" />`}
           </pre>
         </div>
       </section>

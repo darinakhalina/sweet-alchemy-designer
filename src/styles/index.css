@@ -34,6 +34,9 @@
 @import '../components/Dropdown/dropdown.css';
 @import '../components/Select/select.css';
 @import '../components/Stepper/stepper.css';
+@import '../components/Checkbox/checkbox.css';
+@import '../components/Switch/switch.css';
+@import '../components/RadioGroup/radio-group.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';
