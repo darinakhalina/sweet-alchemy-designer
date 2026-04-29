@@ -6,7 +6,7 @@ import Icon from '@/components/Icon';
 import type { DropdownOption, DropdownTriggerRenderProps } from '@/components/Dropdown';
 import type { SelectProps } from './interfaces/SelectProps';
 
-export default function Select({
+const Select = ({
   name,
   options,
   label,
@@ -17,7 +17,7 @@ export default function Select({
   disabled = false,
   required = false,
   className,
-}: SelectProps) {
+}: SelectProps) => {
   const inputId = useId();
   const helpId = useId();
   const [field, meta, helpers] = useField(name);
@@ -96,4 +96,6 @@ export default function Select({
       )}
     </div>
   );
-}
+};
+
+export default Select;

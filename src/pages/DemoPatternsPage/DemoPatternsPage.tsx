@@ -15,12 +15,14 @@ import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import AnimatedList from '@/components/AnimatedList';
+import Stepper from '@/components/Stepper';
 import type { DropdownOption } from '@/components/Dropdown';
 
 const navItems = [
   { id: 'formik-inputs', key: 'navFormikInputs' },
   { id: 'formik-select', key: 'navFormikSelect' },
   { id: 'error-handling', key: 'navErrorHandling' },
+  { id: 'stepper-demo', key: 'navStepper' },
 ];
 
 const portionOptions: DropdownOption[] = [
@@ -502,6 +504,55 @@ const DemoPatternsPage = () => {
             ))}
           </AnimatedList>
         )}
+      </section>
+
+      {/* === SECTION C: STEPPER === */}
+      <section id="stepper-demo" className="demo-patterns__section" data-testid="demo-patterns-stepper">
+        <h2 className="demo-patterns__section-title">Stepper</h2>
+
+        <div className="mb-8">
+          <Stepper defaultValue="add">
+            <Stepper.Step value="about" label="Про десерт">
+              <p>Про десерт</p>
+            </Stepper.Step>
+            <Stepper.Step value="add" text="+" label="Додати">
+              <p>Додати</p>
+            </Stepper.Step>
+            <Stepper.Step value="base" label="Основа">
+              <p>Основа</p>
+            </Stepper.Step>
+            <Stepper.Step value="fillings" label="Начинки">
+              <p>Начинки</p>
+            </Stepper.Step>
+            <Stepper.Step value="packaging" label="Пакування" disabled>
+              <p>Пакування</p>
+            </Stepper.Step>
+            <Stepper.Step value="calc" label="Розрахунки">
+              <p>Розрахунки</p>
+            </Stepper.Step>
+          </Stepper>
+        </div>
+
+        <h3 className="demo-patterns__subsection-title mt-8">{t('pages.demoPatterns.formikInputsUsage')}</h3>
+        <div className="demo-patterns__code-block">
+          <pre className="demo-patterns__code">
+            {`{/* defaultValue — який степ відкритий спочатку */}
+<Stepper defaultValue="about" onValueChange={handleChange}>
+  <Stepper.Step value="about" label="Про десерт">
+    <AboutForm />
+  </Stepper.Step>
+  <Stepper.Step value="add" text="+" label="Додати">
+    <AddForm />
+  </Stepper.Step>
+  <Stepper.Step value="base" label="Основа" disabled>
+    <BaseForm />
+  </Stepper.Step>
+</Stepper>
+
+{/* value + onValueChange — повний контроль ззовні */}
+<Stepper value={step} onValueChange={setStep}>...</Stepper>`}
+          </pre>
+        </div>
       </section>
     </div>
   );

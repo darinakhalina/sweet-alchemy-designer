@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Icon from '@/components/Icon';
 import type { InputProps } from './interfaces/InputProps';
 
-export default function Input({
+const Input = ({
   name,
   type = 'text',
   variant = 'outlined',
@@ -26,7 +26,7 @@ export default function Input({
   autoComplete,
   autoFocus = false,
   className,
-}: InputProps) {
+}: InputProps) => {
   const { t } = useTranslation();
   const inputId = useId();
   const helpId = useId();
@@ -152,4 +152,6 @@ export default function Input({
       )}
     </div>
   );
-}
+};
+
+export default Input;

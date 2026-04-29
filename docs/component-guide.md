@@ -40,8 +40,12 @@ src/tests/
 │   │   └── Modal.test.tsx
 │   ├── Pagination/
 │   │   └── Pagination.test.tsx
-│   └── PrivateRoute/
-│       └── PrivateRoute.test.tsx
+│   ├── PrivateRoute/
+│   │   └── PrivateRoute.test.tsx
+│   └── Stepper/
+│       └── Stepper.test.tsx
+├── hooks/
+│   └── useMediaQuery.test.ts
 ├── pages/
 │   └── HomePage/
 │       └── HomePage.test.tsx
@@ -690,3 +694,107 @@ Default delay between items is 100ms. Override with `staggerDelay`:
 - Cards appearing after a fetch (desserts, recipes, search results)
 - Grid items loading on page mount
 - Any list where sequential appearance looks better than all-at-once
+
+## Stepper
+
+Vertical step navigation. Compound component (`Stepper` + `Stepper.Step`). Triggers are always visible as a group; the active panel renders separately — below triggers on mobile, to the right on tablet/desktop.
+
+### Basic usage
+
+```tsx
+import Stepper from '@/components/Stepper';
+
+<Stepper defaultValue="about" onValueChange={handleChange}>
+  <Stepper.Step value="about" label="Про десерт">
+    <AboutForm />
+  </Stepper.Step>
+  <Stepper.Step value="add" text="+" label="Додати">
+    <AddForm />
+  </Stepper.Step>
+  <Stepper.Step value="base" label="Основа" disabled>
+    <BaseForm />
+  </Stepper.Step>
+</Stepper>
+```
+
+### Controlled mode
+
+Use `value` + `onValueChange` to control the active step externally:
+
+```tsx
+const [step, setStep] = useState('about');
+
+<Stepper value={step} onValueChange={setStep}>
+  ...
+</Stepper>
+
+<Button onClick={() => setStep('base')}>Далі</Button>
+```
+
+### Props
+
+**Stepper**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultValue` | `string` | `''` | Initially active step (uncontrolled) |
+| `value` | `string?` | — | Active step (controlled) |
+| `onValueChange` | `(value: string) => void` | — | Called when active step changes |
+| `className` | `string?` | — | Additional CSS class on root |
+| `children` | `ReactNode` | — | `Stepper.Step` elements |
+
+**Stepper.Step**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Unique step identifier |
+| `label` | `string` | — | Step label text |
+| `icon` | `string?` | — | Icon name for the indicator circle |
+| `text` | `string?` | — | Text inside indicator (ignored if `icon` is set) |
+| `disabled` | `boolean` | `false` | Prevents step activation |
+| `children` | `ReactNode` | — | Panel content shown when step is active |
+
+### Layout
+
+- **Mobile:** flex column — all triggers stacked, panel below. On step change, panel scrolls into view automatically.
+- **Tablet/Desktop:** CSS Grid (`auto 1fr`) — triggers on the left, panel on the right.
+- **Desktop:** larger indicators (80px) and labels.
+
+### Accessibility
+
+- `role="tablist"` on triggers container, `role="tab"` on each trigger, `role="tabpanel"` on the content panel
+- `aria-selected`, `aria-controls`, `aria-labelledby` for tab↔panel connection
+- Arrow Up/Down keyboard navigation with wrap-around
+- `aria-disabled` on disabled steps
+
+### Architecture
+
+`Stepper.Step` is a data carrier — it returns `null`. The parent `Stepper` reads children props via `Children.forEach`, then renders triggers and panel in separate DOM containers. This keeps triggers grouped and panel separate for proper CSS Grid layout.
+
+## Breakpoints in JS
+
+CSS breakpoints are available in JS via constants. Never hardcode pixel values — use `MEDIA.*`:
+
+```ts
+import { useMediaQuery } from '@/hooks';
+import { MEDIA, BREAKPOINTS } from '@/constants/breakpoints';
+
+const isMobile = useMediaQuery(MEDIA.mobile);    // reactive boolean
+const isDesktop = useMediaQuery(MEDIA.desktop);
+```
+
+**Constants** (`src/constants/breakpoints.ts`):
+
+| Constant | Value |
+|----------|-------|
+| `MEDIA.mobile` | `(max-width: 767px)` |
+| `MEDIA.tablet` | `(min-width: 768px) and (max-width: 1199px)` |
+| `MEDIA.desktop` | `(min-width: 1200px)` |
+| `MEDIA.notMobile` | `(min-width: 768px)` |
+| `MEDIA.notDesktop` | `(max-width: 1199px)` |
+
+**`useMediaQuery` hook** (`src/hooks/useMediaQuery.ts`):
+- Returns `boolean` that updates reactively on window resize
+- SSR-safe (`typeof window` check)
+- Subscribes to `matchMedia` `change` event, cleans up on unmount
+- Global `window.matchMedia` mock is set up in `src/tests/setup.ts` for jsdom

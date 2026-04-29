@@ -58,7 +58,7 @@ function buildPageRange(
   return items;
 }
 
-export default function Pagination({
+const Pagination = ({
   page,
   totalPages,
   onChange,
@@ -66,7 +66,7 @@ export default function Pagination({
   boundaryCount = 1,
   disabled = false,
   className,
-}: PaginationProps) {
+}: PaginationProps) => {
   const { t } = useTranslation();
 
   if (totalPages <= 1) return null;
@@ -105,4 +105,6 @@ export default function Pagination({
       )}
     </nav>
   );
-}
+};
+
+export default Pagination;

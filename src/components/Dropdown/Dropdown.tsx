@@ -2,12 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import { useSelect } from 'downshift';
 import clsx from 'clsx';
 import Icon from '@/components/Icon';
-import useLockBodyScroll from '@/hooks/useLockBodyScroll';
-import useMediaQuery from '@/hooks/useMediaQuery';
+import { useLockBodyScroll, useMediaQuery } from '@/hooks';
+import { MEDIA } from '@/constants/breakpoints';
 import type { DropdownProps } from './interfaces/DropdownProps';
 import type { DropdownOption } from './interfaces/DropdownOption';
 
-export default function Dropdown({
+const Dropdown = ({
   options,
   selectedValue,
   onSelect,
@@ -17,8 +17,8 @@ export default function Dropdown({
   placement = 'bottom-start',
   className,
   'data-testid': testId = 'dropdown',
-}: DropdownProps) {
-  const isMobile = useMediaQuery('(max-width: 767px)');
+}: DropdownProps) => {
+  const isMobile = useMediaQuery(MEDIA.mobile);
   const [search, setSearch] = useState('');
   const searchRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,4 +138,6 @@ export default function Dropdown({
       </div>
     </div>
   );
-}
+};
+
+export default Dropdown;

@@ -1,0 +1,145 @@
+/* ===== Stepper container ===== */
+
+.stepper {
+  --stepper-indicator-size: 60px;
+  --stepper-gap: var(--space-4);
+  --stepper-step-gap: var(--space-3);
+  --stepper-label-size: var(--font-size-xl);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ===== Steps list ===== */
+
+.stepper__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stepper-gap);
+}
+
+/* ===== Single step (trigger) ===== */
+
+.stepper__step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--stepper-step-gap);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stepper__step:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.stepper__step--disabled {
+  cursor: not-allowed;
+  opacity: var(--disabled-opacity);
+}
+
+/* ===== Indicator (circle) ===== */
+
+.stepper__indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--stepper-indicator-size);
+  height: var(--stepper-indicator-size);
+  border-radius: var(--radius-full);
+  background-color: var(--neutral-100);
+  transition: background-color var(--transition-normal),
+              transform var(--transition-fast);
+}
+
+.stepper__indicator--active {
+  background-color: var(--brand-600);
+}
+
+.stepper__step:not(.stepper__step--disabled):hover .stepper__indicator {
+  transform: scale(1.06);
+}
+
+.stepper__indicator-icon {
+  color: var(--white);
+}
+
+.stepper__indicator-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  text-align: center;
+}
+
+.stepper__indicator--active .stepper__indicator-icon,
+.stepper__indicator--active .stepper__indicator-text {
+  color: var(--white);
+}
+
+/* ===== Label ===== */
+
+.stepper__label {
+  font-family: var(--font-primary);
+  font-size: var(--stepper-label-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+/* ===== Panel (content area) ===== */
+
+.stepper__panel {
+  min-width: 0;
+}
+
+.stepper__panel--enter {
+  animation: stepper-fade-in 250ms ease-out;
+}
+
+@keyframes stepper-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Tablet: side-by-side via CSS Grid ===== */
+
+@media (--not-mobile) {
+  .stepper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-6);
+  }
+
+  .stepper__panel {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+/* ===== Desktop: larger indicators and labels ===== */
+
+@media (--desktop) {
+  .stepper {
+    --stepper-indicator-size: 80px;
+    --stepper-gap: var(--space-6);
+    --stepper-label-size: var(--font-size-2xl);
+
+    gap: var(--space-10);
+  }
+}

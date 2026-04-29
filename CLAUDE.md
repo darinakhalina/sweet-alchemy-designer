@@ -27,9 +27,9 @@ npm run test:run     # Vitest single run
 
 ## Architecture
 
-- `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, etc.)
+- `src/components/` — shared components (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, etc.)
 - `src/pages/` — page components
-- `src/hooks/` — custom React hooks
+- `src/hooks/` — custom React hooks (`useMediaQuery`, `useLockBodyScroll`, `useAuthModal`)
 - `src/store/` — Redux Toolkit (slices, thunks, typed hooks)
 - `src/services/` — API client (Axios), service functions, error helpers
 - `src/config/` — typed environment variables
@@ -57,6 +57,15 @@ npm run test:run     # Vitest single run
    @media (--not-desktop) { } /* max-width: 1199px */
    ```
    Never hardcode breakpoint pixels — always use these tokens.
+
+   **In JS/TS** — use constants from `src/constants/breakpoints.ts` + `useMediaQuery` hook:
+   ```ts
+   import { useMediaQuery } from '@/hooks';
+   import { MEDIA } from '@/constants/breakpoints';
+
+   const isMobile = useMediaQuery(MEDIA.mobile);
+   ```
+   Never hardcode `window.matchMedia('(max-width: 767px)')` — use `MEDIA.*` constants.
 
 ## Guides
 
@@ -125,7 +134,7 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 
 **Stack:** Vitest + @testing-library/react + @testing-library/jest-dom, jsdom environment.
 
-**Config:** `vite.config.ts` → `test` section. Global setup in `src/tests/setup.ts` (jest-dom matchers + react-i18next mock).
+**Config:** `vite.config.ts` → `test` section. Global setup in `src/tests/setup.ts` (jest-dom matchers, react-i18next mock, `window.matchMedia` mock).
 
 **Test files excluded from `tsc` build** via `tsconfig.json` → `exclude`. Vitest handles them separately.
 
@@ -155,11 +164,17 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - Third-party library internals (formik, react-modal)
 - Implementation details (internal state, private methods)
 
+## Building Features
+
+**Always use existing components first.** Before writing any UI, check what's already in `src/components/` (Button, Icon, Input, Loader, Modal, Dropdown, Select, Pagination, AnimatedList, Stepper, etc.) and `src/hooks/` (useMediaQuery, useLockBodyScroll, useAuthModal). Compose pages and features from these building blocks — don't create new components for things that existing ones already cover.
+
+**If a needed component doesn't exist** — propose creating it and wait for confirmation before writing any code. Explain what the component would do and why existing ones don't fit. Never silently create new components during feature work.
+
 ## What NOT to do
 
 - **No CSS Modules** (`.module.css`) — only BEM with global CSS collected in `styles/index.css`
 - **No magic pixels** — use spacing/radius/shadow tokens. If no token fits, create a scoped CSS variable in the component, not a bare `12px`
-- **No hardcoded media queries** — use `@media (--mobile)` etc., never `@media (max-width: 767px)`
+- **No hardcoded media queries** — CSS: use `@media (--mobile)` etc.; JS: use `MEDIA.*` constants from `@/constants/breakpoints` + `useMediaQuery` hook. Never write raw pixel breakpoints
 - **No hardcoded UI text** — use `t('key')`. Backend data is the exception
 - **No relative imports** — use `@/components/...`, `@/hooks/...`, never `../../`
 - **No interfaces in component files** — each interface gets its own file in `interfaces/`

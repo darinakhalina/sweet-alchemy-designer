@@ -33,6 +33,7 @@
 @import '../components/AuthModal/auth-modal.css';
 @import '../components/Dropdown/dropdown.css';
 @import '../components/Select/select.css';
+@import '../components/Stepper/stepper.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';
