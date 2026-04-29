@@ -350,8 +350,8 @@ const DemoPage = () => {
             filled: 'Berry Cloud',
             password: '',
             searchDemo: '',
-            disabledDemo: 'Disabled value',
-            readonlyDemo: 'Read-only text',
+            disabledDemo: t('pages.demo.inputDisabledValue'),
+            readonlyDemo: t('pages.demo.inputReadOnlyText'),
             textareaDemo: '',
           }}
           onSubmit={() => {}}
@@ -362,15 +362,15 @@ const DemoPage = () => {
               <div className="col-12 col-md-6">
                 <Input
                   name="outlined"
-                  label="Outlined"
-                  placeholder="Oksana"
+                  label={t('pages.demo.labelOutlined')}
+                  placeholder={t('pages.demo.inputOutlinedPlaceholder')}
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
                   name="filled"
                   variant="filled"
-                  label="Filled"
+                  label={t('pages.demo.labelFilled')}
                 />
               </div>
             </div>
@@ -404,14 +404,14 @@ const DemoPage = () => {
               <div className="col-12 col-md-6">
                 <Input
                   name="disabledDemo"
-                  label="Disabled"
+                  label={t('pages.demo.labelDisabledInput')}
                   disabled
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
                   name="readonlyDemo"
-                  label="Read-only"
+                  label={t('pages.demo.labelReadOnly')}
                   readOnly
                 />
               </div>
@@ -424,7 +424,7 @@ const DemoPage = () => {
                   name="textareaDemo"
                   multiline
                   rows={3}
-                  label="Textarea"
+                  label={t('pages.demo.labelTextarea')}
                   placeholder={t('pages.demo.inputTextareaPlaceholder')}
                 />
               </div>

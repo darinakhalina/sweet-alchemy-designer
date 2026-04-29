@@ -148,8 +148,8 @@ const DemoPatternsPage = () => {
             portions: '6',
             diameter: '16',
             shape: '',
-            disabledField: 'Disabled value',
-            readonlyField: 'Read-only text',
+            disabledField: t('pages.demoPatterns.inputDisabledValue'),
+            readonlyField: t('pages.demoPatterns.inputReadOnlyText'),
             technology: '',
             filledDefault: '',
             filledValue: t('pages.demoPatterns.fieldRecipeNameExample'),
@@ -299,14 +299,14 @@ const DemoPatternsPage = () => {
               <div className="col-12 col-md-6">
                 <Input
                   name="disabledField"
-                  label="Disabled"
+                  label={t('pages.demoPatterns.labelDisabledInput')}
                   disabled
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
                   name="readonlyField"
-                  label="Read-only"
+                  label={t('pages.demoPatterns.labelReadOnly')}
                   readOnly
                 />
               </div>
@@ -438,7 +438,7 @@ const DemoPatternsPage = () => {
                   name="selectPortions"
                   options={portionOptions}
                   disabled
-                  label="Disabled"
+                  label={t('pages.demoPatterns.labelDisabledInput')}
                 />
               </div>
             </div>
