@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
@@ -37,50 +38,51 @@ const portionOptions: DropdownOption[] = [
   { value: '12', label: '12' },
 ];
 
-const categoryOptions: DropdownOption[] = [
-  { value: 'cake', label: 'Торт' },
-  { value: 'pastry', label: 'Тістечко' },
-  { value: 'mousse', label: 'Мус' },
-  { value: 'cookie', label: 'Печиво' },
-  { value: 'candy', label: 'Цукерки' },
-];
-
-const ingredientOptions: DropdownOption[] = [
-  { value: 'sugar', label: 'Цукор' },
-  { value: 'gelatin', label: 'Желатин' },
-  { value: 'water', label: 'Вода' },
-  { value: 'oreo', label: 'Печиво Oreo' },
-  { value: 'strawberry', label: 'Полуниця' },
-  { value: 'cream', label: 'Вершки' },
-  { value: 'butter', label: 'Масло' },
-  { value: 'flour', label: 'Борошно' },
-];
-
-const unitOptions: DropdownOption[] = [
-  { value: 'g', label: 'г' },
-  { value: 'ml', label: 'мл' },
-  { value: 'pcs', label: 'шт' },
-  { value: 'tsp', label: 'ч.л.' },
-  { value: 'tbsp', label: 'ст.л.' },
-];
-
 const currencyOptions: DropdownOption[] = [
   { value: 'UAH', label: 'UAH' },
   { value: 'USD', label: 'USD' },
   { value: 'EUR', label: 'EUR' },
 ];
 
-const deliveryOptions: DropdownOption[] = [
-  { value: 'pickup', label: 'Самовивіз' },
-  { value: 'courier', label: 'Кур\'єр' },
-  { value: 'post', label: 'Нова пошта' },
-  { value: 'other', label: 'Інше', disabled: true },
-];
-
 const DemoPatternsPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { items, isLoading } = useAppSelector((state) => state.desserts);
+
+  const categoryOptions = useMemo((): DropdownOption[] => [
+    { value: 'cake', label: t('pages.demoPatterns.categoryTart') },
+    { value: 'pastry', label: t('pages.demoPatterns.categoryPastry') },
+    { value: 'mousse', label: t('pages.demoPatterns.categoryMousse') },
+    { value: 'cookie', label: t('pages.demoPatterns.categoryCookie') },
+    { value: 'candy', label: t('pages.demoPatterns.categoryCandy') },
+  ], [t]);
+
+  const ingredientOptions = useMemo((): DropdownOption[] => [
+    { value: 'sugar', label: t('pages.demoPatterns.ingredientSugar') },
+    { value: 'gelatin', label: t('pages.demoPatterns.ingredientGelatin') },
+    { value: 'water', label: t('pages.demoPatterns.ingredientWater') },
+    { value: 'oreo', label: t('pages.demoPatterns.ingredientOreo') },
+    { value: 'strawberry', label: t('pages.demoPatterns.ingredientStrawberry') },
+    { value: 'cream', label: t('pages.demoPatterns.ingredientCream') },
+    { value: 'butter', label: t('pages.demoPatterns.ingredientButter') },
+    { value: 'flour', label: t('pages.demoPatterns.ingredientFlour') },
+  ], [t]);
+
+  const unitOptions = useMemo((): DropdownOption[] => [
+    { value: 'g', label: t('pages.demoPatterns.unitG') },
+    { value: 'ml', label: t('pages.demoPatterns.unitMl') },
+    { value: 'pcs', label: t('pages.demoPatterns.unitPcs') },
+    { value: 'tsp', label: t('pages.demoPatterns.unitTsp') },
+    { value: 'tbsp', label: t('pages.demoPatterns.unitTbsp') },
+  ], [t]);
+
+  const deliveryOptions = useMemo((): DropdownOption[] => [
+    { value: 'pickup', label: t('pages.demoPatterns.deliveryPickup') },
+    { value: 'courier', label: t('pages.demoPatterns.deliveryCourier') },
+    { value: 'post', label: t('pages.demoPatterns.deliveryPost') },
+    { value: 'other', label: t('pages.demoPatterns.deliveryOther'), disabled: true },
+  ], [t]);
+
   const handleFetch = () => {
     dispatch(fetchDesserts());
   };
@@ -150,14 +152,14 @@ const DemoPatternsPage = () => {
             readonlyField: 'Read-only text',
             technology: '',
             filledDefault: '',
-            filledValue: 'Ягідна хмаринка',
+            filledValue: t('pages.demoPatterns.fieldRecipeNameExample'),
             filledError: '6',
             publishRecipe: false,
             saveToFavorites: true,
           }}
           initialErrors={{
-            email: 'Невірний email',
-            filledError: 'Це поле обов\'язкове',
+            email: t('pages.demoPatterns.validationEmail'),
+            filledError: t('pages.demoPatterns.validationRequired'),
           }}
           initialTouched={{
             email: true,
@@ -165,12 +167,12 @@ const DemoPatternsPage = () => {
           }}
           validate={(values) => {
             const errors: Record<string, string> = {};
-            if (!values.name) errors.name = 'Обов\'язкове поле';
+            if (!values.name) errors.name = t('pages.demoPatterns.validationRequired');
             if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-              errors.email = 'Невірний email';
+              errors.email = t('pages.demoPatterns.validationEmail');
             }
             if (values.password && values.password.length < 6) {
-              errors.password = 'Мінімум 6 символів';
+              errors.password = t('pages.demoPatterns.validationPassword');
             }
             return errors;
           }}
@@ -184,8 +186,8 @@ const DemoPatternsPage = () => {
               <div className="col-12 col-md-6">
                 <Input
                   name="name"
-                  label="Ім'я"
-                  placeholder="Оксана"
+                  label={t('pages.demoPatterns.fieldName')}
+                  placeholder={t('pages.demoPatterns.fieldNamePlaceholder')}
                   required
                 />
               </div>
@@ -193,9 +195,9 @@ const DemoPatternsPage = () => {
                 <Input
                   name="email"
                   type="email"
-                  label="Електронна пошта"
+                  label={t('pages.demoPatterns.fieldEmail')}
                   placeholder="baker@gmail.com"
-                  helpText="Введіть вашу електронну пошту"
+                  helpText={t('pages.demoPatterns.fieldEmailHelp')}
                 />
               </div>
             </div>
@@ -206,23 +208,23 @@ const DemoPatternsPage = () => {
                 <Input
                   name="filledDefault"
                   variant="filled"
-                  label="Кількість порцій"
-                  placeholder="Введіть значення"
+                  label={t('pages.demoPatterns.fieldPortions')}
+                  placeholder={t('pages.demoPatterns.fieldPortionsPlaceholder')}
                 />
               </div>
               <div className="col-12 col-md-4">
                 <Input
                   name="filledValue"
                   variant="filled"
-                  label="Назва"
-                  helpText="Введіть назву рецепту"
+                  label={t('pages.demoPatterns.fieldRecipeName')}
+                  helpText={t('pages.demoPatterns.fieldRecipeNameHelp')}
                 />
               </div>
               <div className="col-12 col-md-4">
                 <Input
                   name="filledError"
                   variant="filled"
-                  label="Кількість порцій"
+                  label={t('pages.demoPatterns.fieldPortions')}
                 />
               </div>
             </div>
@@ -233,10 +235,10 @@ const DemoPatternsPage = () => {
                 <Input
                   name="password"
                   type="password"
-                  label="Пароль"
+                  label={t('pages.demoPatterns.fieldPassword')}
                   placeholder="******"
                   showPasswordToggle
-                  helpText="Мінімум 6 символів"
+                  helpText={t('pages.demoPatterns.fieldPasswordHelp')}
                 />
               </div>
             </div>
@@ -247,13 +249,13 @@ const DemoPatternsPage = () => {
                 <Input
                   name="search"
                   startIcon="icon-search"
-                  placeholder="Шукати рецепти"
+                  placeholder={t('pages.demoPatterns.fieldSearchPlaceholder')}
                 />
               </div>
               <div className="col-12 col-md-6">
                 <Input
                   name="searchIcons"
-                  placeholder="торт"
+                  placeholder={t('pages.demoPatterns.fieldSearchPlaceholder')}
                   endAdornment={(
                     <>
                       <button type="button" className="input__icon-btn">
@@ -273,21 +275,21 @@ const DemoPatternsPage = () => {
               <div className="col-12 col-md-4">
                 <Input
                   name="portions"
-                  label="Кількість порцій"
+                  label={t('pages.demoPatterns.fieldPortions')}
                 />
               </div>
               <div className="col-12 col-md-4">
                 <Input
                   name="diameter"
-                  label="Діаметр"
-                  helpText="В сантиметрах"
+                  label={t('pages.demoPatterns.fieldDiameter')}
+                  helpText={t('pages.demoPatterns.fieldDiameterHelp')}
                 />
               </div>
               <div className="col-12 col-md-4">
                 <Input
                   name="shape"
-                  label="Форма"
-                  placeholder="кругла"
+                  label={t('pages.demoPatterns.fieldShape')}
+                  placeholder={t('pages.demoPatterns.fieldShapePlaceholder')}
                 />
               </div>
             </div>
@@ -317,16 +319,16 @@ const DemoPatternsPage = () => {
                   name="technology"
                   multiline
                   rows={5}
-                  label="Технологія"
-                  placeholder="Подрібніть печиво в блендері, додайте розтоплене масло і добре перемішайте..."
+                  label={t('pages.demoPatterns.fieldTechnology')}
+                  placeholder={t('pages.demoPatterns.fieldTechnologyPlaceholder')}
                 />
               </div>
             </div>
 
             <h3 className="demo-patterns__subsection-title">{t('pages.demoPatterns.formikInputsPublish')}</h3>
             <div className="d-flex flex-column gap-4 mb-8">
-              <Switch name="publishRecipe" label="Опублікувати рецепт" />
-              <Checkbox name="saveToFavorites" label="Додати в обрані" />
+              <Switch name="publishRecipe" label={t('pages.demoPatterns.switchPublish')} />
+              <Checkbox name="saveToFavorites" label={t('pages.demoPatterns.checkboxFavorites')} />
             </div>
 
             <div className="d-flex gap-4 mb-8">
@@ -338,20 +340,20 @@ const DemoPatternsPage = () => {
             <div className="demo-patterns__code-block">
               <pre className="demo-patterns__code">
                 {`{/* Outlined (default) */}
-<Input name="email" label="Пошта" placeholder="baker@gmail.com" />
+<Input name="email" label="Email" placeholder="baker@gmail.com" />
 
 {/* Filled variant */}
-<Input name="name" variant="filled" label="Назва" />
+<Input name="name" variant="filled" label="Name" />
 
 {/* Password with toggle */}
 <Input name="password" type="password" showPasswordToggle />
 
 {/* Search with icons */}
-<Input name="search" startIcon="icon-search" placeholder="Шукати..." />
+<Input name="search" startIcon="icon-search" placeholder="Search..." />
 <Input name="q" endAdornment={<><IconBtn .../><IconBtn .../></>} />
 
 {/* Textarea */}
-<Input name="tech" multiline rows={5} label="Технологія" />
+<Input name="tech" multiline rows={5} label="Technology" />
 
 {/* Formik validation — just add validate to <Formik> */}`}
               </pre>
@@ -375,7 +377,7 @@ const DemoPatternsPage = () => {
           }}
           validate={(values) => {
             const errors: Record<string, string> = {};
-            if (!values.selectCategory) errors.selectCategory = 'Оберіть категорію';
+            if (!values.selectCategory) errors.selectCategory = t('pages.demoPatterns.validationCategory');
             return errors;
           }}
           onSubmit={(values) => {
@@ -388,19 +390,19 @@ const DemoPatternsPage = () => {
                 <Select
                   name="selectPortions"
                   options={portionOptions}
-                  label="Кількість порцій"
-                  placeholder="Обрати"
-                  helpText="Від 1 до 12"
+                  label={t('pages.demoPatterns.fieldPortions')}
+                  placeholder={t('pages.demoPatterns.selectPlaceholder')}
+                  helpText={t('pages.demoPatterns.fieldPortionsHelp')}
                 />
               </div>
               <div className="col-12 col-md-4">
                 <Select
                   name="selectCategory"
                   options={categoryOptions}
-                  label="Категорія десерту"
-                  placeholder="Обрати категорію"
+                  label={t('pages.demoPatterns.fieldCategory')}
+                  placeholder={t('pages.demoPatterns.fieldCategoryPlaceholder')}
                   searchable
-                  searchPlaceholder="Шукати..."
+                  searchPlaceholder={t('pages.demoPatterns.searchPlaceholder')}
                   required
                 />
               </div>
@@ -408,7 +410,7 @@ const DemoPatternsPage = () => {
                 <Select
                   name="selectCurrency"
                   options={currencyOptions}
-                  label="Валюта"
+                  label={t('pages.demoPatterns.fieldCurrency')}
                 />
               </div>
             </div>
@@ -418,17 +420,17 @@ const DemoPatternsPage = () => {
                 <Select
                   name="selectIngredient"
                   options={ingredientOptions}
-                  label="Інгредієнт"
-                  placeholder="Оберіть інгредієнт"
+                  label={t('pages.demoPatterns.fieldIngredient')}
+                  placeholder={t('pages.demoPatterns.fieldIngredientPlaceholder')}
                   searchable
-                  searchPlaceholder="Шукати інгредієнт..."
+                  searchPlaceholder={t('pages.demoPatterns.fieldIngredientSearch')}
                 />
               </div>
               <div className="col-12 col-md-3">
                 <Select
                   name="selectUnit"
                   options={unitOptions}
-                  label="Одиниця"
+                  label={t('pages.demoPatterns.fieldUnit')}
                 />
               </div>
               <div className="col-12 col-md-3">
@@ -443,7 +445,11 @@ const DemoPatternsPage = () => {
 
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
-                <RadioGroup name="deliveryMethod" options={deliveryOptions} label="Спосіб доставки" />
+                <RadioGroup
+                  name="deliveryMethod"
+                  options={deliveryOptions}
+                  label={t('pages.demoPatterns.fieldDelivery')}
+                />
               </div>
             </div>
 
@@ -537,23 +543,23 @@ const DemoPatternsPage = () => {
 
         <div className="mb-8">
           <Stepper defaultValue="add">
-            <Stepper.Step value="about" label="Про десерт">
-              <p>Про десерт</p>
+            <Stepper.Step value="about" label={t('pages.demoPatterns.stepperAbout')}>
+              <p>{t('pages.demoPatterns.stepperAbout')}</p>
             </Stepper.Step>
-            <Stepper.Step value="add" text="+" label="Додати">
-              <p>Додати</p>
+            <Stepper.Step value="add" text="+" label={t('pages.demoPatterns.stepperAdd')}>
+              <p>{t('pages.demoPatterns.stepperAdd')}</p>
             </Stepper.Step>
-            <Stepper.Step value="base" label="Основа">
-              <p>Основа</p>
+            <Stepper.Step value="base" label={t('pages.demoPatterns.stepperBase')}>
+              <p>{t('pages.demoPatterns.stepperBase')}</p>
             </Stepper.Step>
-            <Stepper.Step value="fillings" label="Начинки">
-              <p>Начинки</p>
+            <Stepper.Step value="fillings" label={t('pages.demoPatterns.stepperFillings')}>
+              <p>{t('pages.demoPatterns.stepperFillings')}</p>
             </Stepper.Step>
-            <Stepper.Step value="packaging" label="Пакування" disabled>
-              <p>Пакування</p>
+            <Stepper.Step value="packaging" label={t('pages.demoPatterns.stepperPackaging')} disabled>
+              <p>{t('pages.demoPatterns.stepperPackaging')}</p>
             </Stepper.Step>
-            <Stepper.Step value="calc" label="Розрахунки">
-              <p>Розрахунки</p>
+            <Stepper.Step value="calc" label={t('pages.demoPatterns.stepperCalc')}>
+              <p>{t('pages.demoPatterns.stepperCalc')}</p>
             </Stepper.Step>
           </Stepper>
         </div>
@@ -561,20 +567,20 @@ const DemoPatternsPage = () => {
         <h3 className="demo-patterns__subsection-title mt-8">{t('pages.demoPatterns.formikInputsUsage')}</h3>
         <div className="demo-patterns__code-block">
           <pre className="demo-patterns__code">
-            {`{/* defaultValue — який степ відкритий спочатку */}
+            {`{/* defaultValue — which step is open initially */}
 <Stepper defaultValue="about" onValueChange={handleChange}>
-  <Stepper.Step value="about" label="Про десерт">
+  <Stepper.Step value="about" label="About dessert">
     <AboutForm />
   </Stepper.Step>
-  <Stepper.Step value="add" text="+" label="Додати">
+  <Stepper.Step value="add" text="+" label="Add">
     <AddForm />
   </Stepper.Step>
-  <Stepper.Step value="base" label="Основа" disabled>
+  <Stepper.Step value="base" label="Base" disabled>
     <BaseForm />
   </Stepper.Step>
 </Stepper>
 
-{/* value + onValueChange — повний контроль ззовні */}
+{/* value + onValueChange — full external control */}
 <Stepper value={step} onValueChange={setStep}>...</Stepper>`}
           </pre>
         </div>

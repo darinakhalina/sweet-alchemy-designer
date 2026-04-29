@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
@@ -108,19 +108,6 @@ const iconNames = [
   'icon-trending-down', 'icon-whirlwind', 'icon-x',
 ];
 
-const sizeOptions: DropdownOption[] = [
-  { value: 'sm', label: 'Маленький' },
-  { value: 'md', label: 'Середній' },
-  { value: 'lg', label: 'Великий' },
-];
-
-const deliveryOptions: DropdownOption[] = [
-  { value: 'pickup', label: 'Самовивіз' },
-  { value: 'courier', label: 'Кур\'єр' },
-  { value: 'post', label: 'Нова пошта' },
-  { value: 'other', label: 'Інше', disabled: true },
-];
-
 const iconSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 
 const iconColorExamples = [
@@ -163,22 +150,35 @@ const portionOptions: DropdownOption[] = [
   { value: '12', label: '12' },
 ];
 
-const ingredientOptions: DropdownOption[] = [
-  { value: 'sugar', label: 'Цукор' },
-  { value: 'gelatin', label: 'Желатин' },
-  { value: 'water', label: 'Вода' },
-  { value: 'oreo', label: 'Печиво Oreo' },
-  { value: 'strawberry', label: 'Полуниця' },
-  { value: 'cream', label: 'Вершки' },
-  { value: 'butter', label: 'Масло' },
-  { value: 'flour', label: 'Борошно' },
-];
-
 const DemoPage = () => {
   const { t } = useTranslation();
   const [demoPage, setDemoPage] = useState(1);
   const [demoPage2, setDemoPage2] = useState(5);
   const [dropdownValue, setDropdownValue] = useState('6');
+
+  const sizeOptions = useMemo((): DropdownOption[] => [
+    { value: 'sm', label: t('pages.demo.sizeSmall') },
+    { value: 'md', label: t('pages.demo.sizeMedium') },
+    { value: 'lg', label: t('pages.demo.sizeLarge') },
+  ], [t]);
+
+  const deliveryOptions = useMemo((): DropdownOption[] => [
+    { value: 'pickup', label: t('pages.demo.deliveryPickup') },
+    { value: 'courier', label: t('pages.demo.deliveryCourier') },
+    { value: 'post', label: t('pages.demo.deliveryPost') },
+    { value: 'other', label: t('pages.demo.deliveryOther'), disabled: true },
+  ], [t]);
+
+  const ingredientOptions = useMemo((): DropdownOption[] => [
+    { value: 'sugar', label: t('pages.demo.ingredientSugar') },
+    { value: 'gelatin', label: t('pages.demo.ingredientGelatin') },
+    { value: 'water', label: t('pages.demo.ingredientWater') },
+    { value: 'oreo', label: t('pages.demo.ingredientOreo') },
+    { value: 'strawberry', label: t('pages.demo.ingredientStrawberry') },
+    { value: 'cream', label: t('pages.demo.ingredientCream') },
+    { value: 'butter', label: t('pages.demo.ingredientButter') },
+    { value: 'flour', label: t('pages.demo.ingredientFlour') },
+  ], [t]);
 
   return (
     <div className="demo">
@@ -347,7 +347,7 @@ const DemoPage = () => {
         <Formik
           initialValues={{
             outlined: '',
-            filled: 'Ягідна хмаринка',
+            filled: 'Berry Cloud',
             password: '',
             searchDemo: '',
             disabledDemo: 'Disabled value',
@@ -363,7 +363,7 @@ const DemoPage = () => {
                 <Input
                   name="outlined"
                   label="Outlined"
-                  placeholder="Оксана"
+                  placeholder="Oksana"
                 />
               </div>
               <div className="col-12 col-md-6">
@@ -381,7 +381,7 @@ const DemoPage = () => {
                 <Input
                   name="password"
                   type="password"
-                  label="Пароль"
+                  label={t('pages.demo.inputPassword')}
                   placeholder="******"
                   showPasswordToggle
                 />
@@ -394,7 +394,7 @@ const DemoPage = () => {
                 <Input
                   name="searchDemo"
                   startIcon="icon-search"
-                  placeholder="Шукати рецепти"
+                  placeholder={t('pages.demo.inputSearchPlaceholder')}
                 />
               </div>
             </div>
@@ -425,7 +425,7 @@ const DemoPage = () => {
                   multiline
                   rows={3}
                   label="Textarea"
-                  placeholder="Подрібніть печиво..."
+                  placeholder={t('pages.demo.inputTextareaPlaceholder')}
                 />
               </div>
             </div>
@@ -435,11 +435,11 @@ const DemoPage = () => {
         <h3 className="demo__subsection-title mt-8">{t('pages.demo.inputsUsage')}</h3>
         <div className="demo__code-block">
           <pre className="demo__code">
-            {`<Input name="email" label="Пошта" placeholder="baker@gmail.com" />
-<Input name="name" variant="filled" label="Назва" />
+            {`<Input name="email" label="Email" placeholder="baker@gmail.com" />
+<Input name="name" variant="filled" label="Name" />
 <Input name="password" type="password" showPasswordToggle />
-<Input name="search" startIcon="icon-search" placeholder="Шукати..." />
-<Input name="tech" multiline rows={5} label="Технологія" />`}
+<Input name="search" startIcon="icon-search" placeholder="Search..." />
+<Input name="tech" multiline rows={5} label="Technology" />`}
           </pre>
         </div>
       </section>
@@ -464,25 +464,25 @@ const DemoPage = () => {
           <Form>
             <h3 className="demo__subsection-title">{t('pages.demo.formControlsCheckbox')}</h3>
             <div className="d-flex flex-column gap-4 mb-8">
-              <Checkbox name="agree" label="Погоджуюсь з умовами" />
-              <Checkbox name="newsletter" label="Підписатись на розсилку" />
-              <Checkbox name="terms" label="Заблокований" disabled />
+              <Checkbox name="agree" label={t('pages.demo.checkboxAgree')} />
+              <Checkbox name="newsletter" label={t('pages.demo.checkboxNewsletter')} />
+              <Checkbox name="terms" label={t('pages.demo.labelDisabled')} disabled />
             </div>
 
             <h3 className="demo__subsection-title">{t('pages.demo.formControlsSwitch')}</h3>
             <div className="d-flex flex-column gap-4 mb-8">
-              <Switch name="notifications" label="Сповіщення" />
-              <Switch name="darkMode" label="Темна тема" />
-              <Switch name="autoSave" label="Заблокований" disabled />
+              <Switch name="notifications" label={t('pages.demo.switchNotifications')} />
+              <Switch name="darkMode" label={t('pages.demo.switchDarkMode')} />
+              <Switch name="autoSave" label={t('pages.demo.labelDisabled')} disabled />
             </div>
 
             <h3 className="demo__subsection-title">{t('pages.demo.formControlsRadioGroup')}</h3>
             <div className="row row--gap-md mb-8">
               <div className="col-12 col-md-6">
-                <RadioGroup name="size" options={sizeOptions} label="Розмір" />
+                <RadioGroup name="size" options={sizeOptions} label={t('pages.demo.radioSize')} />
               </div>
               <div className="col-12 col-md-6">
-                <RadioGroup name="delivery" options={deliveryOptions} label="Доставка" />
+                <RadioGroup name="delivery" options={deliveryOptions} label={t('pages.demo.radioDelivery')} />
               </div>
             </div>
           </Form>
@@ -492,14 +492,14 @@ const DemoPage = () => {
         <div className="demo__code-block">
           <pre className="demo__code">
             {`{/* Checkbox — Formik field */}
-<Checkbox name="agree" label="Погоджуюсь з умовами" />
-<Checkbox name="terms" label="Заблокований" disabled />
+<Checkbox name="agree" label="I agree to the terms" />
+<Checkbox name="terms" label="Disabled" disabled />
 
 {/* Switch — Formik field */}
-<Switch name="darkMode" label="Темна тема" />
+<Switch name="darkMode" label="Dark mode" />
 
 {/* RadioGroup — Formik field */}
-<RadioGroup name="size" options={sizeOptions} label="Розмір" />`}
+<RadioGroup name="size" options={sizeOptions} label="Size" />`}
           </pre>
         </div>
       </section>
@@ -519,7 +519,7 @@ const DemoPage = () => {
               trigger={({ isOpen, selectedOption, toggleProps }) => (
                 <button {...toggleProps} type="button" className="btn btn--secondary btn--md">
                   <span className="btn__label">
-                    {selectedOption?.label ?? 'Обрати'}
+                    {selectedOption?.label ?? t('pages.demo.dropdownSelect')}
                     {isOpen ? ' (open)' : ''}
                   </span>
                   <Icon name="icon-arrow-down" size="md" className="btn__icon" />
@@ -537,10 +537,10 @@ const DemoPage = () => {
               options={ingredientOptions}
               onSelect={(opt) => alert(`Selected: ${opt.label}`)}
               searchable
-              searchPlaceholder="Шукати рецепти"
+              searchPlaceholder={t('pages.demo.inputSearchPlaceholder')}
               trigger={({ toggleProps }) => (
                 <button {...toggleProps} type="button" className="btn btn--ghost btn--md">
-                  <span className="btn__label">Інгредієнти</span>
+                  <span className="btn__label">{t('pages.demo.dropdownIngredients')}</span>
                   <Icon name="icon-arrow-down" size="md" className="btn__icon" />
                 </button>
               )}
@@ -557,7 +557,7 @@ const DemoPage = () => {
   options={options}
   selectedValue={value}
   onSelect={(opt) => setValue(opt.value)}
-  trigger={({ isOpen }) => <Button>Обрати {isOpen ? '▲' : '▼'}</Button>}
+  trigger={({ isOpen }) => <Button>Select {isOpen ? '▲' : '▼'}</Button>}
 />
 
 {/* Dropdown — searchable */}
