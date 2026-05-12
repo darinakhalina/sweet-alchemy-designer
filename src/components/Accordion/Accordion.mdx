@@ -1,0 +1,51 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+<Title />
+
+<Subtitle>
+  Аккордеон з підтримкою single/multiple-режимів, controlled і uncontrolled-стану, опціонального шеврону та disabled-items.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import { useState } from 'react';
+import Accordion from '@/components/Accordion';
+
+{/* Single mode — uncontrolled */}
+<Accordion type="single" defaultValue="step-1">
+  <Accordion.Item value="step-1" label="Перший" number="01">
+    <p>Контент 1</p>
+  </Accordion.Item>
+  <Accordion.Item value="step-2" label="Другий" number="02">
+    <p>Контент 2</p>
+  </Accordion.Item>
+</Accordion>
+
+{/* Multiple mode */}
+<Accordion type="multiple" defaultValue={['a', 'c']}>
+  <Accordion.Item value="a" label="Item A">...</Accordion.Item>
+  <Accordion.Item value="b" label="Item B">...</Accordion.Item>
+  <Accordion.Item value="c" label="Item C">...</Accordion.Item>
+</Accordion>
+
+{/* Controlled */}
+const [open, setOpen] = useState('q1');
+
+<Accordion type="single" value={open} onValueChange={setOpen}>
+  <Accordion.Item value="q1" label="Питання 1">...</Accordion.Item>
+</Accordion>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

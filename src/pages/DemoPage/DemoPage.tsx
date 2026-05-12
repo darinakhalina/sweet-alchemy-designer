@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES } from '@/constants/routes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import Accordion from '@/components/Accordion';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -88,7 +87,6 @@ const typographyClasses = [
 ];
 
 const navItems = [
-  { id: 'accordion', key: 'accordion' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
   { id: 'spacing', key: 'spacing' },
@@ -131,54 +129,6 @@ const DemoPage = () => {
           )
         ))}
       </nav>
-
-      {/* === ACCORDION === */}
-      <section id="accordion" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.accordion')}</h2>
-
-        <Accordion defaultValue="step-1" showChevron={false}>
-          <Accordion.Item
-            value="step-1"
-            number="01"
-            label={t('pages.demo.accordionStep1Title')}
-          >
-            <p>{t('pages.demo.accordionStep1Text')}</p>
-          </Accordion.Item>
-          <Accordion.Item
-            value="step-2"
-            number="02"
-            label={t('pages.demo.accordionStep2Title')}
-          >
-            <p>{t('pages.demo.accordionStep2Text')}</p>
-          </Accordion.Item>
-          <Accordion.Item
-            value="step-3"
-            number="03"
-            label={t('pages.demo.accordionStep3Title')}
-          >
-            <p>{t('pages.demo.accordionStep3Text')}</p>
-          </Accordion.Item>
-          <Accordion.Item
-            value="step-4"
-            number="04"
-            label={t('pages.demo.accordionStep4Title')}
-          >
-            <p>{t('pages.demo.accordionStep4Text')}</p>
-          </Accordion.Item>
-        </Accordion>
-
-        <Accordion defaultValue="faq-1" className="mt-12">
-          <Accordion.Item value="faq-1" label={t('pages.demo.accordionFaqQ1')}>
-            <p>{t('pages.demo.accordionFaqA1')}</p>
-          </Accordion.Item>
-          <Accordion.Item value="faq-2" label={t('pages.demo.accordionFaqQ2')}>
-            <p>{t('pages.demo.accordionFaqA2')}</p>
-          </Accordion.Item>
-          <Accordion.Item value="faq-3" label={t('pages.demo.accordionFaqQ3')}>
-            <p>{t('pages.demo.accordionFaqA3')}</p>
-          </Accordion.Item>
-        </Accordion>
-      </section>
 
       {/* === COLORS === */}
       <section id="colors" className="demo__section">

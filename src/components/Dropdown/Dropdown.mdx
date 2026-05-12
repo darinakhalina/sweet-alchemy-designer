@@ -26,7 +26,7 @@ const [value, setValue] = useState();
   selectedValue={value}
   onSelect={(opt) => setValue(opt.value)}
   trigger={({ isOpen, selectedOption, toggleProps }) => (
-    <button {...toggleProps} type="button">
+    <button {...toggleProps} type="button" aria-label="Виберіть варіант">
       {selectedOption?.label ?? 'Виберіть'}
       {isOpen ? ' ▲' : ' ▼'}
     </button>

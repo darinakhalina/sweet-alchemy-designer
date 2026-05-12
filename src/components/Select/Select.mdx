@@ -1,0 +1,41 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+<Title />
+
+<Subtitle>
+  Формовий select на базі Dropdown з підтримкою Formik, валідації, плейсхолдера та опціонального пошуку.
+</Subtitle>
+
+## Використання
+
+Компонент потребує обгортки `<Formik>` — він читає/пише значення через `useField(name)`.
+
+<Source language="tsx" code={`import { Formik, Form } from 'formik';
+import Select from '@/components/Select';
+
+const sizeOptions = [
+  { value: 'sm', label: 'Малий' },
+  { value: 'md', label: 'Середній' },
+  { value: 'lg', label: 'Великий' },
+];
+
+<Formik initialValues={{ size: '' }} onSubmit={...}>
+  <Form>
+    <Select name="size" label="Розмір" options={sizeOptions} placeholder="Не вибрано" />
+  </Form>
+</Formik>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

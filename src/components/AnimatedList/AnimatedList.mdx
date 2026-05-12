@@ -1,0 +1,32 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as AnimatedListStories from './AnimatedList.stories';
+
+<Meta of={AnimatedListStories} />
+
+<Title />
+
+<Subtitle>
+  Обгортка для списку: додає stagger-анімацію fade-in-up до кожного дочірнього елемента через CSS-змінні.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import AnimatedList from '@/components/AnimatedList';
+
+<AnimatedList staggerDelay={100}>
+  <div>Перший</div>
+  <div>Другий</div>
+  <div>Третій</div>
+</AnimatedList>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

@@ -40,22 +40,7 @@
       "utilitiesTextAlign": "Text alignment",
       "utilitiesTextTransform": "Transform and overflow",
       "backToHome": "Home",
-      "patterns": "Patterns",
-      "accordion": "Accordion",
-      "accordionStep1Title": "Pick a recipe",
-      "accordionStep1Text": "Pick your favourite recipe from the list. Ingredients and serving size are pulled in automatically. Easily swap ingredients or tweak quantities.",
-      "accordionStep2Title": "Check ingredients and current prices",
-      "accordionStep2Text": "All ingredients and current prices in one place. Compare options and pick the best deal.",
-      "accordionStep3Title": "Set the number of servings",
-      "accordionStep3Text": "Pick how many servings you want, and all ingredient amounts adjust automatically.",
-      "accordionStep4Title": "Get the cost breakdown",
-      "accordionStep4Text": "Save your final recipe, come back to it any time, or share it with your team.",
-      "accordionFaqQ1": "Which ingredients can I add?",
-      "accordionFaqA1": "Ingredients from our catalogue are supported. Add your own through the recipe edit form.",
-      "accordionFaqQ2": "How do I save a recipe?",
-      "accordionFaqA2": "Hit the Save button at the bottom of the constructor page. The recipe will appear in My Recipes.",
-      "accordionFaqQ3": "Can I share a recipe?",
-      "accordionFaqA3": "Yes — share a link with your team or export it to PDF."
+      "patterns": "Patterns"
     }
   }
 }

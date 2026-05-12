@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
@@ -14,72 +13,19 @@ import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
-import Select from '@/components/Select';
 import AnimatedList from '@/components/AnimatedList';
 import Checkbox from '@/components/Checkbox';
 import Switch from '@/components/Switch';
-import RadioGroup from '@/components/RadioGroup';
-import type { DropdownOption } from '@/components/Dropdown';
 
 const navItems = [
   { id: 'formik-inputs', key: 'navFormikInputs' },
-  { id: 'formik-select', key: 'navFormikSelect' },
   { id: 'error-handling', key: 'navErrorHandling' },
-];
-
-const portionOptions: DropdownOption[] = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '4', label: '4' },
-  { value: '6', label: '6' },
-  { value: '8', label: '8' },
-  { value: '12', label: '12' },
-];
-
-const currencyOptions: DropdownOption[] = [
-  { value: 'UAH', label: 'UAH' },
-  { value: 'USD', label: 'USD' },
-  { value: 'EUR', label: 'EUR' },
 ];
 
 const DemoPatternsPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { items, isLoading } = useAppSelector((state) => state.desserts);
-
-  const categoryOptions = useMemo((): DropdownOption[] => [
-    { value: 'cake', label: t('pages.demoPatterns.categoryTart') },
-    { value: 'pastry', label: t('pages.demoPatterns.categoryPastry') },
-    { value: 'mousse', label: t('pages.demoPatterns.categoryMousse') },
-    { value: 'cookie', label: t('pages.demoPatterns.categoryCookie') },
-    { value: 'candy', label: t('pages.demoPatterns.categoryCandy') },
-  ], [t]);
-
-  const ingredientOptions = useMemo((): DropdownOption[] => [
-    { value: 'sugar', label: t('pages.demoPatterns.ingredientSugar') },
-    { value: 'gelatin', label: t('pages.demoPatterns.ingredientGelatin') },
-    { value: 'water', label: t('pages.demoPatterns.ingredientWater') },
-    { value: 'oreo', label: t('pages.demoPatterns.ingredientOreo') },
-    { value: 'strawberry', label: t('pages.demoPatterns.ingredientStrawberry') },
-    { value: 'cream', label: t('pages.demoPatterns.ingredientCream') },
-    { value: 'butter', label: t('pages.demoPatterns.ingredientButter') },
-    { value: 'flour', label: t('pages.demoPatterns.ingredientFlour') },
-  ], [t]);
-
-  const unitOptions = useMemo((): DropdownOption[] => [
-    { value: 'g', label: t('pages.demoPatterns.unitG') },
-    { value: 'ml', label: t('pages.demoPatterns.unitMl') },
-    { value: 'pcs', label: t('pages.demoPatterns.unitPcs') },
-    { value: 'tsp', label: t('pages.demoPatterns.unitTsp') },
-    { value: 'tbsp', label: t('pages.demoPatterns.unitTbsp') },
-  ], [t]);
-
-  const deliveryOptions = useMemo((): DropdownOption[] => [
-    { value: 'pickup', label: t('pages.demoPatterns.deliveryPickup') },
-    { value: 'courier', label: t('pages.demoPatterns.deliveryCourier') },
-    { value: 'post', label: t('pages.demoPatterns.deliveryPost') },
-    { value: 'other', label: t('pages.demoPatterns.deliveryOther'), disabled: true },
-  ], [t]);
 
   const handleFetch = () => {
     dispatch(fetchDesserts());
@@ -355,105 +301,6 @@ const DemoPatternsPage = () => {
 
 {/* Formik validation — just add validate to <Formik> */}`}
               </pre>
-            </div>
-          </Form>
-        </Formik>
-      </section>
-
-      {/* === SECTION A2: FORMIK + SELECT === */}
-      <section id="formik-select" className="demo-patterns__section" data-testid="demo-patterns-formik-select">
-        <h2 className="demo-patterns__section-title">{t('pages.demoPatterns.formikSelect')}</h2>
-
-        <Formik
-          initialValues={{
-            selectPortions: '6',
-            selectCategory: '',
-            selectIngredient: '',
-            selectUnit: 'g',
-            selectCurrency: 'UAH',
-            deliveryMethod: 'pickup',
-          }}
-          validate={(values) => {
-            const errors: Record<string, string> = {};
-            if (!values.selectCategory) errors.selectCategory = t('pages.demoPatterns.validationCategory');
-            return errors;
-          }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
-          }}
-        >
-          <Form>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectPortions"
-                  options={portionOptions}
-                  label={t('pages.demoPatterns.fieldPortions')}
-                  placeholder={t('pages.demoPatterns.selectPlaceholder')}
-                  helpText={t('pages.demoPatterns.fieldPortionsHelp')}
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectCategory"
-                  options={categoryOptions}
-                  label={t('pages.demoPatterns.fieldCategory')}
-                  placeholder={t('pages.demoPatterns.fieldCategoryPlaceholder')}
-                  searchable
-                  searchPlaceholder={t('pages.demoPatterns.searchPlaceholder')}
-                  required
-                />
-              </div>
-              <div className="col-12 col-md-4">
-                <Select
-                  name="selectCurrency"
-                  options={currencyOptions}
-                  label={t('pages.demoPatterns.fieldCurrency')}
-                />
-              </div>
-            </div>
-
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Select
-                  name="selectIngredient"
-                  options={ingredientOptions}
-                  label={t('pages.demoPatterns.fieldIngredient')}
-                  placeholder={t('pages.demoPatterns.fieldIngredientPlaceholder')}
-                  searchable
-                  searchPlaceholder={t('pages.demoPatterns.fieldIngredientSearch')}
-                />
-              </div>
-              <div className="col-12 col-md-3">
-                <Select
-                  name="selectUnit"
-                  options={unitOptions}
-                  label={t('pages.demoPatterns.fieldUnit')}
-                />
-              </div>
-              <div className="col-12 col-md-3">
-                <Select
-                  name="selectPortions"
-                  options={portionOptions}
-                  disabled
-                  label={t('pages.demoPatterns.labelDisabledInput')}
-                />
-              </div>
-            </div>
-
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <RadioGroup
-                  name="deliveryMethod"
-                  options={deliveryOptions}
-                  label={t('pages.demoPatterns.fieldDelivery')}
-                />
-              </div>
-            </div>
-
-            <div className="d-flex gap-4 mb-8">
-              <Button type="submit" variant="primary">{t('pages.demoPatterns.formikSelectSave')}</Button>
-              <Button type="reset" variant="secondary">{t('pages.demoPatterns.formikSelectReset')}</Button>
             </div>
           </Form>
         </Formik>
