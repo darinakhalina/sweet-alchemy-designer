@@ -1,0 +1,30 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+<Title />
+
+<Subtitle>
+  Універсальна кнопка з варіантами, розмірами, іконками та станами завантаження/вимкнення.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Button from '@/components/Button';
+
+<Button variant="primary" size="md" onClick={() => console.log('click')}>
+  Купити
+</Button>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

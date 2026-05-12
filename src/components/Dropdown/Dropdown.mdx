@@ -1,0 +1,46 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as DropdownStories from './Dropdown.stories';
+
+<Meta of={DropdownStories} />
+
+<Title />
+
+<Subtitle>
+  Випадаюче меню на базі downshift. Підтримує controlled-значення, пошук та кастомний тригер через render-prop.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import { useState } from 'react';
+import Dropdown from '@/components/Dropdown';
+
+const options = [
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+];
+
+const [value, setValue] = useState();
+
+<Dropdown
+  options={options}
+  selectedValue={value}
+  onSelect={(opt) => setValue(opt.value)}
+  trigger={({ isOpen, selectedOption, toggleProps }) => (
+    <button {...toggleProps} type="button">
+      {selectedOption?.label ?? 'Виберіть'}
+      {isOpen ? ' ▲' : ' ▼'}
+    </button>
+  )}
+/>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

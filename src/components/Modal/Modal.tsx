@@ -2,8 +2,6 @@ import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 import type { ModalProps } from './interfaces/ModalProps';
 
-ReactModal.setAppElement('#root');
-
 const Modal = ({
   children,
   isOpen,
@@ -13,8 +11,17 @@ const Modal = ({
 }: ModalProps) => {
   const { t } = useTranslation();
 
+  // Resolve app element per-instance: prod uses #root, Storybook uses #storybook-root.
+  // Avoids putting aria-hidden on document.body (axe a11y violation).
+  const appElement = typeof document !== 'undefined'
+    ? (document.getElementById('root')
+      ?? document.getElementById('storybook-root')
+      ?? undefined)
+    : undefined;
+
   return (
     <ReactModal
+      appElement={appElement}
       className="modal"
       overlayClassName="modal-overlay"
       bodyOpenClassName="body--modal-open"
@@ -38,7 +45,7 @@ const Modal = ({
           <use href="/images/icons.svg#icon-close" />
         </svg>
       </button>
-      <div className="modal__content">{children}</div>
+      <div className="modal__content" tabIndex={0}>{children}</div>
     </ReactModal>
   );
 };

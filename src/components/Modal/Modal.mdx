@@ -1,0 +1,40 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+<Title />
+
+<Subtitle>
+  Модальне вікно на базі react-modal. Закривається по кліку на оверлей, Esc або хрестик. Рендериться в портал поза дерева компонента.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import { useState } from 'react';
+import Modal from '@/components/Modal';
+
+const [isOpen, setOpen] = useState(false);
+
+<button onClick={() => setOpen(true)}>Відкрити</button>
+
+<Modal
+  isOpen={isOpen}
+  onClose={() => setOpen(false)}
+  ariaLabel="Підтвердження"
+>
+  <h2>Заголовок</h2>
+  <p>Контент модального вікна.</p>
+</Modal>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

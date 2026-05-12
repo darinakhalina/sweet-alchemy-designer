@@ -15,6 +15,7 @@ const Input = ({
   startIcon,
   endIcon,
   onEndIconClick,
+  endIconLabel,
   endAdornment,
   multiline = false,
   rows = 4,
@@ -123,6 +124,7 @@ const Input = ({
               type="button"
               className="input__icon-btn"
               onClick={onEndIconClick}
+              aria-label={endIconLabel}
               tabIndex={-1}
               data-testid={`${name}-input-end-icon`}
             >

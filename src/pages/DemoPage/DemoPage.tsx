@@ -1,19 +1,8 @@
-import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form } from 'formik';
 import { ROUTES } from '@/constants/routes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import Icon from '@/components/Icon';
-import Button from '@/components/Button';
-import Loader from '@/components/Loader';
-import Input from '@/components/Input';
-import Pagination from '@/components/Pagination';
-import Dropdown from '@/components/Dropdown';
-import Checkbox from '@/components/Checkbox';
-import Switch from '@/components/Switch';
-import RadioGroup from '@/components/RadioGroup';
-import type { DropdownOption } from '@/components/Dropdown';
+import Accordion from '@/components/Accordion';
 
 const colors = [
   { name: '--brand-600', value: '#FE7BCF', var: 'var(--brand-600)' },
@@ -98,34 +87,8 @@ const typographyClasses = [
   { className: 'text-sm', label: '.text-sm', desc: 'Rubik 400 / 16px' },
 ];
 
-const iconNames = [
-  'icon-arrow-down', 'icon-arrow-left', 'icon-arrow-right', 'icon-arrow-section', 'icon-arrow-up',
-  'icon-balance-one', 'icon-book', 'icon-cake', 'icon-check', 'icon-close', 'icon-cook-hat',
-  'icon-dots', 'icon-edit', 'icon-effects', 'icon-facebook',
-  'icon-folder', 'icon-instagram', 'icon-magic', 'icon-menu',
-  'icon-multi-rectangle', 'icon-peas', 'icon-play-back', 'icon-play',
-  'icon-plus-circle', 'icon-plus', 'icon-remove', 'icon-search',
-  'icon-trending-down', 'icon-whirlwind', 'icon-x',
-];
-
-const iconSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
-
-const iconColorExamples = [
-  { label: '--color-text', className: 'demo__icon-color--text' },
-  { label: '--brand-600', className: 'demo__icon-color--brand' },
-  { label: '--color-text-secondary', className: 'demo__icon-color--secondary' },
-  { label: '--color-error', className: 'demo__icon-color--error' },
-  { label: '--color-success', className: 'demo__icon-color--success' },
-];
-
 const navItems = [
-  { id: 'icons', key: 'icons' },
-  { id: 'buttons', key: 'buttons' },
-  { id: 'inputs', key: 'inputs' },
-  { id: 'form-controls', key: 'formControls' },
-  { id: 'dropdowns', key: 'dropdowns' },
-  { id: 'pagination', key: 'pagination' },
-  { id: 'loader', key: 'loader' },
+  { id: 'accordion', key: 'accordion' },
   { id: 'colors', key: 'colors' },
   { id: 'semantic-colors', key: 'semanticColors' },
   { id: 'spacing', key: 'spacing' },
@@ -141,44 +104,8 @@ const navItems = [
   { id: 'patterns', key: 'patterns' },
 ];
 
-const portionOptions: DropdownOption[] = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '4', label: '4' },
-  { value: '6', label: '6' },
-  { value: '8', label: '8' },
-  { value: '12', label: '12' },
-];
-
 const DemoPage = () => {
   const { t } = useTranslation();
-  const [demoPage, setDemoPage] = useState(1);
-  const [demoPage2, setDemoPage2] = useState(5);
-  const [dropdownValue, setDropdownValue] = useState('6');
-
-  const sizeOptions = useMemo((): DropdownOption[] => [
-    { value: 'sm', label: t('pages.demo.sizeSmall') },
-    { value: 'md', label: t('pages.demo.sizeMedium') },
-    { value: 'lg', label: t('pages.demo.sizeLarge') },
-  ], [t]);
-
-  const deliveryOptions = useMemo((): DropdownOption[] => [
-    { value: 'pickup', label: t('pages.demo.deliveryPickup') },
-    { value: 'courier', label: t('pages.demo.deliveryCourier') },
-    { value: 'post', label: t('pages.demo.deliveryPost') },
-    { value: 'other', label: t('pages.demo.deliveryOther'), disabled: true },
-  ], [t]);
-
-  const ingredientOptions = useMemo((): DropdownOption[] => [
-    { value: 'sugar', label: t('pages.demo.ingredientSugar') },
-    { value: 'gelatin', label: t('pages.demo.ingredientGelatin') },
-    { value: 'water', label: t('pages.demo.ingredientWater') },
-    { value: 'oreo', label: t('pages.demo.ingredientOreo') },
-    { value: 'strawberry', label: t('pages.demo.ingredientStrawberry') },
-    { value: 'cream', label: t('pages.demo.ingredientCream') },
-    { value: 'butter', label: t('pages.demo.ingredientButter') },
-    { value: 'flour', label: t('pages.demo.ingredientFlour') },
-  ], [t]);
 
   return (
     <div className="demo">
@@ -205,458 +132,52 @@ const DemoPage = () => {
         ))}
       </nav>
 
-      {/* === ICONS === */}
-      <section id="icons" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.icons')}</h2>
+      {/* === ACCORDION === */}
+      <section id="accordion" className="demo__section">
+        <h2 className="demo__section-title">{t('pages.demo.accordion')}</h2>
 
-        <h3 className="demo__subsection-title">{t('pages.demo.iconsAllIcons')}</h3>
-        <div className="demo__icon-grid">
-          {iconNames.map((name) => (
-            <div key={name} className="demo__icon-item">
-              <Icon name={name} size="lg" />
-              <code className="demo__icon-label">{name}</code>
-            </div>
-          ))}
-        </div>
+        <Accordion defaultValue="step-1" showChevron={false}>
+          <Accordion.Item
+            value="step-1"
+            number="01"
+            label={t('pages.demo.accordionStep1Title')}
+          >
+            <p>{t('pages.demo.accordionStep1Text')}</p>
+          </Accordion.Item>
+          <Accordion.Item
+            value="step-2"
+            number="02"
+            label={t('pages.demo.accordionStep2Title')}
+          >
+            <p>{t('pages.demo.accordionStep2Text')}</p>
+          </Accordion.Item>
+          <Accordion.Item
+            value="step-3"
+            number="03"
+            label={t('pages.demo.accordionStep3Title')}
+          >
+            <p>{t('pages.demo.accordionStep3Text')}</p>
+          </Accordion.Item>
+          <Accordion.Item
+            value="step-4"
+            number="04"
+            label={t('pages.demo.accordionStep4Title')}
+          >
+            <p>{t('pages.demo.accordionStep4Text')}</p>
+          </Accordion.Item>
+        </Accordion>
 
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsSizes')}</h3>
-        <div className="demo__icon-sizes">
-          {iconSizes.map((size) => (
-            <div key={size} className="demo__icon-size-item">
-              <Icon name="icon-magic" size={size} />
-              <code className="demo__icon-label">{size}</code>
-            </div>
-          ))}
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsColors')}</h3>
-        <div className="demo__icon-colors">
-          {iconColorExamples.map((item) => (
-            <div key={item.label} className="demo__icon-color-item">
-              <Icon name="icon-magic" size="xl" className={item.className} />
-              <code className="demo__icon-label">{item.label}</code>
-            </div>
-          ))}
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.iconsUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`<Icon name="icon-search" size="md" />
-<Icon name="icon-magic" size="lg" className="my-icon" />
-
-/* CSS — color via class */
-.my-icon {
-  color: var(--brand-600);
-}`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === BUTTONS === */}
-      <section id="buttons" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.buttons')}</h2>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsVariants')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button variant="primary">{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="secondary">{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="brand">{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="ghost">{t('pages.demo.buttonsLabel')}</Button>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsSizes')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button size="sm">{t('pages.demo.buttonsLabel')}</Button>
-          <Button size="md">{t('pages.demo.buttonsLabel')}</Button>
-          <Button size="lg">{t('pages.demo.buttonsLabel')}</Button>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsWithIcons')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button iconLeft="icon-search">{t('pages.demo.buttonsSearch')}</Button>
-          <Button iconRight="icon-arrow-right">{t('pages.demo.buttonsNext')}</Button>
-          <Button variant="brand" iconLeft="icon-magic">{t('pages.demo.buttonsMagic')}</Button>
-          <Button variant="secondary" iconLeft="icon-plus">{t('pages.demo.buttonsAdd')}</Button>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsIconOnly')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button
-            variant="brand"
-            size="sm"
-            iconLeft="icon-plus"
-            iconOnly
-          >+
-          </Button>
-          <Button
-            variant="primary"
-            size="md"
-            iconLeft="icon-search"
-            iconOnly
-          >Search
-          </Button>
-          <Button
-            variant="secondary"
-            size="md"
-            iconLeft="icon-edit"
-            iconOnly
-          >Edit
-          </Button>
-          <Button
-            variant="ghost"
-            size="lg"
-            iconLeft="icon-menu"
-            iconOnly
-          >Menu
-          </Button>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsUppercase')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button uppercase>{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="brand" uppercase>{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="secondary" uppercase>{t('pages.demo.buttonsLabel')}</Button>
-          <Button variant="ghost" uppercase>{t('pages.demo.buttonsLabel')}</Button>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.buttonsStates')}</h3>
-        <div className="d-flex flex-wrap gap-4 align-center mb-8">
-          <Button isDisabled>{t('pages.demo.buttonsDisabled')}</Button>
-          <Button variant="secondary" isDisabled>{t('pages.demo.buttonsDisabled')}</Button>
-          <Button isLoading>{t('pages.demo.buttonsLoading')}</Button>
-          <Button variant="brand" isLoading>{t('pages.demo.buttonsLoading')}</Button>
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.buttonsUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`<Button variant="primary" size="md">Click me</Button>
-<Button variant="brand" iconLeft="icon-magic">Magic</Button>
-<Button variant="secondary" iconLeft="icon-edit" iconOnly>Edit</Button>
-<Button size="lg" iconRight="icon-arrow-right">Next</Button>
-<Button uppercase>SUBMIT</Button>`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === INPUTS === */}
-      <section id="inputs" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.inputs')}</h2>
-
-        <Formik
-          initialValues={{
-            outlined: '',
-            filled: 'Berry Cloud',
-            password: '',
-            searchDemo: '',
-            disabledDemo: t('pages.demo.inputDisabledValue'),
-            readonlyDemo: t('pages.demo.inputReadOnlyText'),
-            textareaDemo: '',
-          }}
-          onSubmit={() => {}}
-        >
-          <Form>
-            <h3 className="demo__subsection-title">{t('pages.demo.inputsOutlined')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Input
-                  name="outlined"
-                  label={t('pages.demo.labelOutlined')}
-                  placeholder={t('pages.demo.inputOutlinedPlaceholder')}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <Input
-                  name="filled"
-                  variant="filled"
-                  label={t('pages.demo.labelFilled')}
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.inputsPassword')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Input
-                  name="password"
-                  type="password"
-                  label={t('pages.demo.inputPassword')}
-                  placeholder="******"
-                  showPasswordToggle
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.inputsWithIcons')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Input
-                  name="searchDemo"
-                  startIcon="icon-search"
-                  placeholder={t('pages.demo.inputSearchPlaceholder')}
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.inputsStates')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <Input
-                  name="disabledDemo"
-                  label={t('pages.demo.labelDisabledInput')}
-                  disabled
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <Input
-                  name="readonlyDemo"
-                  label={t('pages.demo.labelReadOnly')}
-                  readOnly
-                />
-              </div>
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.inputsTextarea')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12">
-                <Input
-                  name="textareaDemo"
-                  multiline
-                  rows={3}
-                  label={t('pages.demo.labelTextarea')}
-                  placeholder={t('pages.demo.inputTextareaPlaceholder')}
-                />
-              </div>
-            </div>
-          </Form>
-        </Formik>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.inputsUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`<Input name="email" label="Email" placeholder="baker@gmail.com" />
-<Input name="name" variant="filled" label="Name" />
-<Input name="password" type="password" showPasswordToggle />
-<Input name="search" startIcon="icon-search" placeholder="Search..." />
-<Input name="tech" multiline rows={5} label="Technology" />`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === FORM CONTROLS === */}
-      <section id="form-controls" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.formControls')}</h2>
-
-        <Formik
-          initialValues={{
-            agree: false,
-            newsletter: true,
-            terms: false,
-            notifications: false,
-            darkMode: true,
-            autoSave: false,
-            size: 'md',
-            delivery: '',
-          }}
-          onSubmit={() => {}}
-        >
-          <Form>
-            <h3 className="demo__subsection-title">{t('pages.demo.formControlsCheckbox')}</h3>
-            <div className="d-flex flex-column gap-4 mb-8">
-              <Checkbox name="agree" label={t('pages.demo.checkboxAgree')} />
-              <Checkbox name="newsletter" label={t('pages.demo.checkboxNewsletter')} />
-              <Checkbox name="terms" label={t('pages.demo.labelDisabled')} disabled />
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.formControlsSwitch')}</h3>
-            <div className="d-flex flex-column gap-4 mb-8">
-              <Switch name="notifications" label={t('pages.demo.switchNotifications')} />
-              <Switch name="darkMode" label={t('pages.demo.switchDarkMode')} />
-              <Switch name="autoSave" label={t('pages.demo.labelDisabled')} disabled />
-            </div>
-
-            <h3 className="demo__subsection-title">{t('pages.demo.formControlsRadioGroup')}</h3>
-            <div className="row row--gap-md mb-8">
-              <div className="col-12 col-md-6">
-                <RadioGroup name="size" options={sizeOptions} label={t('pages.demo.radioSize')} />
-              </div>
-              <div className="col-12 col-md-6">
-                <RadioGroup name="delivery" options={deliveryOptions} label={t('pages.demo.radioDelivery')} />
-              </div>
-            </div>
-          </Form>
-        </Formik>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.formControlsUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`{/* Checkbox — Formik field */}
-<Checkbox name="agree" label="I agree to the terms" />
-<Checkbox name="terms" label="Disabled" disabled />
-
-{/* Switch — Formik field */}
-<Switch name="darkMode" label="Dark mode" />
-
-{/* RadioGroup — Formik field */}
-<RadioGroup name="size" options={sizeOptions} label="Size" />`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === DROPDOWNS === */}
-      <section id="dropdowns" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.dropdowns')}</h2>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.dropdownsStandalone')}</h3>
-        <div className="row row--gap-md mb-8">
-          <div className="col-12 col-md-6">
-            <p className="text-sm mb-4">{t('pages.demo.dropdownsButtonTrigger')}</p>
-            <Dropdown
-              options={portionOptions}
-              selectedValue={dropdownValue}
-              onSelect={(opt) => setDropdownValue(opt.value)}
-              trigger={({ isOpen, selectedOption, toggleProps }) => (
-                <button {...toggleProps} type="button" className="btn btn--secondary btn--md">
-                  <span className="btn__label">
-                    {selectedOption?.label ?? t('pages.demo.dropdownSelect')}
-                    {isOpen ? ' (open)' : ''}
-                  </span>
-                  <Icon name="icon-arrow-down" size="md" className="btn__icon" />
-                </button>
-              )}
-              data-testid="demo-dropdown-btn"
-            />
-            <p className="text-sm mt-4">
-              Selected: {dropdownValue}
-            </p>
-          </div>
-          <div className="col-12 col-md-6">
-            <p className="text-sm mb-4">{t('pages.demo.dropdownsSearchable')}</p>
-            <Dropdown
-              options={ingredientOptions}
-              onSelect={(opt) => alert(`Selected: ${opt.label}`)}
-              searchable
-              searchPlaceholder={t('pages.demo.inputSearchPlaceholder')}
-              trigger={({ toggleProps }) => (
-                <button {...toggleProps} type="button" className="btn btn--ghost btn--md">
-                  <span className="btn__label">{t('pages.demo.dropdownIngredients')}</span>
-                  <Icon name="icon-arrow-down" size="md" className="btn__icon" />
-                </button>
-              )}
-              data-testid="demo-dropdown-search"
-            />
-          </div>
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.dropdownsUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`{/* Dropdown — standalone, any trigger */}
-<Dropdown
-  options={options}
-  selectedValue={value}
-  onSelect={(opt) => setValue(opt.value)}
-  trigger={({ isOpen }) => <Button>Select {isOpen ? '▲' : '▼'}</Button>}
-/>
-
-{/* Dropdown — searchable */}
-<Dropdown options={options} onSelect={fn} searchable trigger={...} />`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === PAGINATION === */}
-      <section id="pagination" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.pagination')}</h2>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.paginationDefault')}</h3>
-        <div className="mb-8">
-          <Pagination page={demoPage} totalPages={15} onChange={setDemoPage} />
-          <p className="text-sm text-center mt-4">
-            {t('pages.demo.paginationCurrent')}: {demoPage}
-          </p>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.paginationSiblings')}</h3>
-        <div className="mb-8">
-          <Pagination
-            page={demoPage2}
-            totalPages={20}
-            onChange={setDemoPage2}
-            siblingCount={2}
-            boundaryCount={2}
-          />
-          <p className="text-sm text-center mt-4">
-            {t('pages.demo.paginationCurrent')}: {demoPage2} (siblingCount=2, boundaryCount=2)
-          </p>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.paginationFewPages')}</h3>
-        <div className="mb-8">
-          <Pagination page={2} totalPages={5} onChange={() => {}} />
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.paginationDisabled')}</h3>
-        <div className="mb-8">
-          <Pagination
-            page={3}
-            totalPages={10}
-            onChange={() => {}}
-            disabled
-          />
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.paginationUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`<Pagination page={page} totalPages={15} onChange={setPage} />
-
-{/* More visible pages */}
-<Pagination page={page} totalPages={20} onChange={setPage}
-  siblingCount={2} boundaryCount={2} />
-
-{/* Disabled */}
-<Pagination page={3} totalPages={10} onChange={fn} disabled />`}
-          </pre>
-        </div>
-      </section>
-
-      {/* === LOADER === */}
-      <section id="loader" className="demo__section">
-        <h2 className="demo__section-title">{t('pages.demo.loader')}</h2>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.loaderSizes')}</h3>
-        <div className="d-flex flex-wrap gap-8 align-center mb-8">
-          <Loader size="sm" />
-          <Loader size="md" />
-          <Loader size="lg" />
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.loaderVariants')}</h3>
-        <div className="d-flex flex-wrap gap-8 align-center mb-8">
-          <Loader variant="primary" />
-          <Loader variant="brand" />
-          <div className="p-6" style={{ background: 'var(--neutral-400)', borderRadius: 'var(--radius-md)' }}>
-            <Loader variant="light" />
-          </div>
-        </div>
-
-        <h3 className="demo__subsection-title">{t('pages.demo.loaderOverlay')}</h3>
-        <div className="demo__loader-overlay-demo">
-          <p className="text-sm">{t('pages.demo.loaderOverlayDesc')}</p>
-          <Loader overlay />
-        </div>
-
-        <h3 className="demo__subsection-title mt-8">{t('pages.demo.loaderUsage')}</h3>
-        <div className="demo__code-block">
-          <pre className="demo__code">
-            {`<Loader />
-<Loader size="sm" variant="brand" />
-<Loader size="lg" />
-<Loader overlay />  {/* fullscreen overlay */}`}
-          </pre>
-        </div>
+        <Accordion defaultValue="faq-1" className="mt-12">
+          <Accordion.Item value="faq-1" label={t('pages.demo.accordionFaqQ1')}>
+            <p>{t('pages.demo.accordionFaqA1')}</p>
+          </Accordion.Item>
+          <Accordion.Item value="faq-2" label={t('pages.demo.accordionFaqQ2')}>
+            <p>{t('pages.demo.accordionFaqA2')}</p>
+          </Accordion.Item>
+          <Accordion.Item value="faq-3" label={t('pages.demo.accordionFaqQ3')}>
+            <p>{t('pages.demo.accordionFaqA3')}</p>
+          </Accordion.Item>
+        </Accordion>
       </section>
 
       {/* === COLORS === */}

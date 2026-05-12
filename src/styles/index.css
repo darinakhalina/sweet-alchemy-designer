@@ -37,6 +37,7 @@
 @import '../components/Checkbox/checkbox.css';
 @import '../components/Switch/switch.css';
 @import '../components/RadioGroup/radio-group.css';
+@import '../components/Accordion/accordion.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';

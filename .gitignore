@@ -29,7 +29,16 @@ dist-ssr
 *.sw?
 
 # Claude Code
-.claude/settings.local.json
+.claude/
+CLAUDE.md
+.claude.json
+.mcp.json
+docs/
 
 # OS files
 Thumbs.db
+
+# Storybook
+*storybook.log
+storybook-static
+coverage

@@ -1,0 +1,41 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as RadioGroupStories from './RadioGroup.stories';
+
+<Meta of={RadioGroupStories} />
+
+<Title />
+
+<Subtitle>
+  Група радіо-кнопок з підтримкою Formik. Рендериться як `<fieldset>` з `role="radiogroup"`.
+</Subtitle>
+
+## Використання
+
+Компонент потребує обгортки `<Formik>` — він читає/пише значення через `useField(name)`.
+
+<Source language="tsx" code={`import { Formik, Form } from 'formik';
+import RadioGroup from '@/components/RadioGroup';
+
+const sizeOptions = [
+  { value: 'sm', label: 'Малий' },
+  { value: 'md', label: 'Середній' },
+  { value: 'lg', label: 'Великий' },
+];
+
+<Formik initialValues={{ size: '' }} onSubmit={...}>
+  <Form>
+    <RadioGroup name="size" label="Розмір" options={sizeOptions} />
+  </Form>
+</Formik>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

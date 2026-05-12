@@ -1,0 +1,44 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as StepperStories from './Stepper.stories';
+
+<Meta of={StepperStories} />
+
+<Title />
+
+<Subtitle>
+  Вертикальний степпер (tablist/tabpanel) для багатокрокових процесів. Підтримує controlled і uncontrolled-режими.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Stepper from '@/components/Stepper';
+
+{/* Uncontrolled */}
+<Stepper defaultValue="step-1">
+  <Stepper.Step value="step-1" label="Перший" icon="icon-book">
+    <p>Контент першого кроку.</p>
+  </Stepper.Step>
+  <Stepper.Step value="step-2" label="Другий" icon="icon-check">
+    <p>Контент другого кроку.</p>
+  </Stepper.Step>
+</Stepper>
+
+{/* Controlled */}
+const [value, setValue] = useState('step-1');
+
+<Stepper value={value} onValueChange={setValue}>
+  <Stepper.Step value="step-1" label="Перший">...</Stepper.Step>
+  <Stepper.Step value="step-2" label="Другий">...</Stepper.Step>
+</Stepper>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

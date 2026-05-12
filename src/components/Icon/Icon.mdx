@@ -1,0 +1,33 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+<Title />
+
+<Subtitle>
+  Іконка зі SVG-sprite `public/images/icons.svg`. Колір контролюється через CSS-властивість `color` на батьківському елементі.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Icon from '@/components/Icon';
+
+<Icon name="icon-magic" size="lg" />
+
+{/* Колір через CSS */}
+<span style={{ color: 'var(--brand-600)' }}>
+  <Icon name="icon-cake" size="xl" />
+</span>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

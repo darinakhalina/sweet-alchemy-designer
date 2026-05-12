@@ -56,7 +56,9 @@ const Dropdown = ({
     }
   }, [isOpen]);
 
-  const toggleProps = getToggleButtonProps({
+  // Strip aria-labelledby — downshift points it at a non-existent label.
+  // Consumer's trigger element provides its own accessible name via text content or aria-label.
+  const { 'aria-labelledby': _ariaLabelledBy, ...toggleProps } = getToggleButtonProps({
     'data-testid': `${testId}-trigger`,
   });
 
@@ -77,7 +79,10 @@ const Dropdown = ({
       )}
 
       <div
-        {...getMenuProps()}
+        {...(() => {
+          const { 'aria-labelledby': _, ...rest } = getMenuProps();
+          return rest;
+        })()}
         className={clsx(
           'dropdown__panel',
           isOpen && 'dropdown__panel--open',
@@ -97,6 +102,7 @@ const Dropdown = ({
                     type="text"
                     className="dropdown__search-input"
                     placeholder={searchPlaceholder}
+                    aria-label={searchPlaceholder ?? 'Search'}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     data-testid={`${testId}-search-input`}

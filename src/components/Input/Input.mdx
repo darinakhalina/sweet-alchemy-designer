@@ -1,0 +1,35 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+<Title />
+
+<Subtitle>
+  Поле вводу з підтримкою Formik. Має варіанти, типи, іконки, password toggle, textarea та стани disabled/readOnly.
+</Subtitle>
+
+## Використання
+
+Компонент потребує обгортки `<Formik>` — він читає/пише значення через `useField(name)`.
+
+<Source language="tsx" code={`import { Formik, Form } from 'formik';
+import Input from '@/components/Input';
+
+<Formik initialValues={{ email: '' }} onSubmit={...}>
+  <Form>
+    <Input name="email" type="email" label="Email" placeholder="baker@gmail.com" />
+  </Form>
+</Formik>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

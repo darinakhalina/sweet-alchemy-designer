@@ -1,0 +1,37 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+<Title />
+
+<Subtitle>
+  Контрольована пагінація. Приймає `page`, `totalPages`, `onChange`. Підтримує налаштування siblings/boundaries для еліпсисів.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import { useState } from 'react';
+import Pagination from '@/components/Pagination';
+
+const [page, setPage] = useState(1);
+
+<Pagination
+  page={page}
+  totalPages={20}
+  onChange={setPage}
+  siblingCount={1}
+  boundaryCount={1}
+/>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

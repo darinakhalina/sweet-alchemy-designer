@@ -23,7 +23,7 @@ npm run dev
 
 Dev server runs at `http://localhost:5173`
 
-The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/constructor`). Vercel rewrites are configured in `vercel.json` to support client-side routing.
+The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/constructor`).
 
 ## Scripts
 
@@ -37,6 +37,10 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 | `npm run typecheck` | Run TypeScript type check only |
 | `npm test` | Vitest watch mode |
 | `npm run test:run` | Vitest single run |
+| `npm run storybook` | Start Storybook on `http://localhost:6006` |
+| `npm run build-storybook` | Build static Storybook to `storybook-static/` |
+| `npx vitest run --project storybook` | Run Storybook interaction + a11y tests (Playwright) |
+| `npx vitest run --project storybook --coverage` | Same with coverage → `coverage/index.html` |
 
 ## Tech Stack
 
@@ -54,6 +58,7 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 - **Husky** + **lint-staged** — pre-commit hooks (auto lint on commit)
 - **PostCSS custom-media** — breakpoint tokens
 - **Vitest** + **@testing-library/react** — unit & component testing
+- **Storybook 10** + **@storybook/addon-vitest** — optional component showcase with interaction + a11y tests (Playwright in headless Chromium)
 - **BEM** — CSS methodology, global collector in `styles/index.css`
 
 ## Project Structure
@@ -129,6 +134,32 @@ What Vitest covers:
 - **Custom hooks** — `renderHook` from `@testing-library/react`
 
 Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-i18next`.
+
+## Storybook (optional)
+
+Storybook is available for component documentation and interactive testing, but **it's optional** — each developer decides per component whether to add stories.
+
+When you do add a component to Storybook, follow the full guide at `docs/storybook-component-guide.md` (local-only, gitignored). Short version:
+
+```
+src/components/<Name>/
+├── <Name>.stories.tsx           # demo stories (one variant per story)
+├── <Name>.mdx                   # docs page (MDX with Source + Controls)
+└── tests/
+    └── <Name>.tests.stories.tsx # interaction + a11y tests with play()
+```
+
+`src/components/Button/` is the working example — copy that structure.
+
+**What you get for free:**
+- Auto-generated props table from TypeScript types + JSDoc
+- Copyable code snippets for every story
+- A11y (axe-core) runs on every story automatically — fails on violations
+- Interaction tests in real browser (Playwright) via `@storybook/addon-vitest`
+- Coverage reports via `--coverage`
+- ESLint plugin enforces CSF conventions (PascalCase, default exports, awaited interactions)
+
+**Rule:** new component examples live **only** in Storybook. Do not add them to `src/pages/DemoPage/` (legacy showcase being phased out).
 
 ## Design Tokens
 

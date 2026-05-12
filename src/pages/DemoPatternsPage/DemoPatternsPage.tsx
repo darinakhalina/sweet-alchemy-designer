@@ -16,7 +16,6 @@ import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import AnimatedList from '@/components/AnimatedList';
-import Stepper from '@/components/Stepper';
 import Checkbox from '@/components/Checkbox';
 import Switch from '@/components/Switch';
 import RadioGroup from '@/components/RadioGroup';
@@ -26,7 +25,6 @@ const navItems = [
   { id: 'formik-inputs', key: 'navFormikInputs' },
   { id: 'formik-select', key: 'navFormikSelect' },
   { id: 'error-handling', key: 'navErrorHandling' },
-  { id: 'stepper-demo', key: 'navStepper' },
 ];
 
 const portionOptions: DropdownOption[] = [
@@ -537,54 +535,6 @@ const DemoPatternsPage = () => {
         )}
       </section>
 
-      {/* === SECTION D: STEPPER === */}
-      <section id="stepper-demo" className="demo-patterns__section" data-testid="demo-patterns-stepper">
-        <h2 className="demo-patterns__section-title">Stepper</h2>
-
-        <div className="mb-8">
-          <Stepper defaultValue="add">
-            <Stepper.Step value="about" label={t('pages.demoPatterns.stepperAbout')}>
-              <p>{t('pages.demoPatterns.stepperAbout')}</p>
-            </Stepper.Step>
-            <Stepper.Step value="add" text="+" label={t('pages.demoPatterns.stepperAdd')}>
-              <p>{t('pages.demoPatterns.stepperAdd')}</p>
-            </Stepper.Step>
-            <Stepper.Step value="base" label={t('pages.demoPatterns.stepperBase')}>
-              <p>{t('pages.demoPatterns.stepperBase')}</p>
-            </Stepper.Step>
-            <Stepper.Step value="fillings" label={t('pages.demoPatterns.stepperFillings')}>
-              <p>{t('pages.demoPatterns.stepperFillings')}</p>
-            </Stepper.Step>
-            <Stepper.Step value="packaging" label={t('pages.demoPatterns.stepperPackaging')} disabled>
-              <p>{t('pages.demoPatterns.stepperPackaging')}</p>
-            </Stepper.Step>
-            <Stepper.Step value="calc" label={t('pages.demoPatterns.stepperCalc')}>
-              <p>{t('pages.demoPatterns.stepperCalc')}</p>
-            </Stepper.Step>
-          </Stepper>
-        </div>
-
-        <h3 className="demo-patterns__subsection-title mt-8">{t('pages.demoPatterns.formikInputsUsage')}</h3>
-        <div className="demo-patterns__code-block">
-          <pre className="demo-patterns__code">
-            {`{/* defaultValue — which step is open initially */}
-<Stepper defaultValue="about" onValueChange={handleChange}>
-  <Stepper.Step value="about" label="About dessert">
-    <AboutForm />
-  </Stepper.Step>
-  <Stepper.Step value="add" text="+" label="Add">
-    <AddForm />
-  </Stepper.Step>
-  <Stepper.Step value="base" label="Base" disabled>
-    <BaseForm />
-  </Stepper.Step>
-</Stepper>
-
-{/* value + onValueChange — full external control */}
-<Stepper value={step} onValueChange={setStep}>...</Stepper>`}
-          </pre>
-        </div>
-      </section>
     </div>
   );
 };

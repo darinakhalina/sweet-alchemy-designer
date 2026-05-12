@@ -1,0 +1,35 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+<Title />
+
+<Subtitle>
+  Перемикач (toggle) з підтримкою Formik. Семантично має `role="switch"`.
+</Subtitle>
+
+## Використання
+
+Компонент потребує обгортки `<Formik>` — він читає/пише значення через `useField(name)`.
+
+<Source language="tsx" code={`import { Formik, Form } from 'formik';
+import Switch from '@/components/Switch';
+
+<Formik initialValues={{ darkMode: false }} onSubmit={...}>
+  <Form>
+    <Switch name="darkMode" label="Темна тема" />
+  </Form>
+</Formik>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

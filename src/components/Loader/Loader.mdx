@@ -1,0 +1,30 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as LoaderStories from './Loader.stories';
+
+<Meta of={LoaderStories} />
+
+<Title />
+
+<Subtitle>
+  Спінер завантаження з 3 розмірами, 3 колірними варіантами та опцією повноекранного оверлею.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Loader from '@/components/Loader';
+
+<Loader />
+<Loader size="lg" variant="brand" />
+<Loader overlay />`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

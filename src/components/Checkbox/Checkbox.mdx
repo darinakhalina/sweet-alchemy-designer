@@ -1,0 +1,35 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+<Title />
+
+<Subtitle>
+  Чекбокс з підтримкою Formik. Має кастомну візуальну рамку та іконку при checked.
+</Subtitle>
+
+## Використання
+
+Компонент потребує обгортки `<Formik>` — він читає/пише значення через `useField(name)`.
+
+<Source language="tsx" code={`import { Formik, Form } from 'formik';
+import Checkbox from '@/components/Checkbox';
+
+<Formik initialValues={{ agree: false }} onSubmit={...}>
+  <Form>
+    <Checkbox name="agree" label="Погоджуюсь з умовами" />
+  </Form>
+</Formik>`} />
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />
