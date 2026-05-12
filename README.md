@@ -137,6 +137,8 @@ Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-
 
 ## Storybook (optional)
 
+Live Storybook: **https://sweet-alchemy-designer-storybook-vo.vercel.app/**
+
 Storybook is available for component documentation and interactive testing, but **it's optional** — each developer decides per component whether to add stories.
 
 When you do add a component to Storybook, follow the full guide at `docs/storybook-component-guide.md` (local-only, gitignored). Short version:
