@@ -19,7 +19,6 @@
 | `/profile` | ProfilePage | HomePageLayout | Protected |
 | `/profile/edit` | ProfileEditPage | HomePageLayout | Protected |
 | `/login` | LoginPage | None (standalone) | Public |
-| `/demo` | DemoPage | None (standalone) | Public |
 | `*` | NotFoundPage | None | Public |
 
 ## Route Constants
@@ -35,7 +34,6 @@ export const ROUTES = {
   RECIPE_DETAIL: '/recipe/:id',
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
-  DEMO: '/demo',
   LOGIN: '/login',
 } as const;
 
@@ -98,7 +96,7 @@ Add the new route to the Routes table in CLAUDE.md.
 ### Public routes
 
 Accessible to everyone — no wrapper needed:
-- `/` (HomePage), `/login`, `/demo`, `*` (NotFoundPage)
+- `/` (HomePage), `/login`, `*` (NotFoundPage)
 
 ### Protected routes
 
@@ -138,7 +136,6 @@ App.tsx
 │       ├── SearchPage
 │       └── ...
 ├── LoginPage                   ← Standalone, no layout
-├── DemoPage                    ← Standalone, no layout
 └── NotFoundPage                ← Catch-all
 ```
 

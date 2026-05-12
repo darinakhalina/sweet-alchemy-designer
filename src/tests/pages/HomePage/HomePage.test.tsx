@@ -25,7 +25,5 @@ describe('HomePage', () => {
   it('renders navigation links', () => {
     renderHomePage();
     expect(screen.getByText('pages.home.navigation')).toBeInTheDocument();
-    expect(screen.getByText('pages.home.demo')).toBeInTheDocument();
-    expect(screen.getByText('pages.home.demoPatterns')).toBeInTheDocument();
   });
 });

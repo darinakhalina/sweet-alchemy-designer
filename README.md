@@ -117,7 +117,6 @@ src/
 | `/profile` | Profile |
 | `/profile/edit` | Edit Profile |
 | `/login` | Login |
-| `/demo` | Design System Demo |
 | `*` | 404 Not Found |
 
 ## Testing
@@ -136,8 +135,6 @@ What Vitest covers:
 Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-i18next`.
 
 ## Storybook (optional)
-
-Live Storybook: **https://sweet-alchemy-designer-storybook-vo.vercel.app/**
 
 Storybook is available for component documentation and interactive testing, but **it's optional** — each developer decides per component whether to add stories.
 
@@ -161,7 +158,7 @@ src/components/<Name>/
 - Coverage reports via `--coverage`
 - ESLint plugin enforces CSF conventions (PascalCase, default exports, awaited interactions)
 
-**Rule:** new component examples live **only** in Storybook. Do not add them to `src/pages/DemoPage/` (legacy showcase being phased out).
+**Rule:** all component examples and design-token showcases live **only** in Storybook (`src/components/<Name>/` for components and `src/patterns/` for design tokens / integration patterns).
 
 ## Design Tokens
 

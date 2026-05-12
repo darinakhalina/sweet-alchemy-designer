@@ -9,8 +9,6 @@ const pages = [
   { path: buildRecipeDetailPath(1), key: 'recipe.dessertComposition' }, // TODO: replace with real recipe id when data is available
   { path: ROUTES.PROFILE, key: 'profile.title' },
   { path: ROUTES.PROFILE_EDIT, key: 'profile.edit' },
-  { path: ROUTES.DEMO, key: 'pages.home.demo' },
-  { path: ROUTES.DEMO_PATTERNS, key: 'pages.home.demoPatterns' },
 ];
 
 const HomePage = () => {
