@@ -61,6 +61,15 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 - **Storybook 10** + **@storybook/addon-vitest** — component showcase with interaction + a11y tests (Playwright in headless Chromium)
 - **BEM** — CSS methodology, global collector in `styles/index.css`
 
+## Deploy
+
+This repo deploys to **Vercel** (zero-config SPA hosting).
+
+- **Config:** `vercel.json` at repo root (SPA rewrites: all paths → `/index.html`)
+- **App URL:** _add your Vercel URL here_
+- **Storybook URL:** https://sweet-alchemy-designer-storybook-vo.vercel.app/ (separate Vercel project, build command `npm run build-storybook`, output `storybook-static`)
+- **Deploy:** automatic on push to `main` via Vercel GitHub integration. Pull requests get preview URLs.
+
 ## Project Structure
 
 ```
@@ -135,6 +144,8 @@ What Vitest covers:
 Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-i18next`.
 
 ## Storybook
+
+Live Storybook: **https://sweet-alchemy-designer-storybook-vo.vercel.app/**
 
 Storybook is set up for component documentation and interactive testing. Full guide: **[`docs/storybook-component-guide.md`](docs/storybook-component-guide.md)** (local-only, gitignored).
 
