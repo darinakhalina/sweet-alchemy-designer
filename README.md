@@ -40,7 +40,6 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 | `npm run storybook` | Start Storybook on `http://localhost:6006` |
 | `npm run build-storybook` | Build static Storybook to `storybook-static/` |
 | `npx vitest run --project storybook` | Run Storybook interaction + a11y tests (Playwright) |
-| `npx vitest run --project storybook --coverage` | Same with coverage → `coverage/index.html` |
 
 ## Tech Stack
 
@@ -155,7 +154,6 @@ src/components/<Name>/
 - Copyable code snippets for every story
 - A11y (axe-core) runs on every story automatically — fails on violations
 - Interaction tests in real browser (Playwright) via `@storybook/addon-vitest`
-- Coverage reports via `--coverage`
 - ESLint plugin enforces CSF conventions (PascalCase, default exports, awaited interactions)
 
 **Rule:** all component examples and design-token showcases live **only** in Storybook (`src/components/<Name>/` for components and `src/patterns/` for design tokens / integration patterns).

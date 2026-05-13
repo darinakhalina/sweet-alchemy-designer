@@ -45,7 +45,7 @@ const Modal = ({
           <use href="/images/icons.svg#icon-close" />
         </svg>
       </button>
-      <div className="modal__content" tabIndex={0}>{children}</div>
+      <div className="modal__content">{children}</div>
     </ReactModal>
   );
 };

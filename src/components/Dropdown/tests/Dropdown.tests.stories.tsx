@@ -49,9 +49,12 @@ export const ClickTriggerOpensMenu: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const trigger = canvas.getByTestId('dropdown-trigger');
-    await expect(canvas.queryByTestId('dropdown-list')).not.toBeInTheDocument();
+    // listbox <ul> is always in DOM (downshift requirement); items appear when open
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(canvas.queryByTestId('dropdown-item-sugar')).not.toBeInTheDocument();
     await userEvent.click(trigger);
-    await expect(canvas.getByTestId('dropdown-list')).toBeInTheDocument();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(canvas.getByTestId('dropdown-item-sugar')).toBeInTheDocument();
   },
 };
 

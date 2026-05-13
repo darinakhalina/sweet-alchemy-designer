@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome" />
+
+# 🍰 SweetAlchemy Design System
+
+Дизайн-система та бібліотека UI-компонентів проекту **SweetAlchemy**.
+
+## Розділи
+
+### 🎨 Design Tokens
+Фундамент дизайн-системи: кольори, типографіка, відступи, тіні та інші візуальні токени.
+
+- **Colors** — палітра brand + neutral
+- **Semantic Colors** — алiаси (`--color-text`, `--color-bg` тощо)
+- **Spacing** — шкала з кроком 4px
+- **Radius / Shadows / Transitions** — візуальні токени
+- **Font Sizes / Typography / Fonts** — типографічна система
+- **Breakpoints / Grid / Utilities** — layout і утилітарні класи
+
+### 🧩 Components
+14 UI-компонентів. Кожен має:
+- Демонстраційні стори для всіх варіантів і станів
+- MDX-документацію з прикладами коду (можна копіювати)
+- Інтеракційні тести (play-функції) у браузері Chromium
+- A11y-перевірки через axe-core
+
+### 🔌 Patterns
+Інтеграційні патерни — як склеювати компоненти разом.
+
+- **Formik + Input** — повна форма з усіма варіантами Input
+- **Formik + Select** — форма з кількома Select-полями та валідацією
+- **API & Error Handling** — Redux Toolkit thunks + toast-нотифікації
+
+## Команди
+
+```bash
+npm run storybook              # запустити UI (http://localhost:6006)
+npm run build-storybook        # зібрати статичну версію
+npx vitest run --project storybook   # прогнати тести (interactions + a11y)
+```
+
+## Як додати компонент
+
+Дивись детальний гайд: **`docs/storybook-component-guide.md`** в корені репо.
+
+Коротко:
+1. У папці `src/components/<Name>/` створи `<Name>.stories.tsx` + `<Name>.mdx` + `tests/<Name>.tests.stories.tsx`
+2. Додай JSDoc у `interfaces/<Name>Props.ts` — він піде в таблицю Props
+3. Тести запускаються автоматично через addon-vitest
+
+## A11y
+
+A11y-перевірки активні на **кожній** сторі (`test: 'error'` у preview). Якщо стори порушує WCAG — тест падає.
+
+Глобально вимкнені правила (`.storybook/preview.ts`):
+- `color-contrast` — `brand-600` рожевий з білим текстом дає 2.34, потрібно 4.5 (TODO: фіксити дизайн)
+- `aria-required-children`, `aria-required-parent`, `list` — downshift-specific
+
+## Стек
+
+React 19 · TypeScript 5.9 · Vite 7 · Storybook 10 · Vitest 4 · Playwright · @storybook/addon-vitest · @storybook/addon-a11y

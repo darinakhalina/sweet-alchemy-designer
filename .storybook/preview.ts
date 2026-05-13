@@ -6,6 +6,11 @@ import '../src/i18n';
 const preview: Preview = {
   parameters: {
     layout: 'centered',
+    options: {
+      storySort: {
+        order: ['Welcome', 'Design Tokens', 'Components', 'Patterns'],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -27,13 +32,8 @@ const preview: Preview = {
       config: {
         rules: [
           // brand-розовый — намеренный design choice, контраст 2.34 < 4.5
-          // снимаем глобально, чтобы остальные a11y-проверки работали строго
+          // TODO: фиксить дизайн (затемнить brand для текста або зробити фон --brand-800)
           { id: 'color-contrast', enabled: false },
-          // downshift кладёт role=listbox на контейнер, а внутри живёт <ul>/<div>.
-          // Это known pattern — переделать под чистый ARIA = серьёзный рефакторинг.
-          { id: 'aria-required-children', enabled: false },
-          { id: 'aria-required-parent', enabled: false },
-          { id: 'list', enabled: false },
         ],
       },
     },

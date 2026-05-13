@@ -10,7 +10,6 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(ts|tsx)',
   ],
   addons: [
-    '@chromatic-com/storybook',
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
     '@storybook/addon-themes',

@@ -6,6 +6,7 @@ import globals from 'globals'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([globalIgnores(['dist', 'storybook-static', 'coverage', 'node_modules', '.wrangler']), {
@@ -14,6 +15,7 @@ export default defineConfig([globalIgnores(['dist', 'storybook-static', 'coverag
     js.configs.recommended,
     ...tseslint.configs.recommended,
     reactRefresh.configs.vite,
+    jsxA11y.flatConfigs.recommended,
   ],
   plugins: {
     '@stylistic': stylistic,

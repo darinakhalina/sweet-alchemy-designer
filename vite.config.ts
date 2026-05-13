@@ -32,20 +32,6 @@ export default defineConfig({
     drop: ['console', 'debugger'],
   },
   test: {
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'html', 'json'],
-      reportsDirectory: './coverage',
-      include: ['src/components/**/*.{ts,tsx}'],
-      exclude: [
-        '**/*.stories.{ts,tsx}',
-        '**/*.test.{ts,tsx}',
-        '**/*.mdx',
-        '**/interfaces/**',
-        '**/constants/**',
-        '**/index.ts',
-      ],
-    },
     projects: [
       {
         extends: true,
