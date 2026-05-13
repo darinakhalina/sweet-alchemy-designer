@@ -58,7 +58,7 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 - **Husky** + **lint-staged** — pre-commit hooks (auto lint on commit)
 - **PostCSS custom-media** — breakpoint tokens
 - **Vitest** + **@testing-library/react** — unit & component testing
-- **Storybook 10** + **@storybook/addon-vitest** — optional component showcase with interaction + a11y tests (Playwright in headless Chromium)
+- **Storybook 10** + **@storybook/addon-vitest** — component showcase with interaction + a11y tests (Playwright in headless Chromium)
 - **BEM** — CSS methodology, global collector in `styles/index.css`
 
 ## Project Structure
@@ -134,11 +134,11 @@ What Vitest covers:
 
 Global setup (`src/tests/setup.ts`) provides jest-dom matchers and mocks `react-i18next`.
 
-## Storybook (optional)
+## Storybook
 
-Storybook is available for component documentation and interactive testing, but **it's optional** — each developer decides per component whether to add stories.
+Storybook is set up for component documentation and interactive testing. Full guide: **[`docs/storybook-component-guide.md`](docs/storybook-component-guide.md)** (local-only, gitignored).
 
-When you do add a component to Storybook, follow the full guide at `docs/storybook-component-guide.md` (local-only, gitignored). Short version:
+Short version of the folder structure:
 
 ```
 src/components/<Name>/

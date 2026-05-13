@@ -2,7 +2,20 @@
 
 Tracking work that the project should pick up but isn't blocking current feature delivery. Items here are scoped enough to turn into PRs without further design.
 
+## Status Summary (as of 2026-05-13)
+
+| Section | Status | Notes |
+|---------|--------|-------|
+| 1. E2E Tests (Playwright) | TODO | Not yet started — Playwright is installed but only used by Storybook addon-vitest |
+| 2. CI Workflow | TODO | `.github/workflows/` not created yet |
+| 3. Storybook | **DONE** | Full setup with 14 components, 12 design token stories, 3 integration patterns, MDX docs, interaction + a11y tests via Playwright. See `storybook-component-guide.md` |
+| 4. Repo Hygiene | Partial | `tsbuildinfo` cleaned in source. Target repo still has it tracked |
+
+---
+
 ## 1. E2E Tests (Playwright)
+
+**Status:** TODO
 
 **Why Playwright over Cypress:** ESM-friendly with Vite 7, `page.getByTestId()` aligns 1:1 with the project's `data-testid` convention, multi-browser out of the box, native mobile-viewport projects to exercise `Dropdown`/`Modal` bottom-sheet behavior.
 
@@ -44,6 +57,8 @@ Visual regression, accessibility audits, full route coverage, MSW for E2E (use `
 
 ## 2. CI Workflow
 
+**Status:** TODO
+
 **File:** `.github/workflows/ci.yml`
 
 ### Triggers
@@ -77,75 +92,50 @@ Separate workflow listening on `on: deployment_status` runs Playwright with `E2E
 
 ## 3. Storybook
 
-### Dependencies (dev)
-- `storybook`, `@storybook/react-vite`, `@storybook/addon-essentials`, `@storybook/addon-a11y`, `@storybook/addon-i18n`, `@storybook/test`
-- Optional: `storybook-react-router-v7` or a custom `<MemoryRouter>` decorator for components using `<Link>` / `useNavigate`
+**Status:** DONE (as of 2026-05-12)
 
-### Compatibility risk
-Storybook 8.x officially supports Vite 5/6; Vite 7 is community-tested. **Spike before committing.** Fallbacks: Storybook 9 if released, pin known-good 8.x minor, or `viteFinal` override.
+Installed: Storybook 10 + `@storybook/react-vite` + `@storybook/addon-vitest` + `@storybook/addon-a11y` + `@storybook/addon-docs` + `@storybook/addon-themes`.
 
-### Config
-- **`.storybook/main.ts`:** `framework: '@storybook/react-vite'`, `stories: ['../src/components/**/*.stories.@(ts|tsx|mdx)']`, defensive `@/` alias in `viteFinal`
-- **`.storybook/preview.ts`:**
-  - `import '../src/styles/index.css';` — **the** key hook. Aggregated CSS gives every story design tokens, breakpoints, fonts, layout utilities for free
-  - `import '../src/i18n';` — real provider, not the Vitest mock (mock lives in `src/tests/setup.ts` and is not loaded by Storybook unless someone imports `@/tests/setup` from production code — don't)
-  - Viewport presets `mobile` (≤767), `tablet` (768–1199), `desktop` (≥1200) mirroring `MEDIA.*` constants
-- **`.storybook/decorators/withI18n.tsx`** — toolbar locale switcher (`uk` | `en`), calls `i18n.changeLanguage(locale)` and wraps in `<I18nextProvider>`
-- **`.storybook/decorators/withRouter.tsx`** — `<MemoryRouter>` wrapper for components needing routing context
-- **`.storybook/tsconfig.json`** — extends root, scoped to `.storybook/**` and `**/*.stories.*`
+**What's there:**
+- 14 components with `.stories.tsx` + `.mdx` docs + `tests/*.tests.stories.tsx` (play + a11y tests)
+- 12 design token stories under `src/patterns/` (Colors, Spacing, Typography, etc.)
+- 3 integration patterns: FormikInputs, FormikSelect, ApiErrorHandling
+- Welcome page at `src/Welcome.mdx`
+- A11y tests via axe-core run on every story (`test: 'error'` in preview.ts) — only `color-contrast` rule disabled due to brand-pink design choice
+- Interaction tests via Playwright (headless Chromium) — 201 tests passing
+- Auto props table from TypeScript types + JSDoc via `react-docgen-typescript`
 
-### Folder structure — colocated, not separate `src/stories/`
-```
-src/components/Button/
-├── Button.tsx
-├── Button.stories.tsx        ← new
-├── button.css
-├── index.ts
-├── interfaces/
-└── constants/
-```
-Aligns with the existing component-guide convention. ESLint and TS configs need carve-outs:
-- `eslint.config.js` — disable `i18next/no-literal-string` for `*.stories.@(ts|tsx|mdx)`
-- `tsconfig.app.json` — exclude `**/*.stories.tsx` so production builds skip them
+**How to add a component:** see `docs/storybook-component-guide.md`.
 
-### NPM scripts
-- `storybook` → `storybook dev -p 6006`
-- `build-storybook` → `storybook build -o storybook-static`
+**Not implemented (out of scope):** Chromatic visual regression, deployment to public URL.
 
-### First three components to story
-1. **`Button`** — variants × sizes × icon positions × loading/disabled. Canonical first story.
-2. **`Input`** — label, helpText, error state, prefix/suffix icons; include a `WithFormik` story for realistic embedded usage.
-3. **`Modal`** — exercises portals, `useLockBodyScroll`, mobile bottom-sheet, i18n title. **Canary for `postcss-custom-media` in Storybook** — if `@media (--mobile)` doesn't apply, `Modal` mobile story is visibly broken.
-
-After these: `Icon`, `Dropdown`, `Select`, `Stepper`, form-control triplet (`Checkbox`/`Switch`/`RadioGroup`), `Pagination`, `Loader`, `AnimatedList`, `RecipeCard`, `AuthStatus`, `LanguageSwitcher`, then layout shells.
-
-### Out of scope
-Chromatic / visual regression, full a11y audits in CI, hand-authored MDX docs (rely on `react-docgen-typescript` auto props), `test-storybook` runner integration.
+### Future considerations
+- Deploy Storybook to a public URL (Cloudflare Pages / GH Pages) for sharing with team / designers
+- Test-storybook runner in CI (currently tests run via `npx vitest run --project storybook`)
 
 ---
 
 ## 4. Repo Hygiene
 
-- **`dist/`** — already in `.gitignore` (line 12). Verify nothing was committed before the rule landed: `git ls-files dist/` should be empty. If not, `git rm -r --cached dist/`.
-- **`tsconfig.app.tsbuildinfo`** — currently **tracked and modified** (visible in `git status`). This is an incremental TS build cache and must not be in the repo. Action:
-  ```
-  echo "*.tsbuildinfo" >> .gitignore
-  git rm --cached tsconfig.app.tsbuildinfo tsconfig.tsbuildinfo
-  ```
-- **`figma-screens/`** — 17 design mockups in repo. Acceptable for a prototype; for production move to a shared drive / Figma source of truth and reference URLs from `docs/figma-analysis.md`.
-- **Coverage thresholds** for Vitest — not currently configured. Decide once test suite stabilizes.
+**Status:** Partial
+
+- **`dist/`** — already in `.gitignore` and not tracked
+- **`*.tsbuildinfo`** — listed in `.gitignore`. In source repo: clean. In target repo: still tracked (legacy), needs `git rm --cached tsconfig.app.tsbuildinfo` once
+- **`figma-screens/`** — 17 design mockups in repo. Acceptable for a prototype; for production move to a shared drive / Figma source of truth and reference URLs from `docs/figma-analysis.md`
+- **Unused dependencies** — cleaned: `react-paginate`, `@chromatic-com/storybook` removed (2026-05-13)
+- **Empty placeholder folders** — `src/components/Footer/` removed (2026-05-13)
 
 ---
 
-## Suggested Order
+## Suggested Order (Updated)
 
-1. **Repo hygiene** (5 minutes) — gitignore `*.tsbuildinfo`, drop tracked build artifacts. Cheap, unblocks cleaner diffs.
-2. **Storybook** — independent of CI/E2E, zero impact on existing flows, and serves as a sanity check that Vite 7 + the styles pipeline still cooperate before E2E depends on the same build.
+1. ~~**Repo hygiene**~~ — DONE in source repo (target needs one-time `git rm --cached tsconfig.app.tsbuildinfo`)
+2. ~~**Storybook**~~ — DONE
 3. **CI scaffolding without E2E** — `static` + `unit` jobs only. Verify caching, `npm ci`, branch protection wiring on a noop PR. Make `static` and `unit` required checks.
 4. **Playwright + add `e2e` job to CI** — depends on the build being clean (Phase 2 proved it) and on the workflow existing (Phase 3 set it up). Tune retries/timeouts in isolation.
 
 ### Optional later
+- Storybook deploy to public URL (Cloudflare Pages / GH Pages)
 - Vercel preview `deployment_status` workflow for E2E against the real preview
 - Storybook test-runner in CI
 - Chromatic / visual regression
-- Vitest coverage thresholds

@@ -79,6 +79,7 @@ npm run test:run     # Vitest single run
 | [i18n Guide](docs/i18n-guide.md) | Auto-collection, key naming, shared vs local, interpolation |
 | [Testing Guide](docs/testing-guide.md) | data-testid selectors, components, slices, services, toast mocking |
 | [Routing Guide](docs/routing-guide.md) | Route constants, protected/public, lazy loading, adding routes |
+| [Storybook Guide](docs/storybook-component-guide.md) | Folder structure, demo stories, MDX docs, play() + a11y tests, commands |
 
 When creating a new component, don't forget to add its CSS import to `src/styles/index.css`.
 
