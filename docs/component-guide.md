@@ -307,7 +307,7 @@ What to test:
 - Accessibility attributes (`role`, `aria-*`)
 
 What NOT to test:
-- CSS visual appearance (that's what the demo page is for)
+- CSS visual appearance (that's what Storybook is for)
 - Internal implementation details (state variables, private functions)
 - Third-party libraries (react-modal, formik internals)
 
@@ -776,6 +776,134 @@ const [step, setStep] = useState('about');
 ### Architecture
 
 `Stepper.Step` is a data carrier — it returns `null`. The parent `Stepper` reads children props via `Children.forEach`, then renders triggers and panel in separate DOM containers. This keeps triggers grouped and panel separate for proper CSS Grid layout.
+
+## Accordion
+
+Collapsible content sections. Compound component (`Accordion` + `Accordion.Item`). Supports single (one open at a time) and multiple (any open) modes, controlled and uncontrolled. Smooth height animation via the CSS Grid `0fr ↔ 1fr` trick — no JS height measurements.
+
+### Basic usage (single mode, uncontrolled — default)
+
+```tsx
+import Accordion from '@/components/Accordion';
+
+<Accordion defaultValue="faq-1">
+  <Accordion.Item value="faq-1" label={t('faq.q1')}>
+    <p>{t('faq.a1')}</p>
+  </Accordion.Item>
+  <Accordion.Item value="faq-2" label={t('faq.q2')}>
+    <p>{t('faq.a2')}</p>
+  </Accordion.Item>
+  <Accordion.Item value="faq-3" label={t('faq.q3')} disabled>
+    <p>—</p>
+  </Accordion.Item>
+</Accordion>
+```
+
+### With number prefix (no chevron)
+
+For numbered step lists ("How it works?" pages):
+
+```tsx
+<Accordion defaultValue="step-1" showChevron={false}>
+  <Accordion.Item value="step-1" number="01" label={t('howItWorks.step1.title')}>
+    <p>{t('howItWorks.step1.text')}</p>
+  </Accordion.Item>
+  <Accordion.Item value="step-2" number="02" label={t('howItWorks.step2.title')}>
+    <p>{t('howItWorks.step2.text')}</p>
+  </Accordion.Item>
+</Accordion>
+```
+
+### Multiple mode
+
+Any number of items can be open simultaneously. `value`/`defaultValue` accept an array of strings:
+
+```tsx
+<Accordion type="multiple" defaultValue={['a', 'c']}>
+  <Accordion.Item value="a" label="A">...</Accordion.Item>
+  <Accordion.Item value="b" label="B">...</Accordion.Item>
+  <Accordion.Item value="c" label="C">...</Accordion.Item>
+</Accordion>
+```
+
+### Controlled
+
+```tsx
+const [open, setOpen] = useState<string | null>('faq-1');
+
+<Accordion value={open} onValueChange={setOpen}>
+  ...
+</Accordion>
+```
+
+For multiple mode, `value` is `string[]` and `onValueChange` is `(v: string[]) => void`. The `type` discriminator narrows props automatically — TS won't let you mix array and string forms.
+
+### Props
+
+**Accordion** (single — default)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single'` | `'single'` | Single mode discriminator |
+| `value` | `string \| null` | — | Currently open item (controlled) |
+| `defaultValue` | `string \| null` | — | Initially open item (uncontrolled) |
+| `onValueChange` | `(v: string \| null) => void` | — | Called on toggle |
+| `collapsible` | `boolean` | `true` | Allow closing the open item |
+| `showChevron` | `boolean` | `true` | Show chevron arrow on triggers |
+| `className` | `string?` | — | Additional CSS class on root |
+| `children` | `ReactNode` | — | `Accordion.Item` elements |
+
+**Accordion** (multiple)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'multiple'` | — | Multiple mode discriminator (required) |
+| `value` | `string[]` | — | Currently open items (controlled) |
+| `defaultValue` | `string[]` | — | Initially open items (uncontrolled) |
+| `onValueChange` | `(v: string[]) => void` | — | Called on toggle |
+| `showChevron` | `boolean` | `true` | Show chevron arrow on triggers |
+| `className` | `string?` | — | Additional CSS class on root |
+| `children` | `ReactNode` | — | `Accordion.Item` elements |
+
+**Accordion.Item**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Unique item identifier |
+| `label` | `ReactNode` | — | Trigger title |
+| `number` | `string?` | — | Optional number prefix (e.g. `"01"`) |
+| `disabled` | `boolean` | `false` | Prevents toggling and skips item in keyboard nav |
+| `children` | `ReactNode` | — | Panel content |
+
+### Animation
+
+- **Height**: `grid-template-rows: 0fr → 1fr` (300ms `ease-in-out`) — pure CSS, no JS measurement
+- **Content**: opacity + translateY fade for body
+- **Hover/focus**: number, label, chevron all transition `color` to `--brand-600`. `:focus-visible` mirrors `:hover` (no ugly outline)
+- **Reduced motion**: `prefers-reduced-motion: reduce` disables all transitions
+
+### Accessibility
+
+- `<button>` triggers with `aria-expanded`, `aria-controls`, `aria-disabled`
+- Panel `<div role="region">` with `aria-labelledby` pointing to its trigger and `aria-hidden` reflecting open state
+- Keyboard: `ArrowUp` / `ArrowDown` (with wrap-around), `Home` / `End`, `Enter` / `Space` (native button); disabled items are skipped
+- Hover/focus highlight color (no extra outline)
+
+### data-testid attributes
+
+| Element | testid |
+|---------|--------|
+| Root | `accordion` |
+| Item | `accordion-item-{value}` |
+| Trigger | `accordion-trigger-{value}` |
+| Number prefix | `accordion-number-{value}` |
+| Label | `accordion-label-{value}` |
+| Chevron | `accordion-chevron-{value}` |
+| Panel | `accordion-panel-{value}` |
+
+### Architecture
+
+`Accordion.Item` is a data carrier — it returns `null`. The parent `Accordion` reads children props via `Children.forEach`, then renders trigger + panel pairs. State is normalized internally to a `string[]` (single mode = max one element) so `'single'` and `'multiple'` share the same toggle logic.
 
 ## Breakpoints in JS
 

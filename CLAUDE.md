@@ -23,6 +23,7 @@ npm run test:run     # Vitest single run
 - Husky + lint-staged (pre-commit)
 - PostCSS: postcss-custom-media (breakpoint tokens)
 - Vitest + @testing-library/react (unit tests)
+- Storybook 10 + @storybook/addon-vitest (component showcase, interaction + a11y tests via Playwright)
 - Deploy: Vercel (`vercel.json` handles SPA rewrites)
 
 ## Architecture
@@ -40,7 +41,7 @@ npm run test:run     # Vitest single run
 
 `App.tsx` defines routes. Pages inside `HomePageLayout` get: LanguageSwitcher, Toaster, and `.f-container` (max-width: 1440px with responsive padding). Pages use `.row` > `.col-*` for grid layout. Don't add `.f-container` inside pages — it's already in the layout.
 
-`LoginPage` (`/login`), `DemoPage` (`/demo`), and `NotFoundPage` live outside `HomePageLayout` and manage their own layout.
+`LoginPage` (`/login`) and `NotFoundPage` live outside `HomePageLayout` and manage their own layout.
 
 ## CSS Rules
 
@@ -127,7 +128,6 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 | `/profile` | ProfilePage | HomePageLayout |
 | `/profile/edit` | ProfileEditPage | HomePageLayout |
 | `/login` | LoginPage | None (standalone) |
-| `/demo` | DemoPage | None (standalone) |
 | `*` | NotFoundPage | None |
 
 ## Testing
@@ -160,7 +160,7 @@ Offsets: `.offset-1` ... `.offset-6`, `.offset-md-*`, `.offset-lg-*`.
 - Every new component should have a test file
 
 **What NOT to test:**
-- CSS visual appearance (demo page covers that)
+- CSS visual appearance (Storybook covers that)
 - Third-party library internals (formik, react-modal)
 - Implementation details (internal state, private methods)
 

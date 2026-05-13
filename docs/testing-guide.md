@@ -106,7 +106,7 @@ describe('Button', () => {
 
 ### What NOT to test
 
-- CSS visual appearance (demo page covers that)
+- CSS visual appearance (Storybook covers that)
 - Third-party library internals
 - Implementation details (internal state)
 

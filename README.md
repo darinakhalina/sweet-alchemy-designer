@@ -39,6 +39,7 @@ The project uses **BrowserRouter** with clean URLs (e.g. `http://localhost:5173/
 | `npm run test:run` | Vitest single run |
 | `npm run storybook` | Start Storybook on `http://localhost:6006` |
 | `npm run build-storybook` | Build static Storybook to `storybook-static/` |
+| `npm run prepare` | Install husky pre-commit hook (runs automatically on `npm install`) |
 | `npx vitest run --project storybook` | Run Storybook interaction + a11y tests (Playwright) |
 
 ## Tech Stack

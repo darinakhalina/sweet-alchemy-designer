@@ -53,9 +53,8 @@ npx vitest run --project storybook   # прогнати тести (interactions
 
 A11y-перевірки активні на **кожній** сторі (`test: 'error'` у preview). Якщо стори порушує WCAG — тест падає.
 
-Глобально вимкнені правила (`.storybook/preview.ts`):
+Глобально вимкнене одне правило (`.storybook/preview.ts`):
 - `color-contrast` — `brand-600` рожевий з білим текстом дає 2.34, потрібно 4.5 (TODO: фіксити дизайн)
-- `aria-required-children`, `aria-required-parent`, `list` — downshift-specific
 
 ## Стек
 
