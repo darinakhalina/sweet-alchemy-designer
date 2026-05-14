@@ -1,0 +1,113 @@
+.carousel {
+  --carousel-items-base: 1;
+  --carousel-items-md: 2;
+  --carousel-items-lg: 3;
+  --carousel-gap: var(--space-6);     /* 24px */
+  --carousel-nav-size: 60px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.carousel__main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.carousel__viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  gap: var(--carousel-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel__slide {
+  flex: 0 0 calc((100% - (var(--carousel-items-base) - 1) * var(--carousel-gap)) / var(--carousel-items-base));
+  min-width: 0;
+}
+
+@media (--not-mobile) {
+  .carousel__slide {
+    flex-basis: calc((100% - (var(--carousel-items-md) - 1) * var(--carousel-gap)) / var(--carousel-items-md));
+  }
+}
+
+@media (--desktop) {
+  .carousel__slide {
+    flex-basis: calc((100% - (var(--carousel-items-lg) - 1) * var(--carousel-gap)) / var(--carousel-items-lg));
+  }
+}
+
+/* === Nav buttons === */
+
+.carousel__nav {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--carousel-nav-size);
+  height: var(--carousel-nav-size);
+  padding: 0;
+  border: none;
+  border-radius: 100px;
+  background: var(--neutral-50);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color var(--transition-normal), filter var(--transition-normal);
+}
+
+.carousel__nav:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.carousel__nav:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* === Dots === */
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel__dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--neutral-100);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.carousel__dot:hover {
+  background: var(--neutral-200);
+}
+
+.carousel__dot--active {
+  background: var(--brand-600);
+}
+
+@media (--mobile) {
+  .carousel {
+    --carousel-nav-size: 48px;
+  }
+}

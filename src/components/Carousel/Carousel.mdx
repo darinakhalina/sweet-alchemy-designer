@@ -1,0 +1,57 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as CarouselStories from './Carousel.stories';
+
+<Meta of={CarouselStories} />
+
+<Title />
+
+<Subtitle>
+  Легка карусель на embla-carousel-react (~12KB gzip). Headless, без autoplay. Items-per-view конфігурується per проєктний breakpoint.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Carousel from '@/components/Carousel';
+
+<Carousel itemsPerView={{ base: 1, md: 2, lg: 3 }} showDots showArrows>
+  <Carousel.Slide><RecipeCard recipe={…} /></Carousel.Slide>
+  <Carousel.Slide><RecipeCard recipe={…} /></Carousel.Slide>
+  <Carousel.Slide><RecipeCard recipe={…} /></Carousel.Slide>
+  <Carousel.Slide><RecipeCard recipe={…} /></Carousel.Slide>
+</Carousel>`} />
+
+## API
+
+| Prop | Default | Опис |
+|---|---|---|
+| `itemsPerView` | `{ base: 1, md: 2, lg: 3 }` | Скільки слайдів видно на breakpoint. `base` ≤ 767, `md` 768–1199, `lg` ≥ 1200 |
+| `showArrows` | `true` | Кнопки prev/next |
+| `showDots` | `true` | Точки пагінації знизу |
+| `prevAriaLabel` | `"Попередній слайд"` | Aria-label на prev |
+| `nextAriaLabel` | `"Наступний слайд"` | Aria-label на next |
+| `className` | – | Додатковий клас на корінь |
+
+## Архітектура
+
+- **embla-carousel-react** — engine: scroll-snap, touch, drag, keyboard, a11y.
+- **Headless** — компонент сам рендерить стрілки і точки, embla тільки рухає track.
+- **Slide widths** — через CSS-змінні `--carousel-items-base/md/lg` на корені; кожен `.carousel__slide` отримує `flex-basis: calc(...)` per breakpoint.
+- **slidesToScroll** — embla дістає його з `breakpoints` option і автоматично переключає скільки прокрутити за раз (1, 2 або 3) на media-queries.
+- **State** — `selectedIndex`, `canScrollPrev/Next`, `scrollSnaps` синхронізуються через `emblaApi.on('select', …)`.
+- **Без autoplay** — навмисно, embla має окремий плагін якщо колись знадобиться.
+
+## Тести
+
+Embla використовує `IntersectionObserver` і `ResizeObserver` — у jsdom вони засталбовані в `src/tests/setup.ts`. У юніт-тестах самої карусели `embla-carousel-react` мокається стабільним tuple, щоб уникнути re-render-loops.
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

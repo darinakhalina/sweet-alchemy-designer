@@ -1,0 +1,62 @@
+.problem-solutions {
+  --problem-solutions-card-padding: var(--space-8);    /* 32px */
+  --problem-solutions-card-gap: var(--space-4);         /* 16px */
+  --problem-solutions-pair-gap: var(--space-5);         /* 20px between cards & arrow */
+  --problem-solutions-card-radius: 32px;
+  --problem-solutions-card-min-height: 285px;
+
+  padding: var(--space-10) 0;
+}
+
+.problem-solutions__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.problem-solutions__pair {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--problem-solutions-pair-gap);
+  height: 100%;
+}
+
+.problem-solutions__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--problem-solutions-card-gap);
+  padding: var(--problem-solutions-card-padding);
+  border-radius: var(--problem-solutions-card-radius);
+  background: var(--color-bg);
+  flex: 1;
+}
+
+.problem-solutions__card-icon {
+  color: var(--color-text);
+}
+
+.problem-solutions__card-title {
+  color: var(--color-text);
+}
+
+.problem-solutions__arrow {
+  align-self: center;
+  color: var(--brand-600);
+}
+
+/* === Mobile (≤767): narrow card width, centered === */
+@media (--mobile) {
+  .problem-solutions__card {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* === Tablet + Desktop (≥768): enforce min-height so pairs align === */
+@media (--not-mobile) {
+  .problem-solutions__card {
+    min-height: var(--problem-solutions-card-min-height);
+  }
+}

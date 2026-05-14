@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Hero from '@/components/Hero';
 import Button from '@/components/Button';
+import Carousel from '@/components/Carousel';
 
 const AboutProductPage = () => {
   const { t } = useTranslation();
@@ -25,6 +26,16 @@ const AboutProductPage = () => {
           {t('pages.aboutProduct.hero.ctaPrimary')}
         </Button>
       </Hero>
+
+      <section className="about-product__carousel-section">
+        <Carousel showDots={false}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Carousel.Slide key={i}>
+              <div className="about-product__test-slide">test {i + 1}</div>
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      </section>
     </main>
   );
 };

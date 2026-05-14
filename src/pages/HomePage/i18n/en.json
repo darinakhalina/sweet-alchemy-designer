@@ -8,6 +8,38 @@
         "ctaPrimary": "Try for free",
         "ctaSecondary": "Learn more about the product",
         "imageAlt": "SweetAlchemy dessert designer"
+      },
+      "problemSolutions": {
+        "recipeSearch": {
+          "problem": {
+            "title": "Where's that recipe?!",
+            "description": "Hundreds of screenshots on your phone — you waste time again searching for \"that exact\" cream cheese."
+          },
+          "solution": {
+            "title": "Smart recipe book",
+            "description": "Create your own recipes, combine fillings and biscuits like a constructor. Your knowledge base always in your pocket."
+          }
+        },
+        "shapeChange": {
+          "problem": {
+            "title": "Client wants to change the shape",
+            "description": "Formulas, proportions, fear of making mistakes and wasting products. Why can't we just bake?"
+          },
+          "solution": {
+            "title": "Recalculation in 1 click",
+            "description": "Change the shape or weight — the system instantly gives new amounts. No errors, no wasted products."
+          }
+        },
+        "profitLoss": {
+          "problem": {
+            "title": "Am I working at a loss?",
+            "description": "You work, buy the best cream — and at the end of the month you don't understand where your profit is."
+          },
+          "solution": {
+            "title": "Accurate cost calculation",
+            "description": "We account for everything: from a pinch of vanilla to the box and decor. Earn for real, not on paper."
+          }
+        }
       }
     }
   }

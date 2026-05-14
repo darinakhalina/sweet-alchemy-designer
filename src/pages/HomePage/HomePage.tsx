@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Hero from '@/components/Hero';
 import Button from '@/components/Button';
+import ProblemSolutions from '@/components/ProblemSolutions';
+import Carousel from '@/components/Carousel';
 import { ROUTES } from '@/constants/routes';
 
 const HomePage = () => {
@@ -31,6 +33,18 @@ const HomePage = () => {
           {t('pages.home.hero.ctaSecondary')}
         </Link>
       </Hero>
+
+      <ProblemSolutions />
+
+      <section className="home-page__carousel-section">
+        <Carousel showArrows={false}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Carousel.Slide key={i}>
+              <div className="home-page__test-slide">test {i + 1}</div>
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      </section>
     </main>
   );
 };

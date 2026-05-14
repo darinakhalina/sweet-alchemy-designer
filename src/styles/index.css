@@ -40,6 +40,8 @@
 @import '../components/Accordion/accordion.css';
 @import '../components/Framed/framed.css';
 @import '../components/Hero/hero.css';
+@import '../components/ProblemSolutions/problem-solutions.css';
+@import '../components/Carousel/carousel.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';
