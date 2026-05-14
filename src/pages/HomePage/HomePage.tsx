@@ -1,40 +1,36 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ROUTES, buildRecipeDetailPath } from '@/constants/routes';
-
-const pages = [
-  { path: ROUTES.CONSTRUCTOR, key: 'header.constructor' },
-  { path: ROUTES.SEARCH, key: 'header.searchRecipes' },
-  { path: ROUTES.MY_RECIPES, key: 'header.myRecipes' },
-  { path: buildRecipeDetailPath(1), key: 'recipe.dessertComposition' }, // TODO: replace with real recipe id when data is available
-  { path: ROUTES.PROFILE, key: 'profile.title' },
-  { path: ROUTES.PROFILE_EDIT, key: 'profile.edit' },
-];
+import Hero from '@/components/Hero';
+import Button from '@/components/Button';
+import { ROUTES } from '@/constants/routes';
 
 const HomePage = () => {
   const { t } = useTranslation();
 
+  const handleTryForFree = () => {
+    // TODO: wire up real signup flow (modal or dedicated route)
+  };
+
   return (
     <main className="home-page" data-testid="home-page">
-      <div className="row">
-        <div className="col-12 col-md-8">
-          <h1 className="h1">{t('pages.home.title')}</h1>
-          <p className="text mt-4">{t('pages.home.subtitle')}</p>
-        </div>
-      </div>
-
-      <nav className="home-page__nav mt-10">
-        <h2 className="h2">{t('pages.home.navigation')}</h2>
-        <div className="row row--gap-md mt-5">
-          {pages.map((page) => (
-            <div key={page.path} className="col-12 col-md-6 col-lg-4">
-              <Link to={page.path} className="home-page__link" viewTransition>
-                {t(page.key)}
-              </Link>
-            </div>
-          ))}
-        </div>
-      </nav>
+      <Hero
+        data-testid="home-hero"
+        title={t('pages.home.hero.title')}
+        accentTitle={t('pages.home.hero.accentTitle')}
+        description={t('pages.home.hero.description')}
+        image={{
+          src: '/images/hero-home.jpg',
+          alt: t('pages.home.hero.imageAlt'),
+          variant: 0,
+        }}
+      >
+        <Button variant="primary" size="lg" onClick={handleTryForFree}>
+          {t('pages.home.hero.ctaPrimary')}
+        </Button>
+        <Link to={ROUTES.ABOUT} className="btn btn--secondary btn--lg">
+          {t('pages.home.hero.ctaSecondary')}
+        </Link>
+      </Hero>
     </main>
   );
 };

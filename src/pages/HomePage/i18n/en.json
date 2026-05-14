@@ -1,9 +1,14 @@
 {
   "pages": {
     "home": {
-      "title": "Sweet Alchemy",
-      "subtitle": "Precision in every recipe",
-      "navigation": "Pages"
+      "hero": {
+        "title": "Turn off the calculator",
+        "accentTitle": "Turn on the inspiration",
+        "description": "Adapt any recipe to a new shape in 3 seconds. No more wasted ingredients from miscalculated proportions.",
+        "ctaPrimary": "Try for free",
+        "ctaSecondary": "Learn more about the product",
+        "imageAlt": "SweetAlchemy dessert designer"
+      }
     }
   }
 }

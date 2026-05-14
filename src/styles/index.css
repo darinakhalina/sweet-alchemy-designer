@@ -38,6 +38,8 @@
 @import '../components/Switch/switch.css';
 @import '../components/RadioGroup/radio-group.css';
 @import '../components/Accordion/accordion.css';
+@import '../components/Framed/framed.css';
+@import '../components/Hero/hero.css';
 
 /* === Pages === */
 @import '../pages/HomePage/home-page.css';

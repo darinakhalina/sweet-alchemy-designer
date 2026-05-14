@@ -1,0 +1,57 @@
+.framed {
+  --framed-border-width: 8px;
+  --framed-border-color: var(--brand-600);
+  --framed-border-offset-x: 0;
+  --framed-border-offset-y: 0;
+  --framed-border-delta-w: 0;
+  --framed-border-delta-h: 0;
+  --framed-rotate: 0deg;
+
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.framed::after {
+  content: '';
+  position: absolute;
+  top: var(--framed-border-offset-y);
+  left: var(--framed-border-offset-x);
+  width: calc(100% + var(--framed-border-delta-w));
+  height: calc(100% + var(--framed-border-delta-h));
+  border: var(--framed-border-width) solid var(--framed-border-color);
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(var(--framed-rotate));   /* tilt only the border, not the content */
+  transform-origin: center;
+}
+
+.framed > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* === Preset modifiers === */
+/* 9 derived from Figma, 11 synthesised. Tilt mixes ±1.5° (soft) and ±3° (medium). */
+
+.framed--0  { --framed-border-offset-x: -6%; --framed-border-offset-y: -3%; --framed-border-delta-w:  8%; --framed-border-delta-h: -2%; --framed-rotate: -2deg; }
+.framed--1  { --framed-border-offset-x: -6%; --framed-border-offset-y:  0%; --framed-border-delta-w:  5%; --framed-border-delta-h: -2%; --framed-rotate:  1.5deg; }
+.framed--2  { --framed-border-offset-x: -5%; --framed-border-offset-y:  1%; --framed-border-delta-w:  5%; --framed-border-delta-h: -3%; --framed-rotate: -1.5deg; }
+.framed--3  { --framed-border-offset-x: -4%; --framed-border-offset-y:  1%; --framed-border-delta-w:  4%; --framed-border-delta-h: -6%; --framed-rotate:  2deg; }
+.framed--4  { --framed-border-offset-x: -2%; --framed-border-offset-y: -3%; --framed-border-delta-w: -3%; --framed-border-delta-h:  1%; --framed-rotate: -1deg; }
+.framed--5  { --framed-border-offset-x: -4%; --framed-border-offset-y:  2%; --framed-border-delta-w:  7%; --framed-border-delta-h:  4%; --framed-rotate:  3deg; }
+.framed--6  { --framed-border-offset-x: -2%; --framed-border-offset-y:  1%; --framed-border-delta-w: -1%; --framed-border-delta-h: -3%; --framed-rotate: -3deg; }
+.framed--7  { --framed-border-offset-x:  0%; --framed-border-offset-y: -6%; --framed-border-delta-w: -2%; --framed-border-delta-h:  3%; --framed-rotate:  1deg; }
+.framed--8  { --framed-border-offset-x:  6%; --framed-border-offset-y: -3%; --framed-border-delta-w:  8%; --framed-border-delta-h: -2%; --framed-rotate:  0deg; }
+.framed--9  { --framed-border-offset-x:  5%; --framed-border-offset-y:  0%; --framed-border-delta-w:  5%; --framed-border-delta-h: -2%; --framed-rotate: -2.5deg; }
+.framed--10 { --framed-border-offset-x:  4%; --framed-border-offset-y: -4%; --framed-border-delta-w:  4%; --framed-border-delta-h:  3%; --framed-rotate:  2.5deg; }
+.framed--11 { --framed-border-offset-x: -1%; --framed-border-offset-y: -5%; --framed-border-delta-w:  3%; --framed-border-delta-h:  5%; --framed-rotate: -1.5deg; }
+.framed--12 { --framed-border-offset-x: -3%; --framed-border-offset-y:  4%; --framed-border-delta-w:  5%; --framed-border-delta-h: -3%; --framed-rotate:  1.5deg; }
+.framed--13 { --framed-border-offset-x:  3%; --framed-border-offset-y:  3%; --framed-border-delta-w:  4%; --framed-border-delta-h: -4%; --framed-rotate: -1deg; }
+.framed--14 { --framed-border-offset-x:  0%; --framed-border-offset-y:  0%; --framed-border-delta-w:  5%; --framed-border-delta-h:  5%; --framed-rotate:  1deg; }
+.framed--15 { --framed-border-offset-x:  0%; --framed-border-offset-y:  0%; --framed-border-delta-w: -3%; --framed-border-delta-h: -3%; --framed-rotate:  0deg; }
+.framed--16 { --framed-border-offset-x:  2%; --framed-border-offset-y: -2%; --framed-border-delta-w: -3%; --framed-border-delta-h:  4%; --framed-rotate: -2deg; }
+.framed--17 { --framed-border-offset-x: -3%; --framed-border-offset-y: -1%; --framed-border-delta-w: -2%; --framed-border-delta-h:  5%; --framed-rotate:  2deg; }
+.framed--18 { --framed-border-offset-x:  4%; --framed-border-offset-y:  1%; --framed-border-delta-w:  3%; --framed-border-delta-h: -5%; --framed-rotate: -3deg; }
+.framed--19 { --framed-border-offset-x: -1%; --framed-border-offset-y:  3%; --framed-border-delta-w: -3%; --framed-border-delta-h: -4%; --framed-rotate:  3deg; }

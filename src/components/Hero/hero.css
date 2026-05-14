@@ -1,0 +1,78 @@
+.hero {
+  /* === Gap tokens — change in one place === */
+  --hero-title-gap: 4px;
+  --hero-section-gap: var(--space-8);   /* 32px between title-block / description / CTA */
+  --hero-cta-gap: 12px;
+  --hero-padding-y: var(--space-10);    /* 40px vertical breathing room */
+
+  /* Wider gap between text and image columns than the default 24px row gutter. */
+  --grid-gutter: var(--space-8);        /* 32px */
+
+  padding: var(--hero-padding-y) 0;     /* horizontal padding handled by .f-container */
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-section-gap);
+  min-width: 0;
+}
+
+/* Hero image slot — fixed portrait ratio so any image fits the same size.
+ * `object-fit: cover` crops natural content to the slot without distortion. */
+.hero__image .framed {
+  aspect-ratio: 3 / 4;
+}
+
+.hero__image .framed > img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-title-gap);
+}
+
+.hero__title {
+  overflow-wrap: anywhere;
+}
+
+.hero__title--accent {
+  color: var(--brand-600);
+}
+
+.hero__cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-cta-gap);
+  align-items: flex-start;
+}
+
+/* === Mobile viewport (≤767): stacked column, image above content centered,
+ *      content text centered, CTA buttons full-width === */
+@media (--mobile) {
+  .hero {
+    --hero-padding-y: 0;
+  }
+
+  .hero__image-col {
+    order: -1;
+  }
+
+  .hero__image {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__cta {
+    align-items: stretch;
+  }
+}

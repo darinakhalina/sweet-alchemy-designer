@@ -1,0 +1,50 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as FramedStories from './Framed.stories';
+
+<Meta of={FramedStories} />
+
+<Title />
+
+<Subtitle>
+  Розова декоративна рамка-«поляроид» навколо картинки чи блоку. Один div зі ::after псевдоелементом.
+</Subtitle>
+
+## Використання
+
+<Source language="tsx" code={`import Framed from '@/components/Framed';
+
+// Одинокий випадок — задаєш конкретний пресет 0..19
+<Framed variant={3}>
+  <img src={hero} alt="" />
+</Framed>
+
+// Список — передаєш індекс, компонент циклить за модулем 20
+{recipes.map((recipe, i) => (
+  <Framed key={recipe.id} variant={i}>
+    <img src={recipe.image} alt="" />
+  </Framed>
+))}`} />
+
+## Архітектура
+
+- **Один `<div>` + `::after`.** Жодних додаткових DOM-вузлів. Рамка — це псевдоелемент, абсолютно позиційований над контентом, з `pointer-events: none` і `z-index: 1`.
+- **Розтягується разом з контентом.** `.framed` має `display: block; width: 100%` і автоматично займає всю ширину батька. Пряма дочірня `<img>` отримує `width: 100%; height: auto`.
+- **Без обертання контенту.** `transform: rotate(...)` застосовано до `::after`, не до `.framed`. Картинка/блок усередині стоять рівно — нахилена тільки рожева рамка.
+
+## Пул із 20 пресетів
+
+Кожен пресет — це п'ять CSS-змінних: `--framed-border-offset-x`, `--framed-border-offset-y` (зсув рамки в %), `--framed-border-delta-w`, `--framed-border-delta-h` (різниця у розмірі з контентом), `--framed-rotate` (нахил у градусах). Пул мікширує м'які (±1.5°) і середні (±3°) нахили з кількома нульовими для різноманіття.
+
+Поза пулом міняти не треба — компонент бере `variant % 20`, тому `variant={23}` дасть той самий пресет, що й `variant={3}`. Стабільно між refreshes, якщо порядок items стабільний.
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />

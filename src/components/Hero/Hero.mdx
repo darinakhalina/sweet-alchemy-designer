@@ -1,0 +1,70 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import * as HeroStories from './Hero.stories';
+
+<Meta of={HeroStories} />
+
+<Title />
+
+<Subtitle>
+  Hero-секція для landing-сторінок. Два варіанти заголовка, опис, 1–2 CTA та опційна фрейм-картинка.
+</Subtitle>
+
+## Використання
+
+Hero розрахований на життя всередині проєктного `.f-container` — він не центрується сам і не задає max-width.
+
+<Source language="tsx" code={`import Hero from '@/components/Hero';
+import Button from '@/components/Button';
+
+<div className="f-container">
+  <Hero
+    title="Вимикай калькулятор"
+    accentTitle="Вмикай натхнення"
+    description="Адаптуй будь-який рецепт під нову форму..."
+    image={{ src: '/hero.jpg', alt: '', variant: 0 }}
+  >
+    <Button variant="primary" size="lg">Спробувати</Button>
+    <Button variant="secondary" size="lg">Детальніше</Button>
+  </Hero>
+</div>`} />
+
+## Адаптив
+
+Hero використовує проєктні grid-хелпери (`.row` + `.col-*`), не свій grid. Поведінка на трьох breakpoints:
+
+| Viewport | Текстова колонка | Колонка картинки | Layout |
+|---|---|---|---|
+| **Desktop ≥ 1200** | `col-lg-6` (50%) | `col-lg-6` (50%) | row, текст ← картинка → |
+| **Tablet 768–1199** | `col-md-7` (~58%) | `col-md-5` (~42%) | row, текст ширший |
+| **Mobile ≤ 767** | `col-12` | `col-12` (`order: -1`) | column, картинка **зверху** |
+
+Розміри шрифтів (`.h1`, `.h1-accent`, `.text`) масштабуються через `typography.css` — Hero не дублює `font-size` правила. На mobile кнопки CTA розтягуються на всю ширину (`align-items: stretch`).
+
+Щоб подивитися адаптивну поведінку — змінюйте розмір вікна або відкрийте DevTools Responsive Mode. Окремих stories під tablet/mobile немає (viewport-addon у проєкті відсутній).
+
+## Архітектура
+
+- **DOM:** контент завжди йде першим у DOM (для скрін-рідерів). Image на mobile піднімається візуально через `order: -1` на `.hero__image-col`.
+- **Title-block:** до двох `<h1>` поруч (плейн + акцент), gap 4px. Якщо передати тільки один заголовок, рендериться тільки він. Якщо жодного — весь блок ховається.
+- **Tokens:** усі відступи (title-gap 4px, section-gap 32px, cta-gap 12px, padding-y 40px) — це CSS-змінні на корені `.hero`. Можна перевизначити з батьківського класу однією рядкою.
+- **Фіксований слот картинки 3/4** з `object-fit: cover` — будь-яка картинка (портрет / альбом / квадрат) приводиться до одного портретного розміру через `aspect-ratio` на `.hero__image .framed`. На різних сторінках Hero виглядає однаково, контент кадрується без спотворень.
+
+## Картинки
+
+На mobile (≤767) додатково:
+- `.hero__image` обмежений `max-width: 400px` і центрується (`margin: auto`)
+- внутрішній `padding: 24px` навколо рамки
+- текст у `.hero__content` центрується (`text-align: center`)
+- кнопки в `.hero__cta` розтягуються на всю ширину (`align-items: stretch`)
+
+## Пісочниця
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Приклади
+
+<Stories includePrimary={false} />
